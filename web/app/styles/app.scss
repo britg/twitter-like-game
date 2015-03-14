@@ -2,6 +2,12 @@
 @import 'bitters/grid-settings';
 @import 'bower_components/neat/app/assets/stylesheets/neat';
 @import 'bower_components/bitters/app/assets/stylesheets/base';
+@import 'slab/slab';
+@import 'lead';
 
 body {
+  @include type-system-slab;
+  padding: 0;
+  margin: 0;
 }
+

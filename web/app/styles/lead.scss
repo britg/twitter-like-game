@@ -1,0 +1,43 @@
+$lead-top-color: #fb7f51;
+$lead-mid-color: #2e122c;
+$lead-darker-color: darken($lead-mid-color, 50%);
+$lead-darkest-color: darken($lead-darker-color, 50%);
+$button-color: #f05f5c;
+
+.lead {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient($lead-top-color,
+    $lead-mid-color,
+    $lead-darker-color,
+    $lead-darkest-color);
+
+  .title-card {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 20%;
+    text-align: center;
+    color: #fff;
+
+    h1 {
+      font-size: 5em;
+      text-shadow: 1px 0px 20px yellow;
+      transition: width 0.3s;
+    }
+
+    p {
+      color: white;
+    }
+
+    button {
+      background: $button-color;
+      color: white;
+    }
+  }
+}
+
+.lead-transition {
+  display: block;
+}

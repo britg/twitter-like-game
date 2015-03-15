@@ -1,10 +1,4 @@
-.cards {
-  @include display(flex);
-  @include flex-wrap(wrap);
-  @include justify-content(space-between);
-}
-
-.card {
+@mixin card {
   ///////////////////////////////////////////////////////////////////////////////////
   $base-border-color: gainsboro !default;
   $base-border-radius: 3px !default;

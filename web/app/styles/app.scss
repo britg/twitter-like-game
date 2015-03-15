@@ -1,9 +1,10 @@
 @import 'bower_components/bourbon/app/assets/stylesheets/bourbon';
-@import 'bitters/grid-settings';
+@import 'mixins/grid-settings';
 @import 'bower_components/neat/app/assets/stylesheets/neat';
 @import 'bower_components/bitters/app/assets/stylesheets/base';
-@import 'slab/slab';
-@import 'cards/cards';
+@import 'mixins/slab';
+@import 'mixins/cards';
+@import 'mixins/events';
 @import 'lead';
 @import 'tavern';
 @import 'nav';
@@ -16,4 +17,12 @@ body {
 
 .inner {
   padding: 5px;
+}
+
+.event {
+  @include event;
+}
+
+.card {
+  @include card;
 }

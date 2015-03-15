@@ -5,10 +5,9 @@ export default Ember.Component.extend({
   attr: {},
 
   showPushDown: function () {
-    var $pushDown = $('.push-down')
-                      .removeClass('hidden')
-                      .css({height: this.attr.height,
-                            top: this.attr.height})
+    $('.push-down').removeClass('hidden')
+                    .css({height: this.attr.height,
+                          top: this.attr.height});
   },
 
   scrollDown: function () {

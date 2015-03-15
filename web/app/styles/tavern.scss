@@ -1,0 +1,23 @@
+#tavern {
+  display: none;
+
+  .navigation {
+    margin-bottom: 20px;
+  }
+
+  .game-interface {
+    @include outer-container;
+  }
+
+  .player-details {
+    @include span-columns(3);
+  }
+
+  .event-stream {
+    @include span-columns(6);
+  }
+
+  .misc-panels {
+    @include span-columns(3);
+  }
+}

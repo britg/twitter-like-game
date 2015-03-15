@@ -3,7 +3,10 @@
 @import 'bower_components/neat/app/assets/stylesheets/neat';
 @import 'bower_components/bitters/app/assets/stylesheets/base';
 @import 'slab/slab';
+@import 'cards/cards';
 @import 'lead';
+@import 'tavern';
+@import 'nav';
 
 body {
   @include type-system-slab;
@@ -11,3 +14,6 @@ body {
   margin: 0;
 }
 
+.inner {
+  padding: 5px;
+}

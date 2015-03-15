@@ -1,12 +1,30 @@
 import Ember from 'ember';
+import $ from 'jquery';
 
 export default Ember.Component.extend({
-  didInsertElement: function () {
-    console.log("lead-in component did insert element");
+  attr: {},
+
+  showPushDown: function () {
+    var $pushDown = $('.push-down')
+                      .removeClass('hidden')
+                      .css({height: this.attr.height,
+                            top: this.attr.height})
   },
+
+  scrollDown: function () {
+    var $this = this;
+    $.scrollTo(this.attr.height, 3000, {
+      onAfter: function () {
+        $this.sendAction();
+      }
+    });
+  },
+
   actions: {
     startGame: function () {
-      console.log("Starting game!");
+      this.attr.height = $(window).height();
+      this.showPushDown();
+      this.scrollDown();
     }
   }
 });

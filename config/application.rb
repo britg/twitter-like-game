@@ -23,7 +23,7 @@ module Tavernlight
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.generators do |g|
-      g.template_engine :haml
+      g.template_engine false
       g.test_framework :rspec, :fixture_replacement => :factory_girl
       g.fixture_replacement :factory_girl, dir: "spec/factories"
       g.helper false

@@ -41,5 +41,5 @@ Rails.application.configure do
 
   config.middleware.use Rack::LiveReload
 
-  config.cache_store = :dalli_store, nil, { :namespace => "bb", :expires_in => 1.day, :compress => true }
+  config.cache_store = :dalli_store, nil, { :namespace => "tavern", :expires_in => 1.day, :compress => true }
 end

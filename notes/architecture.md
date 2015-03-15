@@ -4,24 +4,36 @@
 
 - Each real person is a 'user' - this is what authenticates
 
+### Characters
+
+- Sidebar of characters who reside at the place you're at
+
+
+### Places in Town
+
+- sidebar of places known
+- discover places by talking to characters
+
+### Quests
+
+- sidebar of quests
+- click a quest to visit that quest location
+
 ### Player
 
-- Each addressable URL is a 'player' -- can be driven by a User or by a Boss or an NPC
-- Name
-- Health
-- Attack
-- Defense
-- Level
+Real human beings
+
+- auto-generated without auth, can begin playing with no credentials/etc.
+- generate a silent token for non-auth players
+- can pick up where they left off by cookie storage
+- Save progress by creating an account
 
 ### Events
+embedded in player
 
 - These are the individual events in the timeline
+- instantiation of an action
 
-### Actions
-
-- Actions are templates for events -- an event is an instantiation of an Action with a player
-
-### Battle
-
-- An instantiation of one enemy and one or many player/fighters battling each other
-- keeps its own state of the two players, seeded by their stats.
+Types:
+  - prompt
+  - info

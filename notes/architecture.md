@@ -8,12 +8,6 @@
 
 - Sidebar of characters who reside at the place you're at
 
-
-### Places in Town
-
-- sidebar of places known
-- discover places by talking to characters
-
 ### Quests
 
 - sidebar of quests
@@ -28,8 +22,16 @@ Real human beings
 - can pick up where they left off by cookie storage
 - Save progress by creating an account
 
+### Location
+
+Locations
+
+### PlayerLocation
+
+An instance of a player at a location
+
 ### Events
-embedded in player
+embedded in PlayerLocation
 
 - These are the individual events in the timeline
 - instantiation of an action
@@ -37,3 +39,6 @@ embedded in player
 Types:
   - prompt
   - info
+
+### Story Beats
+

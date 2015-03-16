@@ -1,24 +1,30 @@
 
-Tavernkeep
+_You ride up to the tavern exhausted. It looks like a pile of wood and stone blew into place in the last storm, and would blow right back out of place in the next._
+
+- Step in
+
+-----
+
+**Otto, the Tavernkeep**
+
 "Welcome stranger. What'll you have?"
 
-Give the player mulitple option with varying prices. When they select one, the left player panel appears.
+- Ale, 1g
+- Stew, 4g
 
 -----
 
-Tavernkeep
-"Ah, good choice my friend. What brings you out to these parts?"
+**Otto, the Tavernkeep**
 
-- Stay silent, maybe he'll go away
-- Tell him
+"Ah, good choice my friend. Let me guess, you're here just like everyone else. Gonna make some gold, find some treasure taming the wilds at World's End, huh?"
 
 -----
 
-Tavernkeep
+**Otto, the Tavernkeep**
 
-_You get the sense that Otto wasn't listening..._
+_Otto grins_
 
-"Ah, I was a young and stupid like you once..."
+"I was a young and stupid like you once..."
 
 -----
 
@@ -26,33 +32,25 @@ _The other patrons at the bar moan and turn away_
 
 -----
 
-Tavernkeep
+**Otto, the Tavernkeep**
 
-"I remember once we were in Altos; you were just a twinkle in your mum's eye ..."
-
------
-
-_Otto stops abruptly, his eye glancing behind you, and makes himself busy wiping down the counter. Although sudden, and suspicious, you're grateful._
+"Lost my leg" ... _Otto raps his wooden leg with his knuckles_ ... "oh 10 years back now out in [Diver's Den]. Nastiest quillboar you ever seen..."
 
 -----
 
-Refenes
-
-"Hey, trouser stain. You're on my stool."
-
-_You turn around to see the largest man you've ever seen._
-
------
-
-Stranger
-
-"The name's ___"
+_Otto stops abruptly, his eyes shifting behind you, and makes himself busy wiping down the counter._
 
 -----
 
 Refenes
 
-"What? I don't care what your name is. I said, you're on my stool. The way I figure, that means you're on my land. And now you gotta pay me for use of my land."
+"You're on my stool."
+
+-----
+
+Refenes
+
+"I said, you're on my stool. The way I figure, that means you're on my land. And now you gotta pay me for use of my land."
 
 _Two rat-faced lackeys behind him snicker_
 
@@ -60,7 +58,7 @@ _Two rat-faced lackeys behind him snicker_
 
 Stranger
 
-_This isn't your first brahma ride, and you decide you'd better deal with this quickly_
+_This isn't your first brahma ride. You decide you'd better deal with this quickly_
 
 - Draw your sword
 

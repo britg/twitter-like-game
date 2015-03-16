@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :players
       resources :locations
+      resources :player_locations
     end
   end
 

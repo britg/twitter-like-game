@@ -5,7 +5,7 @@ export default Ember.Route.extend({
 
   model: function () {
     console.log("Accessing model here");
-    return this.get('store').find('location', 'tavern');
+    return this.get('store').find('player_location', 'tavern');
   },
 
   setupController: function(controller, model){

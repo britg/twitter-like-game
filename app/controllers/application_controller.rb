@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
 
+  before_filter :find_player
   helper_method :current_player
 
   def ember_start
@@ -10,13 +11,17 @@ class ApplicationController < ActionController::Base
   end
 
   def current_player
-    @current_player = Player.where(id: cookies[:player_id]).first || create_player
+    @current_player
   end
 
-  def create_player
-    player = Player.create()
-    cookies[:player_id] = player.id
-    player
+  def player_cookie
+    cookies.signed[:player_id]
+  end
+
+  protected
+
+  def find_player
+    @current_player = Player.where(id: player_cookie).first
   end
 
 end

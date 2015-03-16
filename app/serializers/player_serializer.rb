@@ -1,7 +1,4 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name, :new_record?
 
-  def id
-    object.id.to_s
-  end
 end

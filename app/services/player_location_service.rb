@@ -7,8 +7,8 @@ class PlayerLocationService
     @location = _location
   end
 
-  def events
-    @player.player_location.where(location_id: @location).events
+  def player_location
+    @player.player_locations.find_or_create_by(location_id: @location.id)
   end
 
 end

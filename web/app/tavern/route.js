@@ -4,7 +4,6 @@ import $ from 'jquery';
 export default Ember.Route.extend({
 
   model: function () {
-    console.log("Accessing model here");
     return this.get('store').find('player_location', 'tavern');
   },
 

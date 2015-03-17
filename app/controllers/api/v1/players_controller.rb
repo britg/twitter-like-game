@@ -1,7 +1,7 @@
 class Api::V1::PlayersController < ApplicationController
 
   def show
-    render json: current_player||Player.new
+    render json: current_player||Player.new.is_current_player!
   end
 
   def create

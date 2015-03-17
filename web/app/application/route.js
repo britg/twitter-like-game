@@ -3,22 +3,23 @@ import Ember from 'ember';
 var ApplicationRoute = Ember.Route.extend({
 
   model: function () {
-    console.log("Application model here");
     return this.store.find('player', 'current');
   },
 
-  afterModel: function (player, transition) {
+  afterModel: function (player) {
+    console.log("Application after model");
     if (!player.get('new_record')) {
-      this.transitionTo(player.get('current_location_url'));
+      this.transitionTo('player-location', player.get('current_location_url'));
     }
   },
 
-  setupController: function (controller, model) {
+  setupController: function () {
   },
 
   actions: {
     error: function() {
-      this.transitionTo('index');
+      console.log(arguments);
+      this.transitionTo('player-location');
     }
   }
 

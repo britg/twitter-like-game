@@ -22,7 +22,6 @@ class ApplicationController < ActionController::Base
 
   def find_player
     @current_player = Player.where(id: player_cookie).first
-    @current_player.try(:is_current_player!)
   end
 
 end

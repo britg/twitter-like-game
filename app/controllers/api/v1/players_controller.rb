@@ -3,11 +3,9 @@ class Api::V1::PlayersController < ApplicationController
   before_filter :ensure_player, only: :show
 
   def show
-    render json: current_player
-  end
-
-  def new
-    render json: Player.new.is_current_player!
+    render json: current_player,
+           serializer: CurrentPlayerSerializer,
+           root: "player"
   end
 
   def create
@@ -22,7 +20,7 @@ class Api::V1::PlayersController < ApplicationController
   end
 
   def create_player
-    @current_player = Player.create
+    @current_player = Player.create(name: t("tavernlight.default_player_name"))
     cookies.permanent.signed[:player_id] = @current_player.id.to_s
   end
 

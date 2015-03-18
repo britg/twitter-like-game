@@ -4,6 +4,10 @@ import $ from 'jquery';
 export default Ember.Component.extend({
   attr: {},
 
+  requestPlayer: function () {
+    this.sendAction('createPlayerAction');
+  },
+
   showPushDown: function () {
     $('.push-down').removeClass('hidden')
                     .css({height: this.attr.height,
@@ -22,6 +26,7 @@ export default Ember.Component.extend({
   actions: {
     startGame: function () {
       this.attr.height = $(window).height();
+      this.requestPlayer();
       this.showPushDown();
       this.scrollDown();
     }

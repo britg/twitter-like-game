@@ -1,15 +1,17 @@
 import Ember from 'ember';
+import $ from 'jquery';
 
 var ApplicationRoute = Ember.Route.extend({
 
   model: function () {
-    return this.store.find('player', 'current');
+    if (Ember.isPresent($.cookie("player_id"))) {
+      return this.store.find('player', 'current');
+    }
   },
 
   afterModel: function (player) {
-    console.log("Application after model");
-    if (!player.get('new_record')) {
-      this.transitionTo('player-location', player.get('current_location_url'));
+    if (Ember.isPresent(player)) {
+      this.transitionTo(player.get('current_location_url'));
     }
   },
 
@@ -18,7 +20,7 @@ var ApplicationRoute = Ember.Route.extend({
 
   actions: {
     error: function() {
-      console.log(arguments);
+      console.log("Application route error: ", arguments);
       this.transitionTo('player-location');
     }
   }

@@ -18,7 +18,7 @@ group :development, :test do
   gem 'web-console'             ,'2.0.0'
   gem 'spring'                  ,'1.3.3'
   gem 'guard'                   ,'2.7.0'
-  gem 'guard-livereload'        ,'2.3.1', require: false
+  gem 'guard-livereload'        , require: false
   gem 'guard-rspec'             ,'4.5.0', require: false
   gem 'rack-livereload'         ,'0.3.15'
   gem 'factory_girl_rails'      ,'4.5.0'
@@ -27,5 +27,6 @@ group :development, :test do
   gem 'rspec-activejob'         ,'0.2.0'
   gem 'shoulda-matchers'        ,'2.5.0'
   gem 'quiet_assets'            ,'1.0.3'
+  gem 'meta_request'            ,'0.3.4'
 end
 

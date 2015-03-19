@@ -3,15 +3,24 @@ import $ from 'jquery';
 
 var ApplicationRoute = Ember.Route.extend({
 
+  player: null,
+
   model: function () {
-    if (Ember.isPresent($.cookie("player_id"))) {
-      return this.store.find('player', 'current');
+    if (this.player == null) {
+      this.player = this.store.createRecord("player", {id: "current"})
     }
+
+    if (Ember.isPresent($.cookie("player_id"))) {
+      return this.player.reload();
+    }
+    return this.player;
   },
 
   afterModel: function (player) {
-    if (Ember.isPresent(player)) {
-      this.transitionTo(player.get('current_location_url'));
+    if (Ember.isPresent(player.get('current_location_url'))) {
+      this.transitionTo('player-location', player.get('current_location_url'));
+    } else {
+      this.transitionTo('index');
     }
   },
 

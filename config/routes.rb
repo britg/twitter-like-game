@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: { session: 'session' }
   root to: "application#ember_start"
 
   namespace :api do

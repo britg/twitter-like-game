@@ -4,7 +4,8 @@ import $ from 'jquery';
 var ApplicationAdapter = DS.ActiveModelAdapter.extend({
   namespace: 'api/v1',
   headers: {
-    "X-CSRF-Token": $('meta[name="csrf-token"]').attr('content')
+    "X-CSRF-Token": $('meta[name="csrf-token"]').attr('content'),
+    "X-Continue-Token": localStorage["continue_token"]
   }
 });
 

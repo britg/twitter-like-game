@@ -14,14 +14,15 @@ class ApplicationController < ActionController::Base
     @current_player
   end
 
-  def player_cookie
-    cookies.signed[:player_id]
+  def continue_token
+    @continue_token ||= request.headers["X-Continue-Token"]
   end
 
   protected
 
   def find_player
-    @current_player = Player.where(id: player_cookie).first
+    return nil unless continue_token.present?
+    @current_player = Player.where(continue_token: continue_token).first
   end
 
 end

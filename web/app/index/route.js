@@ -3,8 +3,11 @@ import Ember from 'ember';
 var IndexRoute = Ember.Route.extend({
   actions: {
     createPlayer: function () {
-      this.player = this.modelFor('application');
-      this.player.save();
+      var $player = this.player = this.modelFor('application');
+      this.player.save().then(function () {
+        console.log("After player save");
+        localStorage["continue_token"] = $player.get('continue_token')
+      });
     },
 
     startGame: function () {

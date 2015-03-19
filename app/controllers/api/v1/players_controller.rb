@@ -20,7 +20,7 @@ class Api::V1::PlayersController < ApplicationController
 
   def create_player
     @current_player = PlayerCreationService.new.create
-    cookies.permanent.signed[:player_id] = @current_player.id.to_s
+    # cookies.permanent.signed[:player_id] = @current_player.id.to_s
   end
 
 

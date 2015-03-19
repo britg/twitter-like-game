@@ -10,4 +10,8 @@ class PlayerLocation
     location.slug
   end
 
+  def name
+    location.name
+  end
+
 end

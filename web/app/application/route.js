@@ -7,7 +7,7 @@ var ApplicationRoute = Ember.Route.extend({
 
   model: function () {
     if (this.player == null) {
-      this.player = this.store.createRecord("player", {id: "current"})
+      this.player = this.store.createRecord("player", {id: "current"});
     }
 
     if (Ember.isPresent($.cookie("player_id"))) {

@@ -10,7 +10,7 @@ gem 'sidekiq'                   ,'3.3.2'
 gem 'sidetiq'                   ,'0.6.3'
 
 # Assets
-gem 'active_model_serializers'  ,'0.9.3'
+gem 'active_model_serializers'  ,'0.8.3'
 
 group :development, :test do
   gem "ember-cli-rails"         ,'0.1.10'

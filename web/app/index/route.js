@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
+var IndexRoute = Ember.Route.extend({
   actions: {
     createPlayer: function () {
       this.player = this.modelFor('application');
@@ -13,3 +13,5 @@ export default Ember.Route.extend({
     }
   }
 });
+
+export default IndexRoute;

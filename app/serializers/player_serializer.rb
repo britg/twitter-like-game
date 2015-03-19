@@ -1,5 +1,7 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :id, :name, :new_record?,
-             :current_location, :current_location_url
+  attributes :id, :name,
+             :current_location_url
+
+  has_one :current_location
 
 end

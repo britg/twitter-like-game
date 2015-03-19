@@ -1,4 +1,6 @@
 class PlayerLocationSerializer < ActiveModel::Serializer
-  attributes :id, :url, :location, :events
+  attributes :id, :url
+
+  attribute :name
 
 end

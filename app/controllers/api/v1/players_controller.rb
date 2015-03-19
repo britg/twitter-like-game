@@ -1,6 +1,7 @@
 class Api::V1::PlayersController < ApplicationController
 
   def show
+    # render json: current_player
     render_current_player
   end
 

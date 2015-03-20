@@ -3,13 +3,21 @@ class Player
 
   CURRENT_ID = "current"
 
-  has_many :player_locations
-  has_one :current_location, class_name: "PlayerLocation"
-  has_one :user
+  MODE_ACTIVE = "active"
+  MODE_PASSIVE = "passive"
+
+  belongs_to :user
+
+  # Location management
+  belongs_to :location
+  field :current_scripted_event_id, type: String
+
   has_many :events
 
   field :continue_token, type: String
   index({ continue_token: 1 }, { unique: true })
+
+  field :current_mode, type: String
 
   field :name, type: String
   field :experience, type: Integer
@@ -19,7 +27,7 @@ class Player
   field :gold, type: Integer
 
   def current_location_url
-    current_location.try(:url) || "/"
+    location.try(:slug) || "/"
   end
 
   before_save :ensure_continue_token

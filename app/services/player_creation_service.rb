@@ -5,13 +5,9 @@ class PlayerCreationService
 
   def create
     @player = Player.create(name: I18n.t("tavernlight.default_player_name"))
-    @player.current_location = @player.player_locations.find_or_create_by(location_id: start_location.id)
+    PlayerLocationService.new(@player).start!
     EventEngine.new(@player).next!
     @player
-  end
-
-  def start_location
-    Location.where(slug: "tavern").first
   end
 
 end

@@ -1,7 +1,7 @@
 class User
   include Mongoid::Document
 
-  belongs_to :player
+  has_many :players
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

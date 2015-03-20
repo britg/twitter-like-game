@@ -1,7 +1,7 @@
 class EventTemplate
   include Mongoid::Document
 
-  embedded_in :location
+  embedded_in :scripted_event
 
   belongs_to :character
 

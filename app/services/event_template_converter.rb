@@ -12,7 +12,8 @@ class EventTemplateConverter
       character: template.character,
       marker: template.order,
       detail: template.detail,
-      dialogue: template.dialogue
+      dialogue: template.dialogue,
+      scripted_event: template.scripted_event
     )
   end
 

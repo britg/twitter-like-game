@@ -1,0 +1,8 @@
+<form id="save-progress-form" {{action 'submit' on='submit'}}>
+  <label for="authentication">Save your progress:</label>
+  {{input value=user.email placeholder="Email address"}}
+  {{input value=user.password placeholder="Password" type="password"}}
+  {{input value=user.password_confirmation placeholder="Confirm Password" type="password"}}
+
+  <button type="submit">Save Progress</button>
+</form>

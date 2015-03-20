@@ -1,4 +1,4 @@
-class SessionsController < Devise::SessionsController
+class Api::V1::SessionsController < Devise::SessionsController
 
   def create
     if request.format.json?

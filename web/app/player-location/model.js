@@ -1,5 +1,7 @@
 import DS from 'ember-data';
 
-export default DS.Model.extend({
-
+var PlayerLocation = DS.Model.extend({
+  name: DS.attr()
 });
+
+export default PlayerLocation;

@@ -33,6 +33,10 @@ var ApplicationRoute = Ember.Route.extend({
     error: function() {
       console.log("Application route error: ", arguments);
       this.transitionTo('player-location');
+    },
+
+    createUser: function () {
+      console.log("Create user called at application level ", this.store.find('user'))
     }
   }
 

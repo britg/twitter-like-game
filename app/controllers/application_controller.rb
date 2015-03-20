@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def continue_token
-    @continue_token ||= request.headers["X-Continue-Token"]
+    @continue_token ||= (request.headers["X-Continue-Token"]||params[:continue_token])
   end
 
   protected

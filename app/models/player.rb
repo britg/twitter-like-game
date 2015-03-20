@@ -5,6 +5,7 @@ class Player
 
   has_many :player_locations
   has_one :current_location, class_name: "PlayerLocation"
+  has_one :user
 
   field :continue_token, type: String
   index({ continue_token: 1 }, { unique: true })

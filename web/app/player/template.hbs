@@ -1,4 +1,4 @@
-<div id="tavern" class="player-location">
+<div id="player">
 
   <div class="navigation">
     {{game-nav}}
@@ -6,21 +6,21 @@
 
   <div class="location-banner">
     <div class="location-name">
-      <h1>{{attr.location.name}}</h1>
+      <h1>{{attr.player.current_location.name}}</h1>
     </div>
   </div>
 
   <div class="game-interface">
     <div class="player-details">
       <div class="inner">
-        {{player-card}}
+        {{player-card player=attr.player}}
       </div>
     </div>
     <div class="event-stream">
-      {{welcome-event character=attr.character}}
+      Event stream
     </div>
     <div class="misc-panels">
-      {{user-form action="createUser" user=attr.user}}
+      {{user-form action="createUser" user=attr.player.user}}
     </div>
   </div>
 </div>

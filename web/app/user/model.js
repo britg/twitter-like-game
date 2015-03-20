@@ -6,4 +6,4 @@ var User = DS.Model.extend({
   password_confirmation: DS.attr()
 });
 
-export default User
+export default User;

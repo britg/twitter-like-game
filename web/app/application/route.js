@@ -20,7 +20,7 @@ var ApplicationRoute = Ember.Route.extend({
   afterModel: function (player) {
     var loc = player.get('current_location_url');
     if (Ember.isPresent(loc)) {
-      this.transitionTo('player-location', loc);
+      this.transitionTo('player', loc);
     } else {
       this.transitionTo('index');
     }
@@ -32,11 +32,11 @@ var ApplicationRoute = Ember.Route.extend({
   actions: {
     error: function() {
       console.log("Application route error: ", arguments);
-      this.transitionTo('player-location');
+      this.transitionTo('player');
     },
 
     createUser: function () {
-      console.log("Create user called at application level ", this.store.find('user'))
+      console.log("Create user called at application level ", this.store.find('user'));
     }
   }
 

@@ -27,6 +27,6 @@ group :development, :test do
   gem 'rspec-activejob'         ,'0.2.0'
   gem 'shoulda-matchers'        ,'2.5.0'
   gem 'quiet_assets'            ,'1.0.3'
-  gem 'meta_request'            ,'0.3.4'
+  # gem 'meta_request'            ,'0.3.4'
 end
 

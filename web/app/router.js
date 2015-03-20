@@ -7,7 +7,7 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route("index", {path: "/"});
-  this.route('player-location', {path: "/*wildcard"});
+  this.route('player', {path: "/*wildcard"});
 });
 
 export default Router;

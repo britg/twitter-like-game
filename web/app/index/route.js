@@ -10,7 +10,7 @@ var IndexRoute = Ember.Route.extend({
     },
 
     startGame: function () {
-      this.transitionTo('player-location',
+      this.transitionTo('player',
         this.player.get('current_location_url'));
     }
   }

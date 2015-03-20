@@ -2,7 +2,6 @@ class Player
   include Mongoid::Document
 
   CURRENT_ID = "current"
-  SELF_EVENT_NAME = "..."
 
   has_many :player_locations
   has_one :current_location, class_name: "PlayerLocation"

@@ -5,11 +5,7 @@ class EventSerializer < ActiveModel::Serializer
              :dialogue
 
   def character_name
-    if object.character.present?
-      object.character.name
-    else
-      Player::SELF_EVENT_NAME
-    end
+    object.character.try(:name)
   end
 
 end

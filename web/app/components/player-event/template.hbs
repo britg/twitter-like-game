@@ -3,7 +3,9 @@
     <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo image">
   </div>
   <div class="content">
-    <h1 class="character-name">{{player-event.character_name}}</h1>
+    {{#if player-event.character_name}}
+      <h1 class="character-name">{{player-event.character_name}}</h1>
+    {{/if}}
     <p class="detail">{{player-event.detail}}</p>
     <p class="dialogue">{{player-event.dialogue}}</p>
 

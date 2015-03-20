@@ -4,5 +4,6 @@ class PlayerSerializer < ActiveModel::Serializer
 
   has_one :current_location
   has_one :user
+  has_many :events
 
 end

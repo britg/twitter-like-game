@@ -7,12 +7,18 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 locations = Location.create([
-    {
-      name: "World's End Tavern",
-      slug: "tavern"
-    },
-    {
-      name: "Diver's Den",
-      slug: "divers-den"
-    }
-  ])
+  {
+    name: "World's End Tavern",
+    slug: "tavern"
+  },
+  {
+    name: "Diver's Den",
+    slug: "divers-den"
+  }
+])
+
+characters = Character.create([
+  {
+    name: "Otto, the tavern keep"
+  }
+])

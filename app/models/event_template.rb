@@ -1,11 +1,11 @@
-class Event
+class EventTemplate
   include Mongoid::Document
 
-  belongs_to :player
-  belongs_to :character
-  belongs_to :event_template
+  embedded_in :location
 
-  field :marker, type: Integer
+  belongs_to :character
+
+  field :order, type: Integer
   field :detail, type: String
   field :dialogue, type: String
 

@@ -21,13 +21,13 @@
   padding-bottom: 1em;
   width: 100%;
 
-  .event-image,
-  .event-content {
+  .image,
+  .content {
     display: table-cell;
     vertical-align: $event-image-vert-alignment;
   }
 
-  .event-image {
+  .image {
     padding-right: $event-gutter;
 
     > img {
@@ -40,13 +40,13 @@
       width: $event-image-width;
     }
 
-    .event-reverse-order & {
+    .reverse-order & {
       padding-right: 0;
       padding-left: 10px;
     }
   }
 
-  .event-content {
+  .content {
     width: 100%;
 
     h1 {
@@ -59,7 +59,7 @@
       margin-bottom: 0.5em;
     }
 
-    p.event-detail {
+    p.detail {
       color: $event-detail-color;
       font-size: 0.9em;
       font-style: italic;

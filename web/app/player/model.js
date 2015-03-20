@@ -5,7 +5,8 @@ var Player = DS.Model.extend({
   current_location_url: DS.attr(),
   continue_token: DS.attr(),
   current_location: DS.belongsTo('player-location'),
-  user: DS.belongsTo('user')
+  user: DS.belongsTo('user'),
+  events: DS.hasMany('player-event')
 });
 
 export default Player;

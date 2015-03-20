@@ -12,3 +12,6 @@ http://givan.se/p/00000000
 
 Native style transitions
 http://ef4.github.io/liquid-fire/
+
+Embedded Models
+http://stackoverflow.com/questions/24222457/ember-data-embedded-records-current-state

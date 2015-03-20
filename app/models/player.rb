@@ -2,10 +2,12 @@ class Player
   include Mongoid::Document
 
   CURRENT_ID = "current"
+  SELF_EVENT_NAME = "..."
 
   has_many :player_locations
   has_one :current_location, class_name: "PlayerLocation"
   has_one :user
+  has_many :events
 
   field :continue_token, type: String
   index({ continue_token: 1 }, { unique: true })

@@ -17,7 +17,9 @@
       </div>
     </div>
     <div class="event-stream">
-      Event stream
+      {{#each player-event in attr.player.events}}
+        {{player-event player-event=player-event}}
+      {{/each}}
     </div>
     <div class="misc-panels">
       {{user-form action="createUser" user=attr.player.user}}

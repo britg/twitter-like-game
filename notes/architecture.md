@@ -42,3 +42,9 @@ Types:
 
 ### Story Beats
 
+
+
+Actions
+
+- Continue | continue
+- Respond |

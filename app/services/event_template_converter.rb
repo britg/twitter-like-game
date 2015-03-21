@@ -9,11 +9,16 @@ class EventTemplateConverter
 
   def build
     @event = @player.events.build(
-      character: template.character,
-      marker: template.order,
+      character_name: template.character.try(:name),
       detail: template.detail,
       dialogue: template.dialogue,
-      scripted_event: template.scripted_event
+
+      scripted_event_id: template.scripted_event.id,
+      event_template_id: template.id,
+      location_id: template.scripted_event.location.id,
+
+      actions: template.actions,
+      created_at: Time.now
     )
   end
 

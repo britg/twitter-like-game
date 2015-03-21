@@ -21,10 +21,18 @@ class Player
 
   field :name, type: String
   field :experience, type: Integer
-  field :hitpoints, type: Integer
-  field :attack, type: Integer
-  field :defense, type: Integer
+  field :level, type: Integer
+
+  field :hp, type: Integer
+  field :ap, type: Integer
+
   field :gold, type: Integer
+
+  field :strength, type: Integer
+  field :dexterity, type: Integer
+  field :stamina, type: Integer
+  field :intelligence, type: Integer
+  field :luck, type: Integer
 
   def current_location_url
     location.try(:slug) || "/"

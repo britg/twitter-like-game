@@ -8,5 +8,6 @@ class EventTemplate
   field :order, type: Integer
   field :detail, type: String
   field :dialogue, type: String
+  field :actions, type: Hash
 
 end

@@ -24,15 +24,17 @@ Real human beings
 
 ### Location
 
-Locations
+### StoryLine
 
-### PlayerLocation
+- Attached to a location
+- has many event_templates
+- types: linear, random
+- locations can have multiple story lines, typically two: the initial linear story line and the random-event phase.
+- enter story lines through interactions
 
-An instance of a player at a location
+### Event Template
 
 ### Events
-embedded in PlayerLocation
-
 - These are the individual events in the timeline
 - instantiation of an action
 

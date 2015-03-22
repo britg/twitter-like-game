@@ -1,7 +1,7 @@
 class Action
   include Mongoid::Document
 
-  field :label, type: String
   field :key, type: String
+  field :label, type: String
 
 end

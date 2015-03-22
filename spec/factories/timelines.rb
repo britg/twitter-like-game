@@ -1,5 +1,6 @@
 FactoryGirl.define do
-  factory :scripted_event do
-
+  factory :timeline do
+    
   end
+
 end

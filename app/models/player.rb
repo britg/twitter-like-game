@@ -7,12 +7,10 @@ class Player
   MODE_PASSIVE = "passive"
 
   belongs_to :user
+  has_many :events
 
   # Location management
   belongs_to :location
-  field :current_scripted_event_id, type: String
-
-  has_many :events
 
   field :continue_token, type: String
   index({ continue_token: 1 }, { unique: true })
@@ -33,10 +31,6 @@ class Player
   field :stamina, type: Integer
   field :intelligence, type: Integer
   field :luck, type: Integer
-
-  def current_location_url
-    location.try(:slug) || "/"
-  end
 
   before_save :ensure_continue_token
 

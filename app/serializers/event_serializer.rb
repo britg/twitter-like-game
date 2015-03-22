@@ -3,6 +3,10 @@ class EventSerializer < ActiveModel::Serializer
              :character_name,
              :detail,
              :dialogue,
-             :actions
+             :actions,
+             :location_id,
+             :scripted_event_id,
+             :event_template_id
+
 
 end

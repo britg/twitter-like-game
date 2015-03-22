@@ -16,12 +16,6 @@ class PlayerLocationService
 
   def enter_location location
     @player.location = location
-
-    # If the player has not completed the initial
-    # scripted event for a location, start it
-    scripted_event = location.scripted_events.first
-    @player.current_scripted_event_id = scripted_event.id
-    @player.current_mode = scripted_event.mode
     @player.save
   end
 

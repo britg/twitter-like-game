@@ -1,13 +1,11 @@
 class EventTemplate
   include Mongoid::Document
 
-  embedded_in :scripted_event
-
   belongs_to :character
+  embeds_many :actions
 
-  field :order, type: Integer
+  field :sequence, type: Integer
   field :detail, type: String
   field :dialogue, type: String
-  field :actions, type: Hash
 
 end

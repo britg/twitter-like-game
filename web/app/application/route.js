@@ -18,9 +18,9 @@ var ApplicationRoute = Ember.Route.extend({
   },
 
   afterModel: function (player) {
-    var loc = player.get('current_location_url');
+    var loc = player.get('location')
     if (Ember.isPresent(loc)) {
-      this.transitionTo('player', loc);
+      this.transitionTo('player', loc.get('slug'));
     } else {
       this.transitionTo('index');
     }

@@ -1,7 +1,4 @@
 <div class="event">
-  <div class="image">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo image">
-  </div>
   <div class="content">
     {{#if player-event.character_name}}
       <h1 class="character-name">{{player-event.character_name}}</h1>
@@ -10,7 +7,11 @@
     <p class="dialogue">{{player-event.dialogue}}</p>
 
     <div class="actions">
-
+      {{#each player_action in player-event.actions}}
+        <button class="action" {{action "click" player_action}}>
+          {{player_action.label}}
+        </button>
+      {{/each}}
     </div>
   </div>
 </div>

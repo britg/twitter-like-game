@@ -7,6 +7,8 @@ var Player = DS.Model.extend({
   location: DS.belongsTo('location'),
   user: DS.belongsTo('user'),
 
+  events: DS.hasMany('player-event'),
+
   current_mode: DS.attr(),
 
   experience: DS.attr(),

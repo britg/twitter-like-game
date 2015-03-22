@@ -1,9 +1,11 @@
 class ActionHandler
 
-  attr_accessor :player
+  attr_accessor :player, :event_id, :action_key
 
-  def initialize _player, action_key
+  def initialize _player, event_id, action_key
     @player = _player
+    @event_id = event_id
+    @action_key = action_key
   end
 
   def perform!

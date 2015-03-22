@@ -16,4 +16,10 @@ class PlayerSerializer < ActiveModel::Serializer
   has_one :location
   has_one :user
 
+  has_many :events, key: :events
+
+  def events
+    object.events.order("id desc").limit(20)
+  end
+
 end

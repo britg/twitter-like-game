@@ -15,6 +15,17 @@ var PlayerRoute = Ember.Route.extend({
 
     controller.attr = {};
     controller.set('attr.player', player);
+  },
+
+  actions: {
+    chooseAction: function (player_action) {
+      console.log("Player route choose action ", player_action.get('key'));
+      var action = this.store.createRecord("action", {
+        key: player_action.get('key'),
+        "event": player_action.get('event')
+      });
+      action.save();
+    }
   }
 });
 export default PlayerRoute;

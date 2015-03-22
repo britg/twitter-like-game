@@ -11,18 +11,18 @@
   </div>
 
   <div class="game-interface">
+
     <div class="player-details">
       <div class="inner">
         {{player-card player=attr.player}}
         {{user-form action="createUser" user=attr.player.user}}
       </div>
     </div>
-    <div class="event-stream">
-      {{#each player-event in attr.player.events}}
-        {{player-event player-event=player-event}}
-      {{/each}}
-    </div>
+
+    {{event-timeline events=attr.player.events action="chooseAction"}}
+
     <div class="misc-panels">
     </div>
+
   </div>
 </div>

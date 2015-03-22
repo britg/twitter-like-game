@@ -4,7 +4,8 @@ var ApplicationSerializer = DS.ActiveModelSerializer.extend(DS.EmbeddedRecordsMi
   attrs: {
     "location": { embedded: 'always' },
     "user": { embedded: 'always' },
-    "events": { embedded: 'always' }
+    "events": { embedded: 'always' },
+    "actions": { embedded: 'always' }
   }
 });
 

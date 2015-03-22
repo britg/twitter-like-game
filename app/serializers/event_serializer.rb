@@ -5,8 +5,5 @@ class EventSerializer < ActiveModel::Serializer
              :dialogue,
              :actions,
              :location_id,
-             :scripted_event_id,
              :event_template_id
-
-
 end

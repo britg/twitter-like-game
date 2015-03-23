@@ -14,10 +14,12 @@ gem 'active_model_serializers'  ,'0.8.3'
 
 group :development, :test do
   gem "ember-cli-rails"         ,'0.1.10'
+  gem 'pry-rails'               ,'0.3.3'
   gem 'byebug'                  ,'3.5.1'
   gem 'web-console'             ,'2.0.0'
   gem 'spring'                  ,'1.3.3'
   gem 'guard'                   ,'2.7.0'
+  gem 'guard-rails'             ,'0.7.0'
   gem 'guard-livereload'        , require: false
   gem 'guard-rspec'             ,'4.5.0', require: false
   gem 'rack-livereload'         ,'0.3.15'
@@ -26,7 +28,7 @@ group :development, :test do
   gem 'rspec-rails'             ,'3.2.0'
   gem 'rspec-activejob'         ,'0.2.0'
   gem 'shoulda-matchers'        ,'2.5.0'
-  gem 'quiet_assets'            ,'1.0.3'
+  gem 'quiet_assets'            ,'1.1.0'
   # gem 'meta_request'            ,'0.3.4'
 end
 

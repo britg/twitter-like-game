@@ -4,7 +4,8 @@ class EventSerializer < ActiveModel::Serializer
              :detail,
              :dialogue,
              :location_id,
-             :event_template_id
+             :chosen_action_key,
+             :current_state
 
   has_many :actions
 end

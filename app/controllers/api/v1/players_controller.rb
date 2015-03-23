@@ -10,6 +10,12 @@ class Api::V1::PlayersController < ApplicationController
     render_current_player
   end
 
+  def update
+    handler = ActionHandler.new(current_player, selection_params[:selected_action_key])
+    events = handler.perform!
+    render_current_player
+  end
+
   protected
 
   def render_current_player
@@ -21,6 +27,10 @@ class Api::V1::PlayersController < ApplicationController
   def create_player
     @current_player = PlayerCreationService.new.create
     # cookies.permanent.signed[:player_id] = @current_player.id.to_s
+  end
+
+  def selection_params
+    params.require(:player).permit(:selected_action_key)
   end
 
 

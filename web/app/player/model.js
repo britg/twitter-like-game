@@ -23,7 +23,9 @@ var Player = DS.Model.extend({
   dexterity: DS.attr(),
   stamina: DS.attr(),
   intelligence: DS.attr(),
-  luck: DS.attr()
+  luck: DS.attr(),
+
+  selected_action_key: DS.attr()
 
 });
 

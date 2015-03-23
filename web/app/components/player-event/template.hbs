@@ -6,12 +6,14 @@
     <p class="detail">{{player-event.detail}}</p>
     <p class="dialogue">{{player-event.dialogue}}</p>
 
-    <div class="actions">
-      {{#each player_action in player-event.actions}}
-        <button class="action" {{action "click" player_action}}>
-          {{player_action.label}}
-        </button>
-      {{/each}}
-    </div>
+    {{#if player-event.actionable }}
+      <div class="actions">
+        {{#each player_action in player-event.actions}}
+          <button class="action" {{action "click" player_action}}>
+            {{player_action.label}}
+          </button>
+        {{/each}}
+      </div>
+    {{/if}}
   </div>
 </div>

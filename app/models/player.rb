@@ -32,6 +32,9 @@ class Player
   field :intelligence, type: Integer
   field :luck, type: Integer
 
+  field :current_chapter_sequence, type: Integer
+  field :current_event_sequence, type: Integer
+
   before_save :ensure_continue_token
 
   def ensure_continue_token

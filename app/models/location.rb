@@ -1,8 +1,6 @@
 class Location
   include Mongoid::Document
 
-  embeds_many :scripted_events
-
   field :name, type: String
   field :slug, type: String
 

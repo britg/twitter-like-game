@@ -8,9 +8,9 @@ gem 'dalli'                     ,'2.7.2'
 gem 'devise'                    ,'3.4.1'
 gem 'sidekiq'                   ,'3.3.2'
 gem 'sidetiq'                   ,'0.6.3'
-
-# Assets
 gem 'active_model_serializers'  ,'0.8.3'
+
+gem 'tale', path: "/Users/Eezo/games/tale"
 
 group :development, :test do
   gem "ember-cli-rails"         ,'0.1.10'
@@ -20,7 +20,7 @@ group :development, :test do
   gem 'spring'                  ,'1.3.3'
   gem 'guard'                   ,'2.7.0'
   gem 'guard-rails'             ,'0.7.0'
-  gem 'guard-livereload'        , require: false
+  # gem 'guard-livereload'        , require: false
   gem 'guard-rspec'             ,'4.5.0', require: false
   gem 'rack-livereload'         ,'0.3.15'
   gem 'factory_girl_rails'      ,'4.5.0'

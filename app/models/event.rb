@@ -1,9 +1,9 @@
 class Event
   include Mongoid::Document
 
-  NEW_STATE = "new"
-  CURRENT_STATE = "current"
-  OLD_STATE = "old"
+  NEW_STATE       = "new"
+  CURRENT_STATE   = "current"
+  OLD_STATE       = "old"
 
   belongs_to :player
   embeds_many :actions

@@ -29,8 +29,8 @@ class Intro < Tale::Chapter
     end
 
     event do
-      character :self
-      dialogue "All right Cam, done for the night."
+      character :protagonist
+      dialogue "All right, Cam. Done for the night."
       action :pat, label: "Give her mane a brush"
     end
 
@@ -59,7 +59,7 @@ class Intro < Tale::Chapter
     end
 
     event do
-      character :self
+      character :protagonist
       dialogue "Not what I was looking for tonight..."
     end
 
@@ -115,12 +115,12 @@ class Intro < Tale::Chapter
 
     event from: :swing do
       detail "You attempt to draw your sword, but the chair is faster."
-      result :defend, attack_rating: 10..20
+      consequence :defend, attack_rating: 10..20
     end
 
     event from: :duck do
       detail "You quickly duck your head, but the chair is faster."
-      result :defend, attack_rating: 10..20
+      consequence :defend, attack_rating: 10..20
     end
 
     event do

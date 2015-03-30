@@ -1,10 +1,13 @@
 class ActionHandler
 
-  attr_accessor :player, :action_key
+  attr_accessor :player
 
-  def initialize _player, action_key = nil
+  def initialize _player
     @player = _player
-    @action_key = action_key
+  end
+
+  def take_action! action_key
+
   end
 
   def proceed!
@@ -14,13 +17,16 @@ class ActionHandler
     story_events.each do |story_event|
       convert_story_event(story_event)
     end
-    @player.events.last.update_attributes(current_state: "current")
+    @last_event = @player.events.last
+    @last_event.update_attributes(current_state: "current")
+    @player.update_attributes(current_event_sequence: @last_event.sequence)
   end
 
   def convert_story_event story_event
     e = @player.events.create(detail: story_event.detail,
                              dialogue: story_event.dialogue,
-                             current_state: Event::NEW_STATE)
+                             current_state: Event::NEW_STATE,
+                             sequence: story_event.sequence)
     story_event.actions.each do |story_action|
       e.actions.create(label: story_action[:label], key: story_action[:key])
     end
@@ -32,7 +38,13 @@ class ActionHandler
   end
 
   def current_chapter
-    @chapter ||= Intro.new(@player)
+    @chapter ||= Intro.new(@player.current_event_sequence)
+  end
+
+  def reset!
+    @player.update_attributes(current_event_sequence: nil)
+    @player.events.delete_all
+    @chapter = nil
   end
 
 end

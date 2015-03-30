@@ -50,4 +50,8 @@ class Player
     end
   end
 
+  def action_handler
+    @action_handler ||= ActionHandler.new(self)
+  end
+
 end

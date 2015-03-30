@@ -8,6 +8,7 @@ class Event
   belongs_to :player
   embeds_many :actions
 
+  field :sequence
   field :location_id, type: String
   field :event_template_id, type: String
 

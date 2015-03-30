@@ -1,7 +1,6 @@
 class Api::V1::PlayersController < ApplicationController
 
   def show
-    # render json: current_player
     render_current_player
   end
 
@@ -11,7 +10,9 @@ class Api::V1::PlayersController < ApplicationController
   end
 
   def update
-    handler = ActionHandler.new(current_player, selection_params[:selected_action_key])
+    action_key = selection_params[:selected_action_key]
+    handler = ActionHandler.new(current_player)
+    handler.take_action!(action_key) if action_key.present?
     handler.proceed!
     render_current_player
   end

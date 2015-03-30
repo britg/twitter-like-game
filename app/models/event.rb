@@ -21,8 +21,8 @@ class Event
 
   field :current_state, type: String, default: NEW_STATE
 
-  def self.current
-    where(current_state: CURRENT_STATE)
+  def self.new_and_current
+    where(current_state: [CURRENT_STATE, NEW_STATE])
   end
 
 end

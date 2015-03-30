@@ -12,8 +12,7 @@ class Api::V1::PlayersController < ApplicationController
   def update
     action_key = selection_params[:selected_action_key]
     handler = ActionHandler.new(current_player)
-    handler.take_action!(action_key) if action_key.present?
-    handler.proceed!
+    handler.proceed! action_key
     render_current_player
   end
 

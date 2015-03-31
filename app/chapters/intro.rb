@@ -29,7 +29,6 @@ class Intro < Tale::Chapter
     end
 
     event do
-      character :protagonist
       dialogue "All right, Cam. Done for the night."
       action :pat, label: "Give her mane a brush"
     end
@@ -113,14 +112,22 @@ class Intro < Tale::Chapter
       action :swing, label: "Slash it with your sword"
     end
 
-    event from: :swing do
-      detail "You attempt to draw your sword, but the chair is faster."
-      consequence :defend, attack_rating: 10..20
+    branch :duck do
+
+      event do
+        detail "You quickly duck your head, but the chair is faster."
+        consequence :defend, against: :chair, attack: :basic
+      end
+
     end
 
-    event from: :duck do
-      detail "You quickly duck your head, but the chair is faster."
-      consequence :defend, attack_rating: 10..20
+    branch :swing do
+
+      event do
+        detail "You attempt to draw your sword, but the chair is faster."
+        consequence :defend, against: :chair, attack: :basic
+      end
+
     end
 
     event do
@@ -132,7 +139,7 @@ class Intro < Tale::Chapter
     end
 
     event do
-      detail "About 12 men and women are scattered around a haphazard arrangement of benches and tables"
+      detail "A dozen men and women are scattered around a haphazard arrangement of benches and tables"
     end
 
     event do

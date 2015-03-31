@@ -21,18 +21,29 @@ class ActionHandler
   end
 
   def action_key_valid? action_key
-    action_key.present? && valid_action_keys.include?(action_key)
+    action_key.present? && valid_action_keys.include?(action_key.to_s)
+  end
+
+  def take_action! action_key
+    raise "Invalid action" unless action_key_valid?(action_key)
+    current_event.update_attributes(chosen_action_key: action_key)
+    current_chapter.take_action!(action_key)
   end
 
   def proceed! action_key = nil
+    story_events = []
     if needs_action?
-      return false unless action_key_valid?(action_key)
-      take_action(action_key)
+      story_events = take_action!(action_key)
+    else
+      story_events = current_chapter.next_event_group
     end
 
     mark_old_events
-    story_events = current_chapter.next_event_group
-    return false unless story_events.any?
+    apply_story_events story_events
+  end
+
+  def apply_story_events story_events
+    raise "No new events" unless story_events.any?
 
     @new_events = []
     story_events.each do |story_event|
@@ -59,15 +70,8 @@ class ActionHandler
     @player.events.new_and_current.update_all(current_state: "old")
   end
 
-  def take_action action_key
-    return false unless action_key_valid?(action_key)
-    current_event.update_attributes(chosen_action_key: action_key)
-    current_chapter.choose!(action_key)
-  end
-
   def current_chapter
-    # @chapter ||= Intro.new(@player.current_event_sequence)
-    @chapter ||= BranchTest.new(@player.current_event_sequence)
+    @chapter ||= Intro.new(@player.current_event_sequence)
   end
 
   def reset!

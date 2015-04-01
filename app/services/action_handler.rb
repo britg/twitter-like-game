@@ -39,12 +39,11 @@ class ActionHandler
     end
 
     mark_old_events
+    raise "No new events" unless story_events.any?
     apply_story_events story_events
   end
 
   def apply_story_events story_events
-    raise "No new events" unless story_events.any?
-
     @new_events = []
     story_events.each do |story_event|
       @new_events << convert_story_event(story_event)

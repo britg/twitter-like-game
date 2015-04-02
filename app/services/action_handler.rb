@@ -10,32 +10,42 @@ class ActionHandler
     @player.events.last
   end
 
-  def needs_action?
-    return false unless current_event.present?
-    current_event.actions.any?
+  def hero
+    @hero ||= Intro.hero(@player.current_event_sequence||1)
   end
 
-  def valid_action_keys
-    return [] unless current_event.present?
-    current_event.actions.map(&:key)
+  def has_actions?
+    hero.current_event.has_actions?
+  end
+
+  def action_required?
+    hero.current_event.action_required?
   end
 
   def action_key_valid? action_key
-    action_key.present? && valid_action_keys.include?(action_key.to_s)
+    hero.current_event.action_valid?(action_key)
   end
 
-  def take_action! action_key
+  def available_action_keys
+    hero.current_event.available_action_keys
+  end
+
+  def take_action action_key
     raise "Invalid action" unless action_key_valid?(action_key)
     current_event.update_attributes(chosen_action_key: action_key)
-    current_chapter.take_action!(action_key)
+    hero.take_action(action_key)
   end
 
-  def proceed! action_key = nil
+  def proceed action_key = nil
     story_events = []
-    if needs_action?
-      story_events = take_action!(action_key)
-    else
-      story_events = current_chapter.next_event_group
+
+    if has_actions?
+      raise "Action needed [#{available_action_keys.join(',')}]" if action_key.nil?
+      story_events << take_action(action_key)
+    end
+
+    while !has_actions?
+      story_events << hero.next_event
     end
 
     mark_old_events
@@ -59,18 +69,14 @@ class ActionHandler
                      dialogue: story_event.dialogue,
                      current_state: Event::NEW_STATE,
                      sequence: story_event.sequence)
-    story_event.actions.each do |story_action|
-      e.actions.create(label: story_action[:label], key: story_action[:key])
+    story_event.actions.each do |key, story_action|
+      e.actions.create(label: story_action[:label], key: key)
     end
     e.save and e
   end
 
   def mark_old_events
     @player.events.new_and_current.update_all(current_state: "old")
-  end
-
-  def current_chapter
-    @chapter ||= Intro.new(@player.current_event_sequence)
   end
 
   def reset!

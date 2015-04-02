@@ -33,7 +33,7 @@ class Player
   field :luck, type: Integer
 
   field :current_chapter_sequence, type: Integer
-  field :current_event_sequence, type: Integer
+  field :current_event_sequence, type: Integer, default: 1
 
   before_save :ensure_continue_token
 
@@ -52,6 +52,15 @@ class Player
 
   def action_handler
     @action_handler ||= ActionHandler.new(self)
+  end
+  alias_method :story, :action_handler
+
+  def current_event
+    events.last
+  end
+
+  def hero
+    action_handler.hero
   end
 
 end

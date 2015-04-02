@@ -1,5 +1,12 @@
 # Architecture
 
+### Site Layout
+- Home/Feed
+- Character
+- Quests
+- Tavern
+
+
 ### User / Identity
 
 - Each real person is a 'user' - this is what authenticates

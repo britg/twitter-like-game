@@ -15,4 +15,6 @@
         console.log(response.json())
 
   render: ->
-    <div>Event Stream React Component {@props.cheese}</div>
+    <div>
+      Event Stream
+    </div>

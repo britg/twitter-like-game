@@ -2,8 +2,8 @@
 #= require jquery_ujs
 #= require react
 #= require react_ujs
+#= require components
+#= require react-router
 #= require moment
 #= require pubsub
 #= require fetch
-
-#= require_tree ./react

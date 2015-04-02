@@ -6,6 +6,8 @@ class Player
   MODE_ACTIVE = "active"
   MODE_PASSIVE = "passive"
 
+  DEFAULT_CHAPTER = "intro"
+
   belongs_to :user
   has_many :events
 
@@ -32,8 +34,9 @@ class Player
   field :intelligence, type: Integer
   field :luck, type: Integer
 
-  field :current_chapter_sequence, type: Integer
-  field :current_event_sequence, type: Integer, default: 1
+  field :previous_chapter, type: String, default: DEFAULT_CHAPTER
+  field :current_chapter, type: String, default: DEFAULT_CHAPTER
+  field :current_event_sequence, type: Integer, default: 0
 
   before_save :ensure_continue_token
 
@@ -61,6 +64,10 @@ class Player
 
   def hero
     action_handler.hero
+  end
+
+  def recent_events
+    events.order(sequence: -1).limit(20).reverse
   end
 
 end

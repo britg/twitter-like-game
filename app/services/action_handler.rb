@@ -4,14 +4,39 @@ class ActionHandler
 
   def initialize _player
     @player = _player
+    ensure_chapter_position
+  end
+
+  def current_event_sequence
+    @player.current_event_sequence.to_i
+  end
+
+  def ensure_chapter_position
+    start_index = Tale::Chapter::EVENT_START_INDEX
+    if current_event_sequence < start_index
+      event = current_chapter.find_event(start_index)
+      apply_story_events(event)
+    end
+  end
+
+  def current_chapter_name
+    (@player.current_chapter || Player::DEFAULT_CHAPTER).camelcase
+  end
+
+  def current_chapter
+    current_chapter_name.constantize
   end
 
   def current_event
     @player.events.last
   end
 
+  def current_story_event
+    hero.current_event
+  end
+
   def hero
-    @hero ||= Intro.hero(@player.current_event_sequence||1)
+    @hero ||= current_chapter.hero(current_event_sequence)
   end
 
   def has_actions?
@@ -54,6 +79,7 @@ class ActionHandler
   end
 
   def apply_story_events story_events
+    story_events = Array(story_events)
     @new_events = []
     story_events.each do |story_event|
       @new_events << convert_story_event(story_event)
@@ -62,6 +88,7 @@ class ActionHandler
     @newest_event.update_attributes(current_state: "current")
     @player.events << @new_events
     @player.update_attributes(current_event_sequence: @newest_event.sequence)
+    @new_events
   end
 
   def convert_story_event story_event
@@ -80,9 +107,9 @@ class ActionHandler
   end
 
   def reset!
-    @player.update_attributes(current_event_sequence: nil)
+    @player.update_attributes(current_event_sequence: nil,
+                              current_chapter: "intro")
     @player.events.delete_all
-    @chapter = nil
   end
 
 end

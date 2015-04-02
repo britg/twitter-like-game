@@ -34,4 +34,9 @@ class BranchTest < Tale::Chapter
     detail "Back together"
   end
 
+  event do
+    detail "Finish branch test"
+    action :finish, label: "Done"
+  end
+
 end

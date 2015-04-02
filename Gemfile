@@ -12,6 +12,7 @@ gem 'active_model_serializers'  ,'0.8.3'
 
 gem 'tale', path: "/Users/Eezo/games/tale"
 
+gem 'turbolinks'                ,'2.5.3'
 gem 'haml-rails'                ,'0.9.0'
 gem 'sass-rails'                ,'5.0.1'
 gem 'jquery-rails'              ,'4.0.3'

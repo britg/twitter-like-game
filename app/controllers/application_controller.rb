@@ -6,10 +6,6 @@ class ApplicationController < ActionController::Base
   before_filter :find_player
   helper_method :current_player
 
-  def ember_start
-    render :ember_start, layout: false
-  end
-
   def current_player
     @current_player
   end

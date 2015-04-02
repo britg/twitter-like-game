@@ -12,15 +12,26 @@ gem 'active_model_serializers'  ,'0.8.3'
 
 gem 'tale', path: "/Users/Eezo/games/tale"
 
+gem 'haml-rails'                ,'0.9.0'
+gem 'sass-rails'                ,'5.0.1'
+gem 'jquery-rails'              ,'4.0.3'
+gem 'coffee-rails'              ,'4.1.0'
+gem 'bower-rails'
+gem 'bourbon'                   ,'3.2.4'
+gem 'neat'                      ,'1.5.1'
+gem 'bitters'
+gem 'react-rails'               , github: 'reactjs/react-rails'
+gem 'sprockets-coffee-react'
+
+
 group :development, :test do
-  gem "ember-cli-rails"         ,'0.1.10'
   gem 'pry-rails'               ,'0.3.3'
   gem 'byebug'                  ,'3.5.1'
   gem 'web-console'             ,'2.0.0'
   gem 'spring'                  ,'1.3.3'
-  gem 'guard'                   ,'2.7.0'
+  gem 'guard'                   #,'2.7.0'
   gem 'guard-rails'             ,'0.7.0'
-  # gem 'guard-livereload'        , require: false
+  gem 'guard-livereload'        ,'~> 2.4', require: false
   gem 'guard-rspec'             ,'4.5.0', require: false
   gem 'rack-livereload'         ,'0.3.15'
   gem 'factory_girl_rails'      ,'4.5.0'
@@ -29,6 +40,6 @@ group :development, :test do
   gem 'rspec-activejob'         ,'0.2.0'
   gem 'shoulda-matchers'        ,'2.5.0'
   gem 'quiet_assets'            ,'1.1.0'
-  # gem 'meta_request'            ,'0.3.4'
+  gem 'meta_request'            ,'0.3.4'
 end
 

@@ -6,4 +6,4 @@ var EventStream = React.createClass({
     );
   }
 
-})
+});

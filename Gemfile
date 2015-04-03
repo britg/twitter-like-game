@@ -9,6 +9,7 @@ gem 'devise'                    ,'3.4.1'
 gem 'sidekiq'                   ,'3.3.2'
 gem 'sidetiq'                   ,'0.6.3'
 gem 'active_model_serializers'  ,'0.8.3'
+gem 'configatron'
 
 gem 'tale', path: "/Users/Eezo/games/tale"
 

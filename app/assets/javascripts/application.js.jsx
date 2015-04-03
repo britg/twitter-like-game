@@ -4,14 +4,12 @@
 //= require react
 //= require react_ujs
 //= require react-router
+//= require constants
 //= require components
 //= require moment
 //= require pubsub
 //= require fetch
 
-var Events = {
-  ACTION_TAKEN: "action:taken"
-}
 
 var Router = ReactRouter;
 var DefaultRoute = Router.DefaultRoute;
@@ -21,10 +19,6 @@ var RouteHandler = Router.RouteHandler;
 
 var Game = React.createClass({
 
-  playerEndpoint: function () {
-    return "/api/v1/players/current.json?continue_token=" + this.state.player.continue_token;
-  },
-
   getInitialState: function () {
     var playerString = $('#current_player_seed').val();
     var player = JSON.parse(playerString);
@@ -32,12 +26,24 @@ var Game = React.createClass({
   },
 
   componentDidMount: function () {
-    $this = this;
     PubSub.subscribe(Events.ACTION_TAKEN, this.actionTaken);
   },
 
   actionTaken: function (key) {
-    console.log("Application pubsub", key);
+    var $this = this;
+    fetch(Endpoints.PLAYER, {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr("content")
+      },
+      body: JSON.stringify({ player: {selected_action_key: key} })
+    }).then(function (response) {
+      return response.json();
+    }).then(function (player_json) {
+      $this.setState(player_json);
+    });
   },
 
   render: function() {

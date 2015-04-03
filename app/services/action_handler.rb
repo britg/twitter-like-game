@@ -56,7 +56,8 @@ class ActionHandler
   end
 
   def take_action action_key
-    raise "Invalid action" unless action_key_valid?(action_key)
+    action_key = action_key.to_sym
+    raise "Invalid action. Got: #{action_key}, expected #{available_action_keys}" unless action_key_valid?(action_key)
     current_event.update_attributes(chosen_action_key: action_key)
     hero.take_action(action_key)
   end

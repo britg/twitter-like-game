@@ -1,30 +1,30 @@
-class ActionHandler
+class StoryEngine
 
   attr_accessor :player
 
   def initialize _player
     @player = _player
-    ensure_chapter_position
+    ensure_context
   end
 
   def current_event_sequence
     @player.current_event_sequence.to_i
   end
 
-  def ensure_chapter_position
-    start_index = Tale::Chapter::EVENT_START_INDEX
+  def ensure_context
+    start_index = StoryContext::EVENT_START_INDEX
     if current_event_sequence < start_index
-      event = current_chapter.find_event(start_index)
+      event = current_context.find_event(start_index)
       apply_story_events(event)
     end
   end
 
-  def current_chapter_name
-    (@player.current_chapter || Player::DEFAULT_CHAPTER).camelcase
+  def current_context_name
+    (@player.current_context || configatron.default_context).camelcase
   end
 
-  def current_chapter
-    current_chapter_name.constantize
+  def current_context
+    current_context_name.constantize
   end
 
   def current_event
@@ -32,34 +32,34 @@ class ActionHandler
   end
 
   def current_story_event
-    hero.current_event
+    marker.current_event
   end
 
-  def hero
-    @hero ||= current_chapter.hero(current_event_sequence)
+  def marker
+    @marker ||= current_context.marker(current_event_sequence)
   end
 
   def has_actions?
-    hero.current_event.has_actions?
+    marker.current_event.has_actions?
   end
 
   def action_required?
-    hero.current_event.action_required?
+    marker.current_event.action_required?
   end
 
   def action_key_valid? action_key
-    hero.current_event.action_valid?(action_key)
+    marker.current_event.action_valid?(action_key)
   end
 
   def available_action_keys
-    hero.current_event.available_action_keys
+    marker.current_event.available_action_keys
   end
 
   def take_action action_key
     action_key = action_key.to_sym
     raise "Invalid action. Got: #{action_key}, expected #{available_action_keys}" unless action_key_valid?(action_key)
     current_event.update_attributes(chosen_action_key: action_key)
-    hero.take_action(action_key)
+    marker.take_action(action_key)
   end
 
   def proceed action_key = nil
@@ -71,7 +71,7 @@ class ActionHandler
     end
 
     while !has_actions?
-      story_events << hero.next_event
+      story_events << marker.next_event
     end
 
     mark_old_events
@@ -114,7 +114,7 @@ class ActionHandler
 
   def reset!
     @player.update_attributes(current_event_sequence: nil,
-                              current_chapter: "intro")
+                              current_context: "intro")
     @player.events.delete_all
   end
 

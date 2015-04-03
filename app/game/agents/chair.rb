@@ -1,4 +1,4 @@
-class Chair < Tale::Agent
+class Chair < Agent
 
   name :chair
 

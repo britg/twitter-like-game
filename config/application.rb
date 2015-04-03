@@ -25,8 +25,9 @@ module Tavernlight
     config.autoload_paths += %W(
       #{config.root}/app/services
       #{config.root}/app/workers
+      #{config.root}/app/game/core
       #{config.root}/app/game/agents
-      #{config.root}/app/game/chapters
+      #{config.root}/app/game/story_contexts
     )
 
     # Do not swallow errors in after_commit/after_rollback callbacks.

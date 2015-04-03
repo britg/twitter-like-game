@@ -1,4 +1,4 @@
-class LargeMan < Tale::Agent
+class LargeMan < Agent
   name :large_man
 
   stat :hp, 20

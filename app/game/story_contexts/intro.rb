@@ -1,4 +1,4 @@
-class Intro < Tale::Chapter
+class Intro < StoryContext
 
   event do
     detail "The tavern looks like a pile of wood and stone blew into place in the last storm."
@@ -54,7 +54,7 @@ class Intro < Tale::Chapter
   end
 
   event do
-    agent :hero
+    agent :player
     dialogue "Not what I was looking for tonight..."
   end
 

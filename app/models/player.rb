@@ -32,8 +32,8 @@ class Player
   field :intelligence, type: Integer, default: configatron.player.intelligence
   field :luck, type: Integer, default: configatron.player.luck
 
-  field :previous_chapter, type: String, default: configatron.default_chapter
-  field :current_chapter, type: String, default: configatron.default_chapter
+  field :previous_context, type: String, default: configatron.default_context
+  field :current_context, type: String, default: configatron.default_context
   field :current_event_sequence, type: Integer, default: 0
 
   before_save :ensure_continue_token
@@ -51,17 +51,16 @@ class Player
     end
   end
 
-  def action_handler
-    @action_handler ||= ActionHandler.new(self)
+  def story
+    @action_handler ||= StoryEngine.new(self)
   end
-  alias_method :story, :action_handler
 
   def current_event
     events.last
   end
 
-  def hero
-    action_handler.hero
+  def marker
+    story.marker
   end
 
   def recent_events

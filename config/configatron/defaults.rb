@@ -15,4 +15,4 @@ configatron.player.stamina = 10,
 configatron.player.intelligence = 20,
 configatron.player.luck = 10
 
-configatron.default_chapter = :intro
+configatron.default_context = :intro

@@ -54,7 +54,7 @@ class Intro < Tale::Chapter
   end
 
   event do
-    character :protagonist
+    agent :hero
     dialogue "Not what I was looking for tonight..."
   end
 
@@ -105,14 +105,14 @@ class Intro < Tale::Chapter
   event do
     detail "Chair! In the air, careening towards you."
     action :duck, label: "Duck!"
-    action :swing, label: "Slash it with your sword"
+    action :dodge, label: "Dodge left!"
   end
 
   branch :duck do
 
     event do
       detail "You quickly duck your head, but the chair is faster."
-      result :defend, against: :chair, attack: :basic
+      result :defend, against: :chair, ability: :attack
     end
 
   end
@@ -120,8 +120,8 @@ class Intro < Tale::Chapter
   branch :swing do
 
     event do
-      detail "You attempt to draw your sword, but the chair is faster."
-      result :defend, against: :chair, attack: :basic
+      detail "You attempt to dodge, but the chair is faster."
+      result :defend, against: :chair, ability: :attack
     end
 
   end
@@ -139,7 +139,7 @@ class Intro < Tale::Chapter
   end
 
   event do
-    detail "A tavernkeep behind the bar"
+    detail "... a tavernkeep behind the bar"
   end
 
   event do
@@ -155,8 +155,8 @@ class Intro < Tale::Chapter
   end
 
   event do
-    detail "Done with chapter"
-    action :done, label: "Done"
+    detail "He turns toward you, eyes blazing and charges"
+    action :fight, label: "Fight", transition: :first_battle
   end
 
 end

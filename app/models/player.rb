@@ -6,8 +6,6 @@ class Player
   MODE_ACTIVE = "active"
   MODE_PASSIVE = "passive"
 
-  DEFAULT_CHAPTER = "intro"
-
   belongs_to :user
   has_many :events
 
@@ -23,19 +21,19 @@ class Player
   field :experience, type: Integer
   field :level, type: Integer
 
-  field :hp, type: Integer
-  field :ap, type: Integer
+  field :hp, type: Integer, default: configatron.player.hp
+  field :ap, type: Integer, default: configatron.player.ap
 
-  field :gold, type: Integer
+  field :gold, type: Integer, default: configatron.player.gold
 
-  field :strength, type: Integer
-  field :dexterity, type: Integer
-  field :stamina, type: Integer
-  field :intelligence, type: Integer
-  field :luck, type: Integer
+  field :strength, type: Integer, default: configatron.player.strength
+  field :dexterity, type: Integer, default: configatron.player.dexterity
+  field :stamina, type: Integer, default: configatron.player.stamina
+  field :intelligence, type: Integer, default: configatron.player.intelligence
+  field :luck, type: Integer, default: configatron.player.luck
 
-  field :previous_chapter, type: String, default: DEFAULT_CHAPTER
-  field :current_chapter, type: String, default: DEFAULT_CHAPTER
+  field :previous_chapter, type: String, default: configatron.default_chapter
+  field :current_chapter, type: String, default: configatron.default_chapter
   field :current_event_sequence, type: Integer, default: 0
 
   before_save :ensure_continue_token

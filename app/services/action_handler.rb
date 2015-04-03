@@ -83,6 +83,7 @@ class ActionHandler
     story_events = Array(story_events)
     @new_events = []
     story_events.each do |story_event|
+      apply_results(story_event)
       @new_events << convert_story_event(story_event)
     end
     @newest_event = @new_events.last
@@ -90,6 +91,10 @@ class ActionHandler
     @player.events << @new_events
     @player.update_attributes(current_event_sequence: @newest_event.sequence)
     @new_events
+  end
+
+  def apply_results story_event
+    ResultHandler.new(@player, story_event).apply
   end
 
   def convert_story_event story_event

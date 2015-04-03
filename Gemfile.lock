@@ -337,7 +337,7 @@ DEPENDENCIES
   bower-rails
   byebug (= 3.5.1)
   coffee-rails (= 4.1.0)
-  configatron
+  configatron (= 4.5.0)
   dalli (= 2.7.2)
   devise (= 3.4.1)
   factory_girl_rails (= 4.5.0)

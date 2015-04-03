@@ -4,7 +4,7 @@ var Player = React.createClass({
     return (
       <div>
         <div>Name: {this.props.player.name}</div>
-        <div>Health: {this.props.player.health}</div>
+        <div>hp: {this.props.player.hp}</div>
       </div>
     );
   }

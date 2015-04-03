@@ -156,7 +156,7 @@ class Intro < Tale::Chapter
 
   event do
     detail "He turns toward you, eyes blazing and charges"
-    action :fight, label: "Fight", transition: :first_battle
+    action :fight, label: "Fight"
   end
 
 end

@@ -1,9 +1,12 @@
-class Location
-  include Mongoid::Document
+class Location < ActiveHash::Base
 
-  field :name, type: String
-  field :slug, type: String
+  field :name
+  field :slug
+  field :path
 
-  validates_uniqueness_of :slug
+  self.data = [
+    {name: "World's End Tavern", slug: :tavern, path: "/tavern"},
+    {name: "Diver's Den", slug: :diversden, path: "/divers-den"},
+  ]
 
 end

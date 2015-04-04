@@ -11,8 +11,8 @@ class Api::V1::PlayersController < ApplicationController
 
   def update
     action_key = selection_params[:selected_action_key]
-    handler = ActionHandler.new(current_player)
-    handler.proceed action_key
+    engine = StoryEngine.new(current_player)
+    engine.proceed action_key
     render_current_player
   end
 

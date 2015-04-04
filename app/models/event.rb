@@ -10,7 +10,6 @@ class Event
 
   field :sequence
   field :location_id, type: String
-  field :event_template_id, type: String
 
   field :character_name, type: String
   field :detail, type: String

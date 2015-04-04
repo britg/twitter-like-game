@@ -9,6 +9,13 @@ GIT
       rails (>= 3.1)
       react-source (~> 0.13)
 
+GIT
+  remote: git://github.com/zilkey/active_hash.git
+  revision: 17092b382b61280085974f53b61b7db2e8b12ec6
+  specs:
+    active_hash (1.4.0)
+      activesupport (>= 2.2.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -326,6 +333,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_hash!
   active_model_serializers (= 0.8.3)
   bitters
   bourbon (= 3.2.4)

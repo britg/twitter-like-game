@@ -25,8 +25,7 @@ module Tavernlight
     config.autoload_paths += %W(
       #{config.root}/app/services
       #{config.root}/app/workers
-      #{config.root}/app/game/core
-      #{config.root}/app/game/agents
+      #{config.root}/app/game/engine
       #{config.root}/app/game/story_contexts
     )
 

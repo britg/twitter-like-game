@@ -13,7 +13,6 @@ class PlayerSerializer < ActiveModel::Serializer
              :intelligence,
              :luck
 
-  has_one :location
   has_one :user
 
   has_many :events, key: :events

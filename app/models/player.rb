@@ -9,9 +9,6 @@ class Player
   belongs_to :user
   has_many :events
 
-  # Location management
-  belongs_to :location
-
   field :continue_token, type: String
   index({ continue_token: 1 }, { unique: true })
 
@@ -65,6 +62,10 @@ class Player
 
   def recent_events
     events.order(sequence: -1).limit(20).reverse
+  end
+
+  def current_location
+    Entity.location_cache[:tavern]
   end
 
 end

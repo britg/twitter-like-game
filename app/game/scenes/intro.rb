@@ -1,4 +1,6 @@
-class Intro < StoryContext
+class Intro < Scene
+
+  location :tavern
 
   event do
     detail "The tavern looks like a pile of wood and stone blew into place in the last storm."
@@ -79,7 +81,7 @@ class Intro < StoryContext
   end
 
   event do
-    detail "More importantly, a lot of debt of the worst kind that way."
+    detail "More importantly, a lot of debt that way."
   end
 
   event do
@@ -91,7 +93,7 @@ class Intro < StoryContext
   end
 
   event do
-    detail "You walk up to the tavern door, placing a hand on your sword hilt, and pull the iron handle."
+    detail "You walk up to the tavern door and pull the iron handle."
   end
 
   event do
@@ -112,7 +114,7 @@ class Intro < StoryContext
 
     event do
       detail "You quickly duck your head, but the chair is faster."
-      result :attack, from: :chair, to: :player
+      result :ability, {melee: {from: :chair, to: :player}}
     end
 
   end
@@ -121,7 +123,7 @@ class Intro < StoryContext
 
     event do
       detail "You attempt to dodge, but the chair is faster."
-      result :attack, from: :chair, to: :player
+      result :ability, {melee: {from: :chair, to: :player}}
     end
 
   end

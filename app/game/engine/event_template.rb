@@ -1,4 +1,4 @@
-class StoryEvent
+class EventTemplate
   attr_accessor :opts,
                 :sequence,
                 :detail,

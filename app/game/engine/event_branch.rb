@@ -1,4 +1,4 @@
-class StoryBranch
+class EventBranch
   MAIN = :main
 
   attr_accessor :name,
@@ -21,7 +21,7 @@ class StoryBranch
     sequence = @context.parse_sequence += 1
     opts.merge!(sequence: sequence,
                 branch_name: @name)
-    @building_event = StoryEvent.new(opts)
+    @building_event = EventTemplate.new(opts)
     instance_eval(&block)
     @events[sequence] = @building_event
     @max_sequence = sequence
@@ -45,7 +45,8 @@ class StoryBranch
   end
 
   def result key, metadata = {}
-    @building_event.results[key] = { key: key }.merge(metadata)
+    @building_event.results[key] ||= []
+    @building_event.results[key] << metadata
   end
 
   def exit_branch

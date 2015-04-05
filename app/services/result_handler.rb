@@ -8,7 +8,15 @@ class ResultHandler
   end
 
   def apply
-    @player.update_attributes(hp: @player.hp-1)
+    @story_event.results.each do |type, list|
+      send(type, list)
+    end
+  end
+
+  def ability list
+    list.each do |ability|
+      puts "#{ability} applied"
+    end
   end
 
 end

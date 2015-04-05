@@ -16,4 +16,4 @@ configatron.player.intelligence = 20,
 configatron.player.luck = 10
 
 configatron.default_path = "/tavern"
-configatron.default_context = :intro
+configatron.default_scene = :intro

@@ -26,7 +26,7 @@ module Tavernlight
       #{config.root}/app/services
       #{config.root}/app/workers
       #{config.root}/app/game/engine
-      #{config.root}/app/game/story_contexts
+      #{config.root}/app/game/scenes
     )
 
     # Do not swallow errors in after_commit/after_rollback callbacks.

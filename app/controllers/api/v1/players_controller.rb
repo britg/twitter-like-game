@@ -11,8 +11,8 @@ class Api::V1::PlayersController < ApplicationController
 
   def update
     action_key = selection_params[:selected_action_key]
-    engine = StoryEngine.new(current_player)
-    engine.proceed action_key
+    scene = SceneRunner.new(current_player)
+    scene.proceed action_key
     render_current_player
   end
 
@@ -25,7 +25,7 @@ class Api::V1::PlayersController < ApplicationController
   end
 
   def create_player
-    @current_player = PlayerCreationService.new.create
+    @current_player = PlayerCreator.new.create
   end
 
   def selection_params

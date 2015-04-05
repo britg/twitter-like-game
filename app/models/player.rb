@@ -29,9 +29,10 @@ class Player
   field :intelligence, type: Integer, default: configatron.player.intelligence
   field :luck, type: Integer, default: configatron.player.luck
 
-  field :previous_context, type: String, default: configatron.default_context
-  field :current_context, type: String, default: configatron.default_context
+  field :previous_scene, type: String, default: configatron.default_scene
+  field :current_scene, type: String, default: configatron.default_scene
   field :current_event_sequence, type: Integer, default: 0
+  field :current_location_slug, type: String
 
   before_save :ensure_continue_token
 
@@ -48,8 +49,8 @@ class Player
     end
   end
 
-  def story
-    @action_handler ||= StoryEngine.new(self)
+  def scene
+    @scene ||= SceneService.new(self)
   end
 
   def current_event
@@ -57,15 +58,15 @@ class Player
   end
 
   def marker
-    story.marker
+    scene.marker
   end
 
   def recent_events
     events.order(sequence: -1).limit(20).reverse
   end
 
-  def current_location
-    Entity.location_cache[:tavern]
+  def location
+    Location.where(slug: current_location_slug.to_sym).first
   end
 
 end

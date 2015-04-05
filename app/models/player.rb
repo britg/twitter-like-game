@@ -30,6 +30,7 @@ class Player
   field :luck, type: Integer, default: configatron.player.luck
 
   field :previous_scene, type: String, default: configatron.default_scene
+  field :previous_event_sequence, type: Integer, default: 0
   field :current_scene, type: String, default: configatron.default_scene
   field :current_event_sequence, type: Integer, default: 0
   field :current_location_slug, type: String
@@ -50,7 +51,7 @@ class Player
   end
 
   def scene
-    @scene ||= SceneService.new(self)
+    @scene ||= SceneRunner.new(self)
   end
 
   def current_event
@@ -67,6 +68,10 @@ class Player
 
   def location
     Location.where(slug: current_location_slug.to_sym).first
+  end
+
+  def in_battle?
+    battle.present?
   end
 
 end

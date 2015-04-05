@@ -102,6 +102,7 @@ class Intro < Scene
 
   event do
     detail "You catch a flash from the corner of your eye..."
+    battle :chair
   end
 
   event do

@@ -12,12 +12,6 @@ class Agent < ActiveHash::Base
   field :intelligence
   field :luck
 
-  self.data = []
-
-  # use_multiple_files
-  # set_root_path "#{Rails.root}/app/game/agents"
-  # set_filenames "chair"
-
 end
 
 unless Rails.application.config.eager_load

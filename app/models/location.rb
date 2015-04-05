@@ -4,9 +4,8 @@ class Location < ActiveHash::Base
   field :slug
   field :path
 
-  self.data = [
-    {name: "World's End Tavern", slug: :tavern, path: "/tavern"},
-    {name: "Diver's Den", slug: :diversden, path: "/divers-den"},
-  ]
+end
 
+unless Rails.application.config.eager_load
+  Dir["#{Rails.root}/app/game/locations/*.rb"].each {|file| require file }
 end

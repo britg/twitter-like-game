@@ -112,7 +112,7 @@ class Intro < StoryContext
 
     event do
       detail "You quickly duck your head, but the chair is faster."
-      result :defend, against: :chair, ability: :attack
+      result :attack, from: :chair, to: :player
     end
 
   end
@@ -121,7 +121,7 @@ class Intro < StoryContext
 
     event do
       detail "You attempt to dodge, but the chair is faster."
-      result :defend, against: :chair, ability: :attack
+      result :attack, from: :chair, to: :player
     end
 
   end

@@ -3,14 +3,25 @@ class Agent < ActiveHash::Base
   field :name
   field :slug
   field :aliases
-  field :hp
-  field :ap
   field :gold
+  field :attack_power
   field :strength
   field :dexterity
   field :stamina
   field :intelligence
   field :luck
+
+  def hp
+    stamina * configatron.stamina_to_hp_multiplier + hp_bonuses
+  end
+
+  def hp_bonuses
+    0 # compute this value
+  end
+
+  def ap
+
+  end
 
 end
 

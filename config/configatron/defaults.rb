@@ -6,6 +6,8 @@
 #
 #   configatron.file.storage = :s3
 
+configatron.stamina_to_hp_multiplier = 2
+
 configatron.player.hp = 100
 configatron.player.ap = 10
 configatron.player.gold = 20,

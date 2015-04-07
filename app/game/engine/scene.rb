@@ -54,4 +54,13 @@ class Scene
     end
     raise "Event not found: seq #{seq}"
   end
+
+  def self.waypoint waypoint
+    branches.each do |name, branch|
+      branch.events.each do |seq, event|
+        return event if event.waypoint.to_s == waypoint.to_s
+      end
+    end
+    raise "Event not found: waypoint #{waypoint}"
+  end
 end

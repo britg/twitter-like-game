@@ -16,7 +16,7 @@ class ResultHandler
   def ability list
     list.each do |ability_hash|
       slug, metadata = ability_hash.first
-      ability = Ability.where(slug: slug).first || raise "Ability #{slug} not found."
+      ability = Ability.where(slug: slug).first
       AbilityHandler.new(@player, ability, metadata).apply
     end
   end

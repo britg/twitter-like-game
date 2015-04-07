@@ -1,4 +1,5 @@
 Agent.create(
   name: "Chair",
-  slug: :chair
+  slug: :chair,
+  hp: 10
 )

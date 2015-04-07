@@ -102,7 +102,6 @@ class Intro < Scene
 
   event do
     detail "You catch a flash from the corner of your eye..."
-    battle :chair
   end
 
   event do
@@ -120,7 +119,7 @@ class Intro < Scene
 
   end
 
-  branch :swing do
+  branch :dodge do
 
     event do
       detail "You attempt to dodge, but the chair is faster."
@@ -157,9 +156,10 @@ class Intro < Scene
     detail "Damn that guy is big. And mad."
   end
 
-  event do
+  event waypoint: "start-battle" do
     detail "He turns toward you, eyes blazing and charges"
-    action :fight, label: "Fight"
+    action :battle, label: "Enter Battle"
+    battle agents: [:large_man], return_to: {scene: :meet_ranger, waypoint: "large-man-tamed"}
   end
 
 end

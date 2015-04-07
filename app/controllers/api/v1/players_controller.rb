@@ -11,8 +11,7 @@ class Api::V1::PlayersController < ApplicationController
 
   def update
     action_key = selection_params[:selected_action_key]
-    scene = SceneRunner.new(current_player)
-    scene.proceed action_key
+    current_player.input action_key
     render_current_player
   end
 

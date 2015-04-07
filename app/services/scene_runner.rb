@@ -8,6 +8,7 @@ class SceneRunner
 
   def initialize _player
     @player = _player
+    raise "Currently in a battle!" if @player.in_battle?
     ensure_scene
     ensure_location
   end
@@ -50,6 +51,10 @@ class SceneRunner
     marker.current_event_template.has_actions?
   end
 
+  def stops_flow?
+    marker.current_event_template.stops_flow?
+  end
+
   def action_required?
     marker.current_event_template.action_required?
   end
@@ -74,10 +79,17 @@ class SceneRunner
 
     if has_actions?
       raise "Action needed [#{available_action_keys.join(',')}]" if action_key.nil?
-      event_templates << take_action(action_key)
+      event_template_or_scene_change = take_action(action_key)
+      if event_template_or_scene_change.class == EventTemplate
+        event_template = event_template_or_scene_change
+      else
+        scene_change = event_template_or_scene_change
+        return change_scenes(scene_change)
+      end
+      event_templates << event_template
     end
 
-    while !has_actions?
+    while !stops_flow?
       event_templates << marker.next_event
     end
 
@@ -117,6 +129,13 @@ class SceneRunner
 
   def mark_old_events
     @player.events.new_and_current.update_all(current_state: "old")
+  end
+
+  def change_scenes scene_change
+    puts "Changing scenes #{scene_change}"
+    if scene_change.to_battle?
+      return BattleCreator.new(@player, scene_change.battle_template).create
+    end
   end
 
   def reset!

@@ -10,7 +10,8 @@ class AbilityHandler
 
   def extract_agent slug
     return @player if slug == :player
-    Agent.where(slug: slug).first || raise "Agent #{slug} not found"
+    Agent.where(slug: slug).first \
+      or raise "Agent #{slug} not found"
   end
 
   def apply

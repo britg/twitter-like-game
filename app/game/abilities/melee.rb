@@ -1,4 +1,4 @@
-Abilities.create(
+Ability.create(
   name: "Melee",
   slug: :melee
 )

@@ -1,18 +1,21 @@
 class EventTemplate
   attr_accessor :opts,
                 :sequence,
+                :waypoint,
                 :detail,
                 :dialogue,
                 :agent_name,
                 :actions,
                 :results,
                 :branch_name,
-                :transition
+                :transition,
+                :battle
 
   def initialize _opts
     @opts = _opts
     @sequence = @opts[:sequence]
     @branch_name = @opts[:branch_name]
+    @waypoint = @opts[:waypoint]
     @actions = {}
     @results = {}
   end
@@ -39,5 +42,13 @@ class EventTemplate
 
   def has_results?
     @results.any?
+  end
+
+  def starts_battle?
+    @battle.present?
+  end
+
+  def stops_flow?
+    has_actions? || starts_battle?
   end
 end

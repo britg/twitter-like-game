@@ -8,6 +8,7 @@ class Player
 
   belongs_to :user
   has_many :events
+  belongs_to :battle
 
   field :continue_token, type: String
   index({ continue_token: 1 }, { unique: true })
@@ -72,6 +73,22 @@ class Player
 
   def in_battle?
     battle.present?
+  end
+
+  def reset!
+    events.delete_all
+    update_attributes(current_event_sequence: nil,
+                      current_scene: "intro",
+                      battle: nil)
+  end
+
+  def input action = nil
+    if in_battle?
+      battle.proceed self, action
+    else
+      scene.proceed action
+    end
+    events.last
   end
 
 end

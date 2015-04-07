@@ -49,6 +49,10 @@ class EventBranch
     @building_event.results[key] << metadata
   end
 
+  def battle metadata
+    @building_event.battle = metadata
+  end
+
   def exit_branch
     @opts[:exit] || MAIN
   end

@@ -10,6 +10,8 @@ class Player
   has_many :events
   belongs_to :battle
 
+  embeds_one :agent
+
   field :continue_token, type: String
   index({ continue_token: 1 }, { unique: true })
 
@@ -19,16 +21,7 @@ class Player
   field :experience, type: Integer
   field :level, type: Integer
 
-  field :hp, type: Integer, default: configatron.player.hp
-  field :ap, type: Integer, default: configatron.player.ap
-
   field :gold, type: Integer, default: configatron.player.gold
-
-  field :strength, type: Integer, default: configatron.player.strength
-  field :dexterity, type: Integer, default: configatron.player.dexterity
-  field :stamina, type: Integer, default: configatron.player.stamina
-  field :intelligence, type: Integer, default: configatron.player.intelligence
-  field :luck, type: Integer, default: configatron.player.luck
 
   field :previous_scene, type: String, default: configatron.default_scene
   field :previous_event_sequence, type: Integer, default: 0

@@ -1,30 +1,28 @@
-class Agent < ActiveHash::Base
+class Agent
+  include Mongoid::Document
 
-  field :name
-  field :slug
-  field :aliases
-  field :gold
-  field :attack_power
-  field :strength
-  field :dexterity
-  field :stamina
-  field :intelligence
-  field :luck
+  embedded_in :player
+  embedded_in :npc
+
+  field :base_strength
+  field :base_dexterity
+  field :base_stamina
+  field :base_intelligence
+  field :base_luck
+
+  field :slots # Array
 
   def hp
-    stamina * configatron.stamina_to_hp_multiplier + hp_bonuses
-  end
-
-  def hp_bonuses
-    0 # compute this value
+    # HitpointCalculator.new(self).result
   end
 
   def ap
+    # ActionpointCalculator.new(self).result
+  end
+
+  def equip item
+    raise "Item not equippable #{item}" unless item.equippable?
 
   end
 
-end
-
-unless Rails.application.config.eager_load
-  Dir["#{Rails.root}/app/game/agents/*.rb"].each {|file| require file }
 end

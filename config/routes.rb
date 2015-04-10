@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :users
       resources :players
       resources :locations
+      get 'chat' => 'chat#chat'
     end
   end
 

@@ -33,15 +33,15 @@ group :development, :test do
   gem 'spring'                  ,'1.3.3'
   gem 'guard'                   #,'2.7.0'
   gem 'guard-rails'             ,'0.7.0'
-  gem 'guard-livereload'        ,'~> 2.4', require: false
+  # gem 'guard-livereload'        ,'~> 2.4', require: false
   gem 'guard-rspec'             ,'4.5.0', require: false
-  gem 'rack-livereload'         ,'0.3.15'
+  # gem 'rack-livereload'         ,'0.3.15'
   gem 'factory_girl_rails'      ,'4.5.0'
   gem 'minitest'                ,'5.5.1'
   gem 'rspec-rails'             ,'3.2.0'
   gem 'rspec-activejob'         ,'0.2.0'
   gem 'shoulda-matchers'        ,'2.5.0'
   gem 'quiet_assets'            ,'1.1.0'
-  gem 'meta_request'            ,'0.3.4'
+  # gem 'meta_request'            ,'0.3.4'
 end
 

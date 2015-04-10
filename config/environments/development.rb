@@ -39,7 +39,7 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  config.middleware.use Rack::LiveReload
+  # config.middleware.use Rack::LiveReload
 
   config.cache_store = :dalli_store, nil, { :namespace => "tavern", :expires_in => 1.day, :compress => true }
 end

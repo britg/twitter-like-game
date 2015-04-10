@@ -10,7 +10,6 @@
 //= require pubsub
 //= require fetch
 
-
 var Router = ReactRouter;
 var DefaultRoute = Router.DefaultRoute;
 var Link = Router.Link;
@@ -27,6 +26,8 @@ var Game = React.createClass({
 
   componentDidMount: function () {
     PubSub.subscribe(Events.ACTION_TAKEN, this.actionTaken);
+
+
   },
 
   actionTaken: function (key) {

@@ -159,7 +159,7 @@ class Intro < Scene
   event waypoint: "start-battle" do
     detail "He turns toward you, eyes blazing and charges"
     action :battle, label: "Enter Battle"
-    battle agents: [:large_man], return_to: {scene: :meet_ranger, waypoint: "large-man-tamed"}
+    battle participants: [:large_man]
   end
 
 end

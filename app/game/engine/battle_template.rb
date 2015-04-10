@@ -1,11 +1,9 @@
 class BattleTemplate
 
-  attr_accessor :agents, :return_scene, :return_waypoint
+  attr_accessor :participants
 
   def initialize template
-    @agents = template[:agents]
-    @return_scene = template[:return_to][:scene]
-    @return_waypoint = template[:return_to][:waypoint]
+    @participants = template[:participants]
   end
 
 end

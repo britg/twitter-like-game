@@ -11,6 +11,7 @@ gem 'sidetiq'                   ,'0.6.3'
 gem 'active_model_serializers'  ,'0.8.3'
 gem 'configatron'               ,'4.5.0'
 gem 'active_hash'               ,github: 'zilkey/active_hash'
+gem 'tubesock'
 
 gem 'turbolinks'                ,'2.5.3'
 gem 'haml-rails'                ,'0.9.0'

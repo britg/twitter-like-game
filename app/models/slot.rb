@@ -1,4 +1,5 @@
-class Slot < ActiveHash::Base
+class Slot
+  include Mongoid::Document
 
   # Types
 

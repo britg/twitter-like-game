@@ -1,10 +1,7 @@
-class Ability < ActiveHash::Base
+class Ability
+  include Mongoid::Document
 
-  field :name
-  field :slug
+  field :name, type: String
+  field :slug, type: String
 
-end
-
-unless Rails.application.config.eager_load
-  Dir["#{Rails.root}/app/game/abilities/*.rb"].each {|file| require file }
 end

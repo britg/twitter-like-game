@@ -3,14 +3,12 @@ class Player
 
   CURRENT_ID = "current"
 
-  MODE_ACTIVE = "active"
-  MODE_PASSIVE = "passive"
-
   belongs_to :user
   has_many :events
   belongs_to :battle
 
   embeds_one :agent
+  embeds_one :scene_anchor
 
   field :continue_token, type: String
   index({ continue_token: 1 }, { unique: true })
@@ -22,12 +20,6 @@ class Player
   field :level, type: Integer
 
   field :gold, type: Integer, default: configatron.player.gold
-
-  field :previous_scene, type: String, default: configatron.default_scene
-  field :previous_event_sequence, type: Integer, default: 0
-  field :current_scene, type: String, default: configatron.default_scene
-  field :current_event_sequence, type: Integer, default: 0
-  field :current_location_slug, type: String
 
   before_save :ensure_continue_token
 
@@ -75,11 +67,9 @@ class Player
                       battle: nil)
   end
 
-  def input action = nil
+  def tick
     if in_battle?
-      battle.proceed self, action
-    else
-      scene.proceed action
+      battle.proceed
     end
     events.last
   end

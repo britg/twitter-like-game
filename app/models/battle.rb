@@ -1,15 +1,18 @@
 class Battle
   include Mongoid::Document
 
-  has_many :players
+  embeds_many :participants
 
-  field :enemies, type: Array, default: []
-  field :return_scene, type: String
-  field :return_waypoint, type: String
+  def processor
+    @processor ||= BattleProcessor.new(self)
+  end
 
-  def proceed player, action = nil
-    @battle_runner ||= BattleRunner.new(player)
-    @battle_runner.proceed action
+  def proceed
+    processor.proceed
+  end
+
+  def input player, action
+
   end
 
 end

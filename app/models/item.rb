@@ -1,4 +1,5 @@
-class Item < ActiveHash::Base
+class Item
+  include Mongoid::Document
 
   field :equippable
 

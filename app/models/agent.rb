@@ -4,13 +4,15 @@ class Agent
   embedded_in :player
   embedded_in :npc
 
-  field :base_strength
-  field :base_dexterity
-  field :base_stamina
-  field :base_intelligence
-  field :base_luck
+  field :base_strength, type: Integer
+  field :base_dexterity, type: Integer
+  field :base_stamina, type: Integer
+  field :base_intelligence, type: Integer
+  field :base_luck, type: Integer
 
   field :slots # Array
+
+  embeds_many :skills
 
   def hp
     # HitpointCalculator.new(self).result

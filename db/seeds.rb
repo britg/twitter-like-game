@@ -17,8 +17,14 @@ locations = Location.create([
   }
 ])
 
-characters = Character.create([
+npcs = Npc.create([
   {
-    name: "Otto, the tavern keep"
+    name: "Large, angry man",
+    slug: :large_man,
+    agent: {
+      base_strength: 10
+    }
   }
 ])
+
+

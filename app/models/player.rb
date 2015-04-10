@@ -1,14 +1,19 @@
 class Player
   include Mongoid::Document
 
+  MODE_ACTIVE = "active"
+  MODE_PASSIVE = "passive"
+
   CURRENT_ID = "current"
 
   belongs_to :user
   has_many :events
   belongs_to :battle
+  belongs_to :location
 
   embeds_one :agent
   embeds_one :scene_anchor
+  embeds_one :exploration_state
 
   field :continue_token, type: String
   index({ continue_token: 1 }, { unique: true })
@@ -52,26 +57,44 @@ class Player
     events.order(sequence: -1).limit(20).reverse
   end
 
-  def location
-    Location.where(slug: current_location_slug.to_sym).first
-  end
-
   def in_battle?
     battle.present?
   end
 
-  def reset!
-    events.delete_all
-    update_attributes(current_event_sequence: nil,
-                      current_scene: "intro",
-                      battle: nil)
+  def travelling?
+    # In a travel scene
+    false
+  end
+
+  def enter_location location
+    LocationProcessor.new(self, location).enter
+  end
+
+  def explorer
+    @explorer ||= ExplorationProcessor.new(self)
+  end
+
+  def explore
+    explorer.tick
+    current_event
   end
 
   def tick
     if in_battle?
       battle.proceed
+    elsif travelling?
+    else # at a location
+      explore
     end
     events.last
+  end
+
+  def reset! scene_anchor = nil
+    events.delete_all
+    scene_anchor ||= SceneAnchor.new(scene_slug: :intro, sequence: -1)
+    update_attributes(current_event_sequence: nil,
+                      scene_anchor: scene_anchor,
+                      battle: nil)
   end
 
 end

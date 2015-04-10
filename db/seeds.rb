@@ -14,6 +14,11 @@ locations = Location.create([
   {
     name: "Diver's Den",
     slug: "divers-den"
+  },
+  {
+    name: "Open Field",
+    slug: :field,
+    entrance_description: "It's an open field of tall grass and sparse trees."
   }
 ])
 
@@ -21,6 +26,13 @@ npcs = Npc.create([
   {
     name: "Large, angry man",
     slug: :large_man,
+    agent: {
+      base_strength: 10
+    }
+  },
+  {
+    name: "Brown bear",
+    slug: :brown_bear,
     agent: {
       base_strength: 10
     }

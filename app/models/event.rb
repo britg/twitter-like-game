@@ -7,9 +7,9 @@ class Event
 
   belongs_to :player
   embeds_many :actions
+  belongs_to :location
 
   field :sequence
-  field :location_id, type: String
 
   field :character_name, type: String
   field :detail, type: String

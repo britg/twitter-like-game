@@ -13,7 +13,7 @@ class LocationProcessor
     return if already_at_location?
     set_location
     create_location_entrance_event
-    reset_exploration_state
+    ensure_player_location
     @player.save
   end
 
@@ -32,11 +32,13 @@ class LocationProcessor
     e.actions.create(label: "Explore", key: :explore)
   end
 
-  def reset_exploration_state
-    @player.create_exploration_state unless @player.exploration_state.present?
-    @player.exploration_state.update_attributes(
-      last_event_time: Time.now,
-      current_event_count: 1
+  def ensure_player_location
+    create_player_location unless @player.current_player_location.present?
+  end
+
+  def create_player_location
+    @player.player_locations.create(
+      location_id: @location.id
     )
   end
 

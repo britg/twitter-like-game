@@ -10,19 +10,17 @@ class ExplorationProcessor
   end
 
   def ensure_location
-    raise NoLocationDefined if !@player.location.present?
-    @player.create_exploration_state unless @player.exploration_state.present?
+    raise NoLocationDefined if !player_location.present?
   end
 
-  def exploration_state
-    @player.exploration_state
+  def player_location
+    @player.current_player_location
   end
 
-  def delta_time
-    Time.now - exploration_state.last_event_time
-  end
-
-  def tick
+  def process
+    # skill check against unfound landmarks at a location
+    # If you pass against one, create event for it.
+    # First
   end
 
 end

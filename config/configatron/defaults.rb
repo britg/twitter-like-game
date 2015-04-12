@@ -8,14 +8,11 @@
 
 configatron.stamina_to_hp_multiplier = 2
 
-configatron.player.hp = 100
-configatron.player.ap = 10
-configatron.player.gold = 20,
-configatron.player.strength = 10,
-configatron.player.dexterity = 15,
-configatron.player.stamina = 10,
-configatron.player.intelligence = 20,
-configatron.player.luck = 10
+configatron.player_gold = 100
+configatron.player_skills.configure_from_hash(
+  perception:  20
+)
 
-configatron.default_path = "/tavern"
-configatron.default_scene = :intro
+configatron.location = :field
+
+

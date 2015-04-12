@@ -6,27 +6,28 @@ class Player
 
   CURRENT_ID = "current"
 
+  field :continue_token, type: String
+  index({ continue_token: 1 }, { unique: true })
+  before_save :ensure_continue_token
+
+  field :current_mode, type: String
+
   belongs_to :user
-  has_many :events
   belongs_to :battle
   belongs_to :location
 
+  has_many :events
+  has_many :player_locations
+  index({"player_locations.location_id" => 1}, {unique: true})
+
   embeds_one :agent
-  embeds_one :scene_anchor
-  embeds_one :exploration_state
-
-  field :continue_token, type: String
-  index({ continue_token: 1 }, { unique: true })
-
-  field :current_mode, type: String
+  embeds_many :skills
 
   field :name, type: String
   field :experience, type: Integer
   field :level, type: Integer
 
-  field :gold, type: Integer, default: configatron.player.gold
-
-  before_save :ensure_continue_token
+  field :gold, type: Integer, default: configatron.player_gold
 
   def ensure_continue_token
     if continue_token.blank?
@@ -41,22 +42,6 @@ class Player
     end
   end
 
-  def scene
-    @scene ||= SceneRunner.new(self)
-  end
-
-  def current_event
-    events.last
-  end
-
-  def marker
-    scene.marker
-  end
-
-  def recent_events
-    events.order(sequence: -1).limit(20).reverse
-  end
-
   def in_battle?
     battle.present?
   end
@@ -66,34 +51,37 @@ class Player
     false
   end
 
+  def current_event
+    events.last
+  end
+
+  def available_actions
+    current_event.actions.map(&:key)
+  end
+
+  def recent_events
+    events.order(sequence: -1).limit(20).reverse
+  end
+
   def enter_location location
     LocationProcessor.new(self, location).enter
   end
 
-  def explorer
-    @explorer ||= ExplorationProcessor.new(self)
+  def current_player_location
+    player_locations.where(location_id: location.id).first
   end
 
-  def explore
-    explorer.tick
-    current_event
+  def action_processor
+    @action_processor ||= ActionProcessor.new(self)
   end
 
-  def tick
-    if in_battle?
-      battle.proceed
-    elsif travelling?
-    else # at a location
-      explore
-    end
-    events.last
+  def take_action action_slug
+    action_processor.process(action_slug)
   end
 
   def reset! scene_anchor = nil
     events.delete_all
-    scene_anchor ||= SceneAnchor.new(scene_slug: :intro, sequence: -1)
-    update_attributes(current_event_sequence: nil,
-                      scene_anchor: scene_anchor,
+    update_attributes(location: nil,
                       battle: nil)
   end
 

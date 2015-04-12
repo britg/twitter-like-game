@@ -27,7 +27,11 @@ class Event
   end
 
   def valid_action? action_slug
-    actions.where(slug: action_slug).any?
+    actions.where(key: action_slug).any?
+  end
+
+  def add_exploration_actions
+    actions.create(label: "Explore", key: :explore)
   end
 
 end

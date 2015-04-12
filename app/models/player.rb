@@ -75,8 +75,12 @@ class Player
     @action_processor ||= ActionProcessor.new(self)
   end
 
-  def take_action action_slug
+  def input action_slug
     action_processor.process(action_slug)
+  end
+
+  def ex
+    action_processor.explorer
   end
 
   def reset! scene_anchor = nil

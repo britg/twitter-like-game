@@ -29,4 +29,10 @@ class Landmark
     obj_class.where(id: object_id).first
   end
 
+  def discoverable? player
+    # Check skills and return true if discoverable
+    # false if not
+    false
+  end
+
 end

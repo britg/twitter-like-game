@@ -29,7 +29,7 @@ class LocationProcessor
     e = @player.events.create(
       detail: @location.entrance_description,
     )
-    e.actions.create(label: "Explore", key: :explore)
+    e.add_exploration_actions
   end
 
   def ensure_player_location

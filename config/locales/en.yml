@@ -22,3 +22,4 @@
 en:
   tavernlight:
     default_player_name: "Stranger"
+    not_found_event_detail: "You search the area but find nothing interesting."

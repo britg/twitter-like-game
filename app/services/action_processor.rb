@@ -15,7 +15,7 @@ class ActionProcessor
   end
 
   def process action_slug
-    raise InvalidAction unless current_event.valid_action?(action_slug)
+    raise Event::InvalidAction unless current_event.valid_action?(action_slug)
     if action_slug.to_sym == :explore
       return explorer.process
     end

@@ -11,8 +11,10 @@ def ap
 end
 
 def status
-  y({new_events: pl.new_events.map(&:to_s).reverse,
+  out = y({new_events: pl.new_events.map(&:to_s).reverse,
     available_actions: pl.available_actions})
+  @player = nil
+  out
 end
 
 def input action_slug

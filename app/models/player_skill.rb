@@ -7,4 +7,8 @@ class PlayerSkill
 
   field :value, type: Float, default: 0
 
+  def val
+    value.round(1)
+  end
+
 end

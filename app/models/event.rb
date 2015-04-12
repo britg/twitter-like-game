@@ -3,6 +3,9 @@ class Event
 
   class InvalidAction < Exception; end
 
+  TYPE_EXPLORATION = "exploration"
+  TYPE_BATTLE      = "battle"
+
   NEW_STATE       = "new"
   CURRENT_STATE   = "current"
   OLD_STATE       = "old"
@@ -10,6 +13,9 @@ class Event
   belongs_to :player
   embeds_many :actions
   belongs_to :location
+
+  field :type, type: String, default: TYPE_EXPLORATION
+  after_create :add_default_actions
 
   field :sequence
 
@@ -30,8 +36,20 @@ class Event
     actions.where(key: action_slug).any?
   end
 
+  def exploration?
+    self.type == TYPE_EXPLORATION
+  end
+
+  def add_default_actions
+    add_exploration_actions if exploration?
+  end
+
   def add_exploration_actions
     actions.create(label: "Explore", key: :explore)
+  end
+
+  def to_s
+    [character_name, dialogue, detail].compact.join(' : ')
   end
 
 end

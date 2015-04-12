@@ -9,9 +9,6 @@
 configatron.stamina_to_hp_multiplier = 2
 
 configatron.player_gold = 100
-configatron.player_skills.configure_from_hash(
-  perception:  20
-)
 
 configatron.location = :field
 

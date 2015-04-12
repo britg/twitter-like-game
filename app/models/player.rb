@@ -21,7 +21,7 @@ class Player
   index({"player_locations.location_id" => 1}, {unique: true})
 
   embeds_one :agent
-  embeds_many :skills
+  embeds_many :player_skills
 
   field :name, type: String
   field :experience, type: Integer
@@ -63,6 +63,20 @@ class Player
     events.order(sequence: -1).limit(20).reverse
   end
 
+  def new_events
+    @new_events||=[]
+  end
+
+  def cache_new_event event
+    new_events << event
+  end
+
+  def add_event params
+    e = events.create(params)
+    cache_new_event(e)
+    e
+  end
+
   def enter_location location
     LocationProcessor.new(self, location).enter
   end
@@ -81,6 +95,10 @@ class Player
 
   def ex
     action_processor.explorer
+  end
+
+  def sk slug, metadata = {}
+    SkillProcessor.new(self, slug, metadata).process
   end
 
   def reset! scene_anchor = nil

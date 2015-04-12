@@ -26,10 +26,9 @@ class LocationProcessor
   end
 
   def create_location_entrance_event
-    e = @player.events.create(
+    e = @player.add_event(
       detail: @location.entrance_description,
     )
-    e.add_exploration_actions
   end
 
   def ensure_player_location

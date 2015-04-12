@@ -37,14 +37,14 @@ class ExplorationProcessor
     # If you pass against one, create event for it.
     # First
     @found_landmark = first_discoverable_landmark
+    @player.sk(:adventuring, difficulty: 50)
     create_nothing_found_event unless @found_landmark.present?
   end
 
   def create_nothing_found_event
-    e = @player.events.create(
+    e = @player.add_event(
       detail: "You search the area but find nothing interesting."
     )
-    e.add_exploration_actions
   end
 
 end

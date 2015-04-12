@@ -1,5 +1,5 @@
 def pl
-  Player.last
+  @player ||= Player.last
 end
 
 def ex
@@ -10,10 +10,19 @@ def ap
   pl.action_processor
 end
 
+def status
+  y({new_events: pl.new_events.map(&:to_s).reverse,
+    available_actions: pl.available_actions})
+end
+
 def input action_slug
   pl.input action_slug
-  y({current_event: pl.current_event,
-    available_actions: pl.available_actions})
+  status
+end
+
+def sk slug, metadata = {}
+  pl.sk slug, metadata
+  status
 end
 
 ##
@@ -22,12 +31,22 @@ end
 
 def rebuild_game!
   reset_locations
+  reset_skills
   create_player
+end
+
+def load_manifests type
+  Dir["#{Rails.root}/app/game/#{type}/*.rb"].each {|file| require file }
 end
 
 def reset_locations
   Location.delete_all
-  Dir["#{Rails.root}/app/game/locations/*.rb"].each {|file| require file }
+  load_manifests(:locations)
+end
+
+def reset_skills
+  Skill.delete_all
+  load_manifests(:skills)
 end
 
 def create_player

@@ -1,31 +1,20 @@
 class Skill
   include Mongoid::Document
 
-  GROUPS = {
-    basic: [
-      :perception
-    ]
-  }
+  class InvalidSkill < Exception; end
 
   field :name, type: String
   field :slug, type: String
-  field :value, type: Float
+  index({slug: 1}, {unique: true})
+
   field :group, type: String
 
-  embedded_in :player
-
-  def self.skills
-    GROUPS.values.flatten
-  end
-
-  def self.group slug
-    GROUPS.each do |g, list|
-      return g if list.include?(slug.to_sym)
-    end
-  end
-
   def self.valid? slug
-    skills.include?(slug.to_sym)
+    where(slug: slug).present?
+  end
+
+  def self.create_from_slug slug
+
   end
 
 end

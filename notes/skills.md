@@ -28,7 +28,6 @@ Glassblowing
 -  Spirit Speak
 Mysticism
 Bardic
-32px Discordance
 Enticement (replaced by Discordance)
 -  Musicianship
 -  Peacemaking

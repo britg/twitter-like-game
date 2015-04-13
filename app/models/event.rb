@@ -4,6 +4,7 @@ class Event
   class InvalidAction < Exception; end
 
   TYPE_EXPLORATION = "exploration"
+  TYPE_DETAIL      = "detail"
   TYPE_BATTLE      = "battle"
 
   NEW_STATE       = "new"

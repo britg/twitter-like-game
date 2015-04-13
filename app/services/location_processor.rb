@@ -27,7 +27,7 @@ class LocationProcessor
 
   def create_location_entrance_event
     e = @player.add_event(
-      detail: @location.entrance_description,
+      detail: @location.entrance_details.sample,
     )
   end
 

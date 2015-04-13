@@ -27,18 +27,38 @@ def sk slug, metadata = {}
   status
 end
 
+def debug *args
+  return nil unless Rails.env.development?
+  puts args.join(', ')
+end
+
+def r
+  reload!
+  status
+end
+
 ##
 # Rebuilding
 ##
 
 def rebuild_game!
-  reset_locations
+  @build = []
   reset_skills
+  reset_npcs
+  reset_locations
+  @build.each do |proc|
+    proc.call
+  end
   create_player
 end
 
 def load_manifests type
   Dir["#{Rails.root}/app/game/#{type}/*.rb"].each {|file| require file }
+end
+
+def reset_npcs
+  Npc.delete_all
+  load_manifests(:npcs)
 end
 
 def reset_locations

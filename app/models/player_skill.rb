@@ -7,6 +7,10 @@ class PlayerSkill
 
   field :value, type: Float, default: 0
 
+  def self.value_for_skill skill
+    where(skill: skill).first.try(:value)
+  end
+
   def val
     value.round(1)
   end

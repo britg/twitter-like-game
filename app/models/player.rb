@@ -42,6 +42,10 @@ class Player
     end
   end
 
+  def to_s
+    name
+  end
+
   def in_battle?
     battle.present?
   end
@@ -84,7 +88,7 @@ class Player
   end
 
   def add_event params
-    e = events.create(params)
+    e = events.create(params.merge(created_at: Time.now))
     cache_new_event(e)
     e
   end

@@ -3,16 +3,6 @@ class Battle
 
   embeds_many :participants
 
-  def processor
-    @processor ||= BattleProcessor.new(self)
-  end
-
-  def proceed
-    processor.proceed
-  end
-
-  def input player, action
-
-  end
+  has_and_belongs_to_many :players, inverse_of: nil
 
 end

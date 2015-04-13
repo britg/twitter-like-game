@@ -3,7 +3,7 @@
     name: "Injured Black Bear",
     slug: :injured_black_bear,
     agent: {
-
+      strength: 10
     }
   )
 }

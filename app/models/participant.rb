@@ -8,4 +8,8 @@ class Participant
 
   embedded_in :battle
 
+  def to_s
+    (player||npc).to_s
+  end
+
 end

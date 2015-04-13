@@ -91,12 +91,12 @@ class ExplorationProcessor
   def process_landmark landmark
     # Add to player's landmarks
     # LandmarkDiscoverer.new(@player, landmark).discover
-    player_location.player_landmarks.create(landmark_id: landmark.id)
+    player_landmark = player_location.player_landmarks.create(landmark_id: landmark.id)
     create_discovery_event landmark
 
     if landmark_analyzer(landmark).aggro?
       create_aggro_event landmark
-      start_battle landmark
+      start_battle landmark.obj
     else
       create_approach_decision_event landmark
     end
@@ -125,10 +125,10 @@ class ExplorationProcessor
 
   end
 
-  def start_battle landmark
-    @player.battle_event(
-      detail: "Battle has started with #{landmark.to_s}"
-    )
+  def start_battle npc
+    participating_objs = [@player, npc]
+    proc = BattleProcessor.new(participating_objs)
+    proc.start
   end
 
 end

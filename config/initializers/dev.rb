@@ -47,6 +47,7 @@ def rebuild_game!
   reset_skills
   reset_npcs
   reset_locations
+  reset_battles
   @build.each do |proc|
     proc.call
   end
@@ -71,6 +72,10 @@ end
 def reset_skills
   Skill.delete_all
   load_manifests(:skills)
+end
+
+def reset_battles
+  Battle.delete_all
 end
 
 def reset_player

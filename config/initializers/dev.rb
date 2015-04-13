@@ -42,18 +42,20 @@ end
 ##
 
 def rebuild_game!
-  @build = []
+  r
+  @build ||= []
   reset_skills
   reset_npcs
   reset_locations
   @build.each do |proc|
     proc.call
   end
-  create_player
+  reset_player
+  status
 end
 
 def load_manifests type
-  Dir["#{Rails.root}/app/game/#{type}/*.rb"].each {|file| require file }
+  Dir["#{Rails.root}/lib/#{type}/*.rb"].each {|file| require file }
 end
 
 def reset_npcs
@@ -71,6 +73,7 @@ def reset_skills
   load_manifests(:skills)
 end
 
-def create_player
+def reset_player
+  Player.delete_all
   PlayerCreator.new.create
 end

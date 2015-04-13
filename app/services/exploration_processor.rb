@@ -48,13 +48,13 @@ class ExplorationProcessor
 
   def first_discoverable_landmark
     undiscovered_landmarks.each do |landmark|
-      return landmark if landmark_analyzer.discoverable?
+      return landmark if landmark_analyzer(landmark).discoverable?
     end
     nil
   end
 
-  def landmark_analyzer
-    @landmark_analyzer ||= LandmarkAnalyzer.new(@player, landmark)
+  def landmark_analyzer(landmark)
+    LandmarkAnalyzer.new(@player, landmark)
   end
 
   def increase_adventuring
@@ -94,37 +94,41 @@ class ExplorationProcessor
     player_location.player_landmarks.create(landmark_id: landmark.id)
     create_discovery_event landmark
 
-    if landmark_analyzer.aggro?
+    if landmark_analyzer(landmark).aggro?
       create_aggro_event landmark
-      start_battle
+      start_battle landmark
     else
-      create_approach_event landmark
+      create_approach_decision_event landmark
     end
 
   end
 
   def create_discovery_event landmark
-    e = @player.add_event(
-      detail: landmark.discovery_detail,
-      type: Event::DETAIL
+    e = @player.detail_event(
+      detail: landmark.discovery_detail
     )
   end
 
   def create_nothing_found_event
-    e = @player.add_event(
+    e = @player.exploration_event(
       detail: "You search the area but find nothing interesting."
     )
   end
 
   def create_aggro_event landmark
-    @player.add_event(
-      detail: landmark.aggro_detail,
-      type: Event::DETAIL
+    @player.detail_event(
+      detail: landmark.aggro_detail
     )
   end
 
-  def create_approach_event
+  def create_approach_decision_event
 
+  end
+
+  def start_battle landmark
+    @player.battle_event(
+      detail: "Battle has started with #{landmark.to_s}"
+    )
   end
 
 end

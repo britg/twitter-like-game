@@ -71,6 +71,18 @@ class Player
     new_events << event
   end
 
+  def detail_event params
+    add_event(params.merge(type: Event::TYPE_DETAIL))
+  end
+
+  def battle_event params
+    add_event(params.merge(type: Event::TYPE_BATTLE))
+  end
+
+  def exploration_event params
+    add_event(params.merge(type: Event::TYPE_EXPLORATION))
+  end
+
   def add_event params
     e = events.create(params)
     cache_new_event(e)

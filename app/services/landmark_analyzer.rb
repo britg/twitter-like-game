@@ -19,7 +19,7 @@ class LandmarkAnalyzer
 
   # True if meets _any_ of the checks
   def aggro?
-    return false unless @landmark.aggro_requirements.any?
+    return false unless @landmark.aggro_conditions.any?
     @landmark.aggro_conditions.each do |skillreq|
       return true if meets?(skillreq)
     end

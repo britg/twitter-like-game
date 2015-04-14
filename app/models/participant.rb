@@ -12,4 +12,12 @@ class Participant
     (player||npc).to_s
   end
 
+  def npc?
+    npc_id.present?
+  end
+
+  def player?
+    player_id.present?
+  end
+
 end

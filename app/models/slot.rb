@@ -1,7 +1,6 @@
 class Slot
   include Mongoid::Document
-
-  # Types
+  include HasSlug
 
   HEAD = "head"
   CHEST = "chest"
@@ -9,7 +8,6 @@ class Slot
   LEGS = "legs"
   FEET = "feet"
 
-  field :type
-  field :item
+  field :name, type: String
 
 end

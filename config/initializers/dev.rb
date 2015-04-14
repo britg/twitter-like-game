@@ -10,6 +10,10 @@ def ap
   pl.action_processor
 end
 
+def recent
+  y pl.recent_events.map(&:to_s).reverse
+end
+
 def status
   out = y({new_events: pl.new_events.map(&:to_s).reverse,
     available_actions: pl.available_actions})
@@ -42,8 +46,8 @@ end
 ##
 
 def rebuild_game!
-  r
   @build ||= []
+  reset_stats
   reset_skills
   reset_npcs
   reset_locations
@@ -51,8 +55,13 @@ def rebuild_game!
   @build.each do |proc|
     proc.call
   end
+  sleep 1
   reset_player
   status
+end
+
+def clean
+  @build = []
 end
 
 def load_manifests type
@@ -67,6 +76,11 @@ end
 def reset_locations
   Location.delete_all
   load_manifests(:locations)
+end
+
+def reset_stats
+  Stat.delete_all
+  load_manifests(:stats)
 end
 
 def reset_skills

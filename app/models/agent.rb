@@ -4,15 +4,13 @@ class Agent
   embedded_in :player
   embedded_in :npc
 
-  field :base_strength, type: Integer
-  field :base_dexterity, type: Integer
-  field :base_stamina, type: Integer
-  field :base_intelligence, type: Integer
-  field :base_luck, type: Integer
+  embeds_many :stats, class_name: "AgentStat"
+  embeds_many :slots, class_name: "AgentSlot"
+  embeds_many :skills, class_name: "AgentSkill"
 
-  field :slots # Array
-
-  embeds_many :skills
+  def attack
+    # AttackCalculator.new(self).result
+  end
 
   def hp
     # HitpointCalculator.new(self).result

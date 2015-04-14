@@ -12,7 +12,6 @@ class BattleProcessor
       if obj.class == Player
         player = obj
         @battle.participants.create(player: player)
-        @battle.players << player
         player.update_attributes(battle: @battle)
       else
         @battle.participants.create(npc: obj, agent: obj.agent)
@@ -30,6 +29,9 @@ class BattleProcessor
         detail: "Battle has started between #{participant_names.to_sentence}"
       )
     end
+
+    # determine_initiative
+    #
   end
 
   def process

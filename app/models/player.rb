@@ -21,7 +21,9 @@ class Player
   index({"player_locations.location_id" => 1}, {unique: true})
 
   embeds_one :agent
-  embeds_many :player_skills
+  delegate :skills, to: :agent
+  delegate :stats, to: :agent
+  delegate :slots, to: :agent
 
   field :name, type: String
   field :experience, type: Integer
@@ -64,7 +66,7 @@ class Player
   end
 
   def recent_events
-    events.order(sequence: -1).limit(20).reverse
+    events.order(_id: -1).limit(20).reverse
   end
 
   def new_events

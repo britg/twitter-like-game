@@ -9,7 +9,20 @@ class PlayerCreator
   end
 
   def create_player
-    @player = Player.create
+    @player = Player.create(
+      name: "Stranger",
+      gold: configatron.player_gold
+    )
+
+    create_stats
+  end
+
+  def create_stats
+    @agent = @player.create_agent
+    @player.stats.create(
+      stat: Stat.slug(:str),
+      base_value: configatron.player_base_strength
+    )
   end
 
   def set_default_location

@@ -41,12 +41,23 @@ class Event
     self.type == TYPE_EXPLORATION
   end
 
+  def battle?
+    self.type == TYPE_BATTLE
+  end
+
   def add_default_actions
     add_exploration_actions if exploration?
+    add_battle_actions if battle?
   end
 
   def add_exploration_actions
     actions.create(label: "Explore", key: :explore)
+  end
+
+  def add_battle_actions
+    actions.create(label: "Attack", key: :attack)
+    actions.create(label: "Special", key: :special)
+    actions.create(label: "Flee", key: :flee)
   end
 
   def to_s

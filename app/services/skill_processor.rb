@@ -28,11 +28,11 @@ class SkillProcessor
   end
 
   def player_skill
-    @player_skill ||= @player.player_skills.where(skill_id: @skill.id).first
+    @player_skill ||= @player.agent_skills.where(skill_id: @skill.id).first
   end
 
   def create_player_skill
-    @player_skill = @player.player_skills.create(skill: @skill)
+    @player_skill = @player.agent_skills.create(skill: @skill)
   end
 
   def increase_by amount = 0.1

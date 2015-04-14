@@ -1,10 +1,9 @@
-class PlayerSkill
+class AgentSkill
   include Mongoid::Document
 
-  embedded_in :player
+  embedded_in :agent
 
   belongs_to :skill
-
   field :value, type: Float, default: 0
 
   def self.value_for_skill skill

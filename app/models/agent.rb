@@ -8,16 +8,26 @@ class Agent
   embeds_many :slots, class_name: "AgentSlot"
   embeds_many :skills, class_name: "AgentSkill"
 
-  def attack
-    # AttackCalculator.new(self).result
-  end
+  # Convenience Methods
 
-  def hp
-    # HitpointCalculator.new(self).result
-  end
+  def str stat(:str); end
+  def dex stat(:dex); end
+  def stam stat(:stam); end
+  def int stat(:int); end
+  def luck stat(:luck); end
 
-  def ap
-    # ActionpointCalculator.new(self).result
+  def hp stat(:hp); end
+  def ap stat(:ap); end
+  def mana stat(:mana); end
+
+  def attack stat(:attack); end
+  def defense stat(:def); end
+
+  def hit stat(:hit); end
+  def dodge stat(:dodge); end
+
+  def stat slug
+    stats.where(slug: slug).first.value
   end
 
   def equip item

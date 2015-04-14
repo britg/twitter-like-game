@@ -20,7 +20,7 @@ class PlayerCreator
   def create_stats
     @agent = @player.create_agent
     @player.stats.create(
-      stat: Stat.slug(:str),
+      slug: :str,
       base_value: configatron.player_base_strength
     )
   end

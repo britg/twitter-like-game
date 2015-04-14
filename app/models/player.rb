@@ -1,5 +1,6 @@
 class Player
   include Mongoid::Document
+  include HasAgent
 
   MODE_ACTIVE = "active"
   MODE_PASSIVE = "passive"
@@ -19,11 +20,6 @@ class Player
   has_many :events
   has_many :player_locations
   index({"player_locations.location_id" => 1}, {unique: true})
-
-  embeds_one :agent
-  delegate :skills, to: :agent
-  delegate :stats, to: :agent
-  delegate :slots, to: :agent
 
   field :name, type: String
   field :experience, type: Integer

@@ -22,6 +22,7 @@ class Agent
 
   # based on current weapon and your skills
   def attack() stat(:attack) end
+  def armor() stat(:armor) end
   def hit_chance() stat(:hit_chance) end
   def dodge() stat(:dodge) end
   def magic_resistance() stat(:magic_res) end
@@ -56,6 +57,6 @@ class Agent
   def equip item
     raise "Item not equippable #{item}" unless item.equippable?
   end
-  
+
 
 end

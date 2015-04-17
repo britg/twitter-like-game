@@ -44,6 +44,10 @@ class Player
     name
   end
 
+  def player?
+    true
+  end
+
   def in_battle?
     battle.present?
   end

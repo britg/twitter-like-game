@@ -2,21 +2,8 @@ class BattleProcessor
 
   attr_accessor :battle
 
-  def initialize participant_objs = []
-    @battle = Battle.create
-    create_participants(participant_objs)
-  end
-
-  def create_participants objs
-    objs.each do |obj|
-      if obj.class == Player
-        player = obj
-        @battle.participants.create(player: player)
-        player.update_attributes(battle: @battle)
-      else
-        @battle.participants.create(npc: obj, agent: obj.agent)
-      end
-    end
+  def initialize _battle
+    @battle = _battle
   end
 
   def participant_names
@@ -25,18 +12,40 @@ class BattleProcessor
 
   def start
     @battle.players.each do |p|
-      p.battle_event(
+      p.detail_event(
         detail: "Battle has started between #{participant_names.to_sentence}"
       )
     end
 
-    # determine_initiative
-    #
+    process
+  end
+
+  def initiative_resolver
+    @initiative_resolver ||= InitiativeResolver.new(@battle)
   end
 
   def process
     debug "processing battle"
+    @current_turn_participant = initiative_resolver.next
+    if @current_turn_participant.player?
+      prompt_battle_event @current_turn_participant.player
+    else
+      process_npc_turn @current_turn_participant.agent
+      process
+    end
+  end
 
+  def prompt_battle_event player
+    player.battle_event(
+      detail: "You prepare for combat..."
+    )
+  end
+
+  def process_npc_turn agent
+    @battle.players.each do |player|
+      #temp
+      player.detail_event(detail: "Other participant takes their turn...")
+    end
   end
 
 end

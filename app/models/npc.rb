@@ -9,4 +9,8 @@ class Npc
     name
   end
 
+  def player?
+    false
+  end
+
 end

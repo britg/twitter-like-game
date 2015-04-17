@@ -12,6 +12,7 @@ end
 
 def recent
   y pl.recent_events.map(&:to_s).reverse
+  status
 end
 
 def status

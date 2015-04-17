@@ -129,8 +129,8 @@ class ExplorationProcessor
 
   def start_battle npc
     participating_objs = [@player, npc]
-    proc = BattleProcessor.new(participating_objs)
-    proc.start
+    @battle = BattleCreator.new(participating_objs).create
+    BattleProcessor.new(@battle).start
   end
 
 end

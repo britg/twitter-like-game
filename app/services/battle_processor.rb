@@ -10,6 +10,10 @@ class BattleProcessor
     @names ||= @battle.participants.map(&:to_s)
   end
 
+  def initiative_resolver
+    @initiative_resolver ||= InitiativeResolver.new(@battle)
+  end
+
   def start
     @battle.players.each do |p|
       p.detail_event(
@@ -18,10 +22,6 @@ class BattleProcessor
     end
 
     process
-  end
-
-  def initiative_resolver
-    @initiative_resolver ||= InitiativeResolver.new(@battle)
   end
 
   def process

@@ -3,7 +3,7 @@ class Battle
 
   embeds_many :participants
 
-  field :turns, type: Integer
+  field :turns, type: Array
 
   def player_ids
     participants.map(&:player_id).compact

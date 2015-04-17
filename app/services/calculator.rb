@@ -1,7 +1,5 @@
-class StrengthCalculator
-  include Calculator
-
-  attr_accessor :agent
+module Calculator
+  include ActiveSupport::Concern
 
   def initialize _agent, _base_value
     @agent = _agent
@@ -9,7 +7,11 @@ class StrengthCalculator
   end
 
   def result
-    @base_value + item_additions_for_stat(:str)
+    @base_value
+  end
+
+  def item_additions_for_stat stat
+    0
   end
 
 end

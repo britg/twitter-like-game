@@ -8,26 +8,49 @@ class Agent
   embeds_many :slots, class_name: "AgentSlot"
   embeds_many :skills, class_name: "AgentSkill"
 
-  # Convenience Methods
+  # Stats - increase through skills and items
 
-  def str stat(:str); end
-  def dex stat(:dex); end
-  def stam stat(:stam); end
-  def int stat(:int); end
-  def luck stat(:luck); end
+  def str() stat(:str) end
+  def dex() stat(:dex) end
+  def stam() stat(:stam) end
+  def int() stat(:int) end
+  def luck() stat(:luck) end
 
-  def hp stat(:hp); end
-  def ap stat(:ap); end
-  def mana stat(:mana); end
+  def hp() stat(:hp) end
+  def ap() stat(:ap) end
+  def mana() stat(:mana) end
 
-  def attack stat(:attack); end
-  def defense stat(:def); end
+  # based on current weapon and your skills
+  def attack() stat(:attack) end
+  def hit_chance() stat(:hit_chance) end
+  def dodge() stat(:dodge) end
+  def magic_resistance() stat(:magic_res) end
+  def physical_resistance() stat(:physical_res) end
 
-  def hit stat(:hit); end
-  def dodge stat(:dodge); end
+  # Skills - permanent increase from use
+  #        - temporary increase from items
+
+  # Item Slots  - bonuses to stats and skills
+  def head() slot(:head) end
+  def shoulders() slot(:shoulders) end
+  def back() slot(:back) end
+  def chest() slot(:chest) end
+  def legs() slot(:legs) end
+  def feet() slot(:feet) end
+  def left_ring() slot(:left_ring) end
+  def right_ring() slot(:right_ring) end
+  def neck() slot(:neck) end
 
   def stat slug
-    stats.where(slug: slug).first.value
+    stats.find_or_create_by(slug: slug).value
+  end
+
+  def skill slug
+    skills.find_or_create_by(slug: slug).value
+  end
+
+  def slot slug
+    slots.find_or_create_by(slug: slug).item
   end
 
   def equip item

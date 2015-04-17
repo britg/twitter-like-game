@@ -26,8 +26,7 @@ class LandmarkAnalyzer
   end
 
   def meets? skillreq
-    val = @player.player_skills.value_for_skill(skillreq.skill) \
-      || @player.player_skills.create(skill: skillreq.skill).value
+    val = @player.agent.skill(skillreq.skill.slug)
     # debug skillreq.range, skillreq.skill.name, val
     skillreq.range.include?(val)
   end

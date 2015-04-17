@@ -6,7 +6,7 @@ class Stat
   field :calculator_class, type: String
 
   def calculator
-    calculator_class.constantize
+    calculator_class.constantize rescue Calculator
   end
 
 end

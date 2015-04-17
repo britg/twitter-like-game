@@ -53,12 +53,12 @@ class Player
     false
   end
 
+  ##
+  # Event Convenience Methods
+  ##
+
   def current_event
     events.last
-  end
-
-  def available_actions
-    current_event.actions.map(&:key)
   end
 
   def recent_events
@@ -91,12 +91,36 @@ class Player
     e
   end
 
+  ##
+  # / End Event Convenience Methods
+  ##
+
+  ##
+  # Location/Landmark Convenience Methods
+  ##
+
   def enter_location location
     LocationProcessor.new(self, location).enter
   end
 
   def current_player_location
     player_locations.where(location_id: location.id).first
+  end
+
+  def current_player_landmarks
+    current_player_location.player_landmarks
+  end
+
+  ##
+  # / End Location/Landmark Convenience Methods
+  ##
+
+  ##
+  # Action Convenience Methods
+  ##
+
+  def available_actions
+    current_event.actions.map(&:key)
   end
 
   def action_processor
@@ -111,7 +135,11 @@ class Player
     action_processor.explorer
   end
 
-  def sk slug, metadata = {}
+  ##
+  # / End Action Convenience Methods
+  ##
+
+  def use_skill slug, metadata = {}
     SkillProcessor.new(self, slug, metadata).process
   end
 

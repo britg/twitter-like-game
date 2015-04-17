@@ -77,7 +77,7 @@ class ExplorationProcessor
     # If you pass against one, create event for it.
     # First
     @found_landmark = explore
-    @player.sk(:adventuring)
+    @player.use_skill(:adventuring)
 
     if @found_landmark.present?
       process_landmark @found_landmark

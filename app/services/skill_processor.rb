@@ -23,7 +23,7 @@ class SkillProcessor
 
   def increase_by amount = 0.1
     @player_skill.inc(base_value: amount)
-    @player.save
+    # @player.save
     @player.add_event(detail: "Your skill in #{@skill.name} has increased by #{amount} to #{@player_skill.value}")
   end
 

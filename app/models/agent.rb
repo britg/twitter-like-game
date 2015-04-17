@@ -55,7 +55,7 @@ class Agent
 
   def equip item
     raise "Item not equippable #{item}" unless item.equippable?
-
   end
+  
 
 end

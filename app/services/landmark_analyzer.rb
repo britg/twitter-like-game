@@ -26,9 +26,9 @@ class LandmarkAnalyzer
   end
 
   def meets? skillreq
-    val = @player.agent.skill(skillreq.skill.slug)
+    skill = @player.skill(skillreq.skill.slug)
     # debug skillreq.range, skillreq.skill.name, val
-    skillreq.range.include?(val)
+    skillreq.range.include?(skill.value)
   end
 
 end

@@ -9,7 +9,7 @@ module HasAgent
   end
 
   def method_missing m, *args
-    agent.send(m)
+    agent.send(m, *args)
   end
 
 

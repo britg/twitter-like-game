@@ -57,14 +57,12 @@ class ExplorationProcessor
     LandmarkAnalyzer.new(@player, landmark)
   end
 
-  def increase_adventuring
-    @player.sk(:adventuring, difficulty: 50)
-  end
-
   def explore
     create_explore_event
 
     # TEMP - we probably want more logic here
+    # e.g. revisiting old landmarks
+    # hinting at landmarks
     first_discoverable_landmark
   end
 
@@ -79,11 +77,13 @@ class ExplorationProcessor
     # If you pass against one, create event for it.
     # First
     @found_landmark = explore
-    increase_adventuring
+    @player.sk(:adventuring)
 
     if @found_landmark.present?
       process_landmark @found_landmark
     else
+      # when nothing is found, we should somehow remind about
+      # the map option.
       create_nothing_found_event
     end
   end
@@ -111,7 +111,7 @@ class ExplorationProcessor
 
   def create_nothing_found_event
     e = @player.exploration_event(
-      detail: "You search the area but find nothing interesting."
+      detail: "You search the area but find nothing interesting. Check your [[Landmarks]] for discovered landmarks in this area."
     )
   end
 
@@ -122,7 +122,9 @@ class ExplorationProcessor
   end
 
   def create_approach_decision_event
-
+    @player.exporation_event(
+      detail: ""
+    )
   end
 
   def start_battle npc

@@ -42,15 +42,15 @@ class Agent
   def neck() slot(:neck) end
 
   def stat slug
-    stats.find_or_create_by(slug: slug).value
+    stats.find_or_create_by(slug: slug)
   end
 
   def skill slug
-    skills.find_or_create_by(slug: slug).value
+    skills.find_or_create_by(slug: slug)
   end
 
   def slot slug
-    slots.find_or_create_by(slug: slug).item
+    slots.find_or_create_by(slug: slug)
   end
 
   def equip item

@@ -32,11 +32,11 @@ class LocationProcessor
   end
 
   def ensure_player_location
-    create_player_location unless @player.current_player_location.present?
+    create_location_state unless @player.current_location_state.present?
   end
 
-  def create_player_location
-    @player.player_locations.create(
+  def create_location_state
+    @player.location_states.create(
       location_id: @location.id
     )
   end

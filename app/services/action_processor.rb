@@ -88,8 +88,8 @@ class ActionProcessor
     find_action.child_actions.build(label: "Reagents", key: :find_reagents)
     actions << find_action
     landmarks_action = Action.new(label: "Landmark", key: :landmark)
-    @player.current_player_landmarks.each do |player_landmark|
-      landmarks_action.child_actions.build(label: player_landmark.to_s, key: player_landmark.to_action_key)
+    @player.current_landmark_states.each do |landmark_state|
+      landmarks_action.child_actions.build(label: landmark_state.to_s, key: landmark_state.to_action_key)
     end
     actions << landmarks_action
     actions << Action.new(label: "Craft", key: :craft)

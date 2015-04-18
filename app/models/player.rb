@@ -19,8 +19,8 @@ class Player
   belongs_to :landmark
 
   has_many :events
-  has_many :player_locations
-  index({"player_locations.location_id" => 1}, {unique: true})
+  has_many :location_states
+  index({"location_states.location_id" => 1}, {unique: true})
 
   field :name, type: String
   field :experience, type: Integer
@@ -108,12 +108,12 @@ class Player
     LocationProcessor.new(self, location).enter
   end
 
-  def current_player_location
-    player_locations.where(location_id: location.id).first
+  def current_location_state
+    location_states.where(location_id: location.id).first
   end
 
-  def current_player_landmarks
-    current_player_location.player_landmarks
+  def current_landmark_states
+    current_location_state.landmark_states
   end
 
   ##

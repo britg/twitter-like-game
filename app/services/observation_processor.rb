@@ -5,11 +5,11 @@ class ObservationProcessor
   end
 
   def ensure_location
-    raise ExplorationProcessor::NoLocationDefined if !player_location.present?
+    raise ExplorationProcessor::NoLocationDefined if !location_state.present?
   end
 
-  def player_location
-    @player.current_player_location
+  def location_state
+    @player.current_location_state
   end
 
   def location
@@ -24,7 +24,7 @@ class ObservationProcessor
   def explored_percentage
     landmark_count = location.landmarks.count
     raise "No landmarks" unless landmark_count > 0
-    player_count = player_location.player_landmarks.count
+    player_count = location_state.landmark_states.count
     percent = (player_count.to_f / landmark_count.to_f)*100
   end
 

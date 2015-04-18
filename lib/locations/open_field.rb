@@ -18,6 +18,10 @@
   )
 
   l.landmarks.create(
+    obj: Resource.slug(:mandrake_root)
+  )
+
+  l.landmarks.create(
     obj: Npc.slug(:injured_black_bear),
     discovery_details: [
       "You spot an injured juvenile [black bear](injured_black_bear) up ahead."

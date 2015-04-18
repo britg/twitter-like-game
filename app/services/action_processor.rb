@@ -47,6 +47,10 @@ class ActionProcessor
       return find_processor.process_random
     end
 
+    if action_slug.to_sym == :find_survival
+      return find_processor.process_survival
+    end
+
     if action_slug.to_s.match(/find_/)
       resource_slug = action_slug.to_s.split('_').last.to_sym
       return find_processor.process_resource resource_slug

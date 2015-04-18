@@ -50,6 +50,7 @@ def rebuild_game!
   @build ||= []
   reset_stats
   reset_skills
+  reset_resources
   reset_npcs
   reset_locations
   reset_battles
@@ -66,7 +67,7 @@ def clean
 end
 
 def load_manifests type
-  Dir["#{Rails.root}/lib/#{type}/*.rb"].each {|file| require file }
+  Dir["#{Rails.root}/lib/#{type}/**/*.rb"].each {|file| require file }
 end
 
 def reset_npcs
@@ -77,6 +78,11 @@ end
 def reset_locations
   Location.delete_all
   load_manifests(:locations)
+end
+
+def reset_resources
+  Resource.delete_all
+  load_manifests(:resources)
 end
 
 def reset_stats

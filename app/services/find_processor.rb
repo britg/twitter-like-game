@@ -10,6 +10,12 @@ class FindProcessor
     )
   end
 
+  def process_survival
+    @player.exploration_event(
+      detail: "You gather some branches for a fire"
+    )
+  end
+
   def process_resource resource_slug
     @player.exploration_event(
       detail: "You attempt to find #{resource_slug}"

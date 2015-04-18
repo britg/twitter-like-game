@@ -65,7 +65,9 @@ class Event
     actions.create(label: "Explore", key: :explore)
     actions.create(label: "Observe", key: :observe)
     find_action = actions.create(label: "Find", key: :find)
-    find_action.child_actions.create(label: "Find herbs", key: :find_herbs)
+    find_action.child_actions.create(label: "Survival", key: :find_survival)
+    find_action.child_actions.create(label: "Herbs", key: :find_herbs)
+    actions.create(label: "Craft", key: :craft)
   end
 
   def add_battle_actions

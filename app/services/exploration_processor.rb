@@ -46,7 +46,7 @@ class ExplorationProcessor
     location.landmarks.find(undiscovered_landmark_ids)
   end
 
-  def first_discoverable_landmark
+  def first_undiscovered_landmark
     undiscovered_landmarks.each do |landmark|
       return landmark if landmark_analyzer(landmark).discoverable?
     end
@@ -63,7 +63,7 @@ class ExplorationProcessor
     # TEMP - we probably want more logic here
     # e.g. revisiting old landmarks
     # hinting at landmarks
-    first_discoverable_landmark
+    first_undiscovered_landmark
   end
 
   def create_explore_event
@@ -97,33 +97,25 @@ class ExplorationProcessor
     if landmark_analyzer(landmark).aggro?
       create_aggro_event landmark
       start_battle landmark.obj
-    else
-      create_approach_decision_event landmark
     end
 
   end
 
   def create_discovery_event landmark
-    e = @player.detail_event(
+    @player.detail_event(
       detail: landmark.discovery_detail
     )
   end
 
   def create_nothing_found_event
-    e = @player.exploration_event(
-      detail: "You search the area but find nothing interesting. Check your [[Landmarks]] for discovered landmarks in this area."
+    @player.exploration_event(
+      detail: "You search the area but find nothing interesting..."
     )
   end
 
   def create_aggro_event landmark
     @player.detail_event(
       detail: landmark.aggro_detail
-    )
-  end
-
-  def create_approach_decision_event
-    @player.exporation_event(
-      detail: ""
     )
   end
 

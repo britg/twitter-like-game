@@ -9,7 +9,6 @@ class Landmark
 
   field :type, type: String
   field :object_id, type: BSON::ObjectId
-  field :respawn_delay, type: Integer, default: 0
   field :moves, type: Boolean, default: false
   field :discovery_details, type: Array
   field :aggro_details, type: Array

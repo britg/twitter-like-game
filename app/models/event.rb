@@ -33,8 +33,19 @@ class Event
     where(current_state: [CURRENT_STATE, NEW_STATE])
   end
 
+  def available_actions
+    keys = []
+    actions.each do |action|
+      keys << action.key
+      action.child_actions.each do |sub_action|
+        keys << sub_action.key
+      end
+    end
+    keys
+  end
+
   def valid_action? action_slug
-    actions.where(key: action_slug).any?
+    available_actions.include?(action_slug.to_s)
   end
 
   def exploration?
@@ -52,6 +63,9 @@ class Event
 
   def add_exploration_actions
     actions.create(label: "Explore", key: :explore)
+    actions.create(label: "Observe", key: :observe)
+    find_action = actions.create(label: "Find", key: :find)
+    find_action.child_actions.create(label: "Find herbs", key: :find_herbs)
   end
 
   def add_battle_actions

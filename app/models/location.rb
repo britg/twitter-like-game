@@ -6,6 +6,7 @@ class Location
   field :path, type: String
   field :entrance_details, type: Array
   field :explore_details, type: Array
+  field :observe_details, type: Array
   field :event_timing_range, type: Range, default: 1..10
 
   embeds_many :landmarks

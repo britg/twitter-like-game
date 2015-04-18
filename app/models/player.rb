@@ -124,7 +124,7 @@ class Player
   ##
 
   def available_actions
-    current_event.actions.map(&:key)
+    current_event.available_actions
   end
 
   def action_processor

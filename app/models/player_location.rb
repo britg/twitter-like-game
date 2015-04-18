@@ -5,4 +5,6 @@ class PlayerLocation
   belongs_to :location
   embeds_many :player_landmarks
 
+  field :observation_indexes, type: Array
+
 end

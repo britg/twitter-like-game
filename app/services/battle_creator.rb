@@ -1,8 +1,13 @@
 class BattleCreator
 
   def initialize participant_objs
+    @participant_objs = participant_objs
+  end
+
+  def create
     @battle = Battle.create
-    create_participants(participant_objs)
+    create_participants(@participant_objs)
+    @battle
   end
 
   def create_participants objs

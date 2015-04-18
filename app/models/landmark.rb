@@ -10,6 +10,7 @@ class Landmark
   field :type, type: String
   field :object_id, type: BSON::ObjectId
   field :moves, type: Boolean, default: false
+
   field :discovery_details, type: Array
   field :aggro_details, type: Array
 
@@ -56,6 +57,7 @@ class Landmark
   end
 
   def aggro_detail
+    return default_aggro_detail unless aggro_details.present?
     aggro_details.sample
   end
 
@@ -66,6 +68,10 @@ class Landmark
 
   def default_discovery_detail
     "You discover #{to_s}"
+  end
+
+  def default_aggro_detail
+    "#{to_s} attacks you!"
   end
 
 end

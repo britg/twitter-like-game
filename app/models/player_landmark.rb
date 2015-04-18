@@ -7,7 +7,13 @@ class PlayerLandmark
   field :killed_at, type: DateTime
 
   def landmark
-    player_location.location.landmarks.find(landmark_id)
+    @landmark ||= player_location.location.landmarks.find(landmark_id)
+  end
+
+  delegate :to_s, to: :landmark
+
+  def to_action_key
+    "landmark_#{to_s.gsub(/\s+/, '')}".underscore
   end
 
   def player

@@ -16,6 +16,7 @@ class Player
   belongs_to :user
   belongs_to :battle
   belongs_to :location
+  belongs_to :landmark
 
   has_many :events
   has_many :player_locations
@@ -48,8 +49,16 @@ class Player
     true
   end
 
+  ##
+  # Possible States
+  ##
+
   def exploring?
-    !in_battle?
+    !in_battle? && !interacting?
+  end
+
+  def interacting?
+    landmark.present?
   end
 
   def in_battle?

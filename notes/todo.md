@@ -4,3 +4,4 @@
 - Crafting
 - Observe
 - Implement all skills
+- Titles

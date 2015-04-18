@@ -39,6 +39,10 @@ class ActionProcessor
       return battle_processor.process
     end
 
+    if action_slug.to_sym == :flee
+      return battle_processor.flee(@player)
+    end
+
     if action_slug.to_sym == :observe
       return observation_processor.process
     end
@@ -78,11 +82,16 @@ class ActionProcessor
   def exploration_actions
     actions = []
     actions << Action.new(label: "Explore", key: :explore)
-    actions << Action.new(label: "Observe", key: :observe)
+    # actions << Action.new(label: "Observe", key: :observe)
     find_action = Action.new(label: "Find", key: :find)
     find_action.child_actions.build(label: "Survival", key: :find_survival)
-    find_action.child_actions.build(label: "Herbs", key: :find_herbs)
+    find_action.child_actions.build(label: "Reagents", key: :find_reagents)
     actions << find_action
+    landmarks_action = Action.new(label: "Landmark", key: :landmark)
+    @player.current_player_landmarks.each do |player_landmark|
+      landmarks_action.child_actions.build(label: player_landmark.to_s, key: player_landmark.to_action_key)
+    end
+    actions << landmarks_action
     actions << Action.new(label: "Craft", key: :craft)
     actions
   end

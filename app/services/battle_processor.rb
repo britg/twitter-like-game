@@ -35,6 +35,14 @@ class BattleProcessor
     end
   end
 
+  def flee player
+    player.use_skill(:evasion)
+    player.add_event(
+      detail: "You successfully flee from the battle"
+    )
+    player.update_attributes(battle_id: nil)
+  end
+
   def prompt_battle_event player
     player.add_event(
       detail: "You prepare for combat..."

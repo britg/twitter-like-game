@@ -17,7 +17,7 @@ class ObservationProcessor
   end
 
   def process
-    create_observe_detail_event
+    create_observe_event
     create_percent_explored_event
   end
 
@@ -29,13 +29,13 @@ class ObservationProcessor
   end
 
   def create_percent_explored_event
-    @player.exploration_event(
+    @player.add_event(
       detail: "You estimate you've explored about #{explored_percentage.round}% of the area..."
     )
   end
 
-  def create_observe_detail_event
-    @player.exploration_event(
+  def create_observe_event
+    @player.add_event(
       detail: location.observe_details.sample
     )
   end

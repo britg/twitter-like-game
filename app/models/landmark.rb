@@ -60,7 +60,12 @@ class Landmark
   end
 
   def discovery_detail
+    return default_discovery_detail unless discovery_details.present?
     discovery_details.sample
+  end
+
+  def default_discovery_detail
+    "You discover #{to_s}"
   end
 
 end

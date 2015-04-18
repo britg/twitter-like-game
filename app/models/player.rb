@@ -48,6 +48,10 @@ class Player
     true
   end
 
+  def exploring?
+    !in_battle?
+  end
+
   def in_battle?
     battle.present?
   end
@@ -75,18 +79,6 @@ class Player
 
   def cache_new_event event
     new_events << event
-  end
-
-  def detail_event params
-    add_event(params.merge(type: Event::TYPE_DETAIL))
-  end
-
-  def battle_event params
-    add_event(params.merge(type: Event::TYPE_BATTLE))
-  end
-
-  def exploration_event params
-    add_event(params.merge(type: Event::TYPE_EXPLORATION))
   end
 
   def add_event params
@@ -123,12 +115,16 @@ class Player
   # Action Convenience Methods
   ##
 
-  def available_actions
-    current_event.available_actions
-  end
-
   def action_processor
     @action_processor ||= ActionProcessor.new(self)
+  end
+
+  def available_actions
+    action_processor.available_actions
+  end
+
+  def available_action_keys
+    action_processor.available_action_keys
   end
 
   def input action_slug
@@ -152,5 +148,4 @@ class Player
     update_attributes(location: nil,
                       battle: nil)
   end
-
 end

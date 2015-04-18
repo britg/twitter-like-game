@@ -102,19 +102,19 @@ class ExplorationProcessor
   end
 
   def create_discovery_event landmark
-    @player.detail_event(
+    @player.add_event(
       detail: landmark.discovery_detail
     )
   end
 
   def create_nothing_found_event
-    @player.exploration_event(
+    @player.add_event(
       detail: "You search the area but find nothing interesting..."
     )
   end
 
   def create_aggro_event landmark
-    @player.detail_event(
+    @player.add_event(
       detail: landmark.aggro_detail
     )
   end

@@ -16,7 +16,7 @@ class BattleProcessor
 
   def start
     @battle.players.each do |p|
-      p.detail_event(
+      p.add_event(
         detail: "Battle has started between #{participant_names.to_sentence}"
       )
     end
@@ -36,7 +36,7 @@ class BattleProcessor
   end
 
   def prompt_battle_event player
-    player.battle_event(
+    player.add_event(
       detail: "You prepare for combat..."
     )
   end
@@ -44,7 +44,7 @@ class BattleProcessor
   def process_npc_turn agent
     @battle.players.each do |player|
       #temp
-      player.detail_event(detail: "Other participant takes their turn...")
+      player.add_event(detail: "Other participant takes their turn...")
     end
   end
 

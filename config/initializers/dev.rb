@@ -1,3 +1,5 @@
+@mark = Time.now
+
 def pl
   @player ||= Player.last
 end
@@ -15,14 +17,19 @@ def recent
   status
 end
 
+def events_since_mark
+  Event.gte(created_at: @mark)
+end
+
 def status
-  out = y({new_events: pl.new_events.map(&:to_s).reverse,
-    available_actions: pl.available_actions})
+  out = y({new_events: events_since_mark.map(&:to_s).reverse,
+    available_actions: pl.available_action_keys})
   @player = nil
   out
 end
 
 def input action_slug
+  @mark = Time.now
   pl.input action_slug
   status
 end

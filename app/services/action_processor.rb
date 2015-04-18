@@ -27,7 +27,7 @@ class ActionProcessor
   end
 
   def process action_slug
-    raise Event::InvalidAction unless current_event.valid_action?(action_slug)
+    raise Event::InvalidAction unless available_action_keys.include?(action_slug.to_s)
 
     # temp implementation
 
@@ -58,4 +58,40 @@ class ActionProcessor
 
   end
 
+  def available_actions
+    return exploration_actions if @player.exploring?
+    return battle_actions if @player.in_battle?
+    []
+  end
+
+  def available_action_keys
+    keys = []
+    available_actions.each do |action|
+      keys << action.key
+      action.child_actions.each do |sub_action|
+        keys << sub_action.key
+      end
+    end
+    keys
+  end
+
+  def exploration_actions
+    actions = []
+    actions << Action.new(label: "Explore", key: :explore)
+    actions << Action.new(label: "Observe", key: :observe)
+    find_action = Action.new(label: "Find", key: :find)
+    find_action.child_actions.build(label: "Survival", key: :find_survival)
+    find_action.child_actions.build(label: "Herbs", key: :find_herbs)
+    actions << find_action
+    actions << Action.new(label: "Craft", key: :craft)
+    actions
+  end
+
+  def battle_actions
+    actions = []
+    actions << Action.new(label: "Attack", key: :attack)
+    actions << Action.new(label: "Skill", key: :special)
+    actions << Action.new(label: "Flee", key: :flee)
+    actions
+  end
 end

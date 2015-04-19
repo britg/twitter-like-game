@@ -6,6 +6,7 @@ class Landmark
   embedded_in :location
   embeds_many :discovery_requirements, class_name: "SkillRequirement"
 
+  field :slug, type: String
   field :type, type: String
   field :object_id, type: BSON::ObjectId
   field :moves, type: Boolean, default: false
@@ -36,10 +37,6 @@ class Landmark
 
   def obj
     obj_class.where(id: object_id).first
-  end
-
-  def slug
-    obj.slug
   end
 
   def to_s

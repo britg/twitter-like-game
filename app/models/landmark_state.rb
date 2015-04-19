@@ -5,6 +5,7 @@ class LandmarkState
 
   field :landmark_id, type: BSON::ObjectId
   field :killed_at, type: DateTime
+  field :slug, type: String
 
   def landmark
     @landmark ||= location_state.location.landmarks.find(landmark_id)
@@ -12,10 +13,9 @@ class LandmarkState
 
   delegate :to_s, to: :landmark
   delegate :obj, to: :landmark
-  delegate :slug, to: :landmark
 
   def to_action_key
-    "landmark->#{id}"
+    "landmark->#{slug}"
   end
 
   def player

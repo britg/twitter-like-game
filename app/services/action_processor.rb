@@ -70,8 +70,8 @@ class ActionProcessor
 
     # Interacting with a landmark
     if action_slug.to_s.match(/landmark->/)
-      landmark_state_id = action_slug.to_s.split('->').last.to_sym
-      return interaction_creator.create(landmark_state_id)
+      landmark_state_slug = action_slug.to_s.split('->').last.to_sym
+      return interaction_creator.create(landmark_state_slug)
     end
 
     if action_slug.to_sym == :leave

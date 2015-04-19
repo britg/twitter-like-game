@@ -68,7 +68,7 @@ class ExplorationProcessor
 
   def create_explore_event
     @player.add_event(
-      detail: location.explore_details.sample
+      detail: location.explore_detail
     )
   end
 
@@ -91,7 +91,7 @@ class ExplorationProcessor
   def process_landmark landmark
     # Add to player's landmarks
     # LandmarkDiscoverer.new(@player, landmark).discover
-    landmark_state = location_state.landmark_states.create(landmark_id: landmark.id)
+    landmark_state = location_state.landmark_states.create(landmark_id: landmark.id, slug: landmark.slug)
     create_discovery_event landmark
 
     if landmark.npc? && ExplorationAggroResolver.new(landmark.obj, @player).starts_battle?

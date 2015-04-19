@@ -10,7 +10,7 @@ class LocationProcessor
   end
 
   def enter
-    return if already_at_location?
+    raise "Already at location" if already_at_location?
     set_location
     create_location_entrance_event
     ensure_player_location
@@ -27,7 +27,7 @@ class LocationProcessor
 
   def create_location_entrance_event
     @player.add_event(
-      detail: @location.entrance_details.sample,
+      detail: @location.entrance_detail
     )
   end
 

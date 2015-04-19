@@ -4,11 +4,8 @@
       name: "Open Field",
       slug: :open_field,
       entrance_details: [
-        "It's dusk. You find yourself in an open field of tall grass and sparse trees. There's a tavern ahead."
+        "It's dusk. You find yourself in an open field of tall grass and sparse trees. A tavern's lights flicker in the distance."
         ],
-      explore_details: [
-        "You explore the surrounding area."
-      ],
       observe_details: [
         "You stand in an open field with short water starved trees. The wind is gusting to the east lightly.",
         "The light is fading, and you've slept on the hard ground for weeks. There's a tavern ahead.",
@@ -19,16 +16,18 @@
 
   @build.deferred -> {
     l.landmarks.create(
+      slug: :mandrake_root,
       obj: Resource.slug(:mandrake_root)
     )
 
     l.landmarks.create(
+      slug: :injured_black_bear,
       obj: Npc.slug(:injured_black_bear)
     )
 
-    # l.landmarks.create(
-    #   obj: Location.slug(:worlds_end_tavern)
-    # )
-
+    l.landmarks.create(
+      slug: :worlds_end_tavern,
+      obj: Location.slug(:worlds_end_tavern)
+    )
   }
 }

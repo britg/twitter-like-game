@@ -53,17 +53,41 @@ end
 # Rebuilding
 ##
 
+class Build
+
+  def initialize
+    @stages = { 0 => [], 1 => [] }
+  end
+
+  def <<(_proc)
+    @stages[0] << _proc
+  end
+
+  def deferred _proc
+    @stages[1] << _proc
+  end
+
+  def run!
+    @stages.each do |stage, arr|
+      arr.each do |_proc|
+        _proc.call
+      end
+    end
+
+  end
+
+end
+
 def rebuild_game!
-  @build ||= []
+  @mark = Time.now
+  @build = Build.new
   reset_stats
   reset_skills
   reset_resources
   reset_npcs
   reset_locations
   reset_battles
-  @build.each do |proc|
-    proc.call
-  end
+  @build.run!
   sleep 1
   reset_player
   status

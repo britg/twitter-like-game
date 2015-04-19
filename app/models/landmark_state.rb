@@ -11,9 +11,11 @@ class LandmarkState
   end
 
   delegate :to_s, to: :landmark
+  delegate :obj, to: :landmark
+  delegate :slug, to: :landmark
 
   def to_action_key
-    "landmark_#{to_s.gsub(/\s+/, '')}".underscore
+    "landmark->#{id}"
   end
 
   def player

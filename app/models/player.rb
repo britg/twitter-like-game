@@ -16,7 +16,7 @@ class Player
   belongs_to :user
   belongs_to :battle
   belongs_to :location
-  belongs_to :landmark
+  field :landmark_id
 
   has_many :events
   has_many :location_states
@@ -58,7 +58,7 @@ class Player
   end
 
   def interacting?
-    landmark.present?
+    landmark_id.present?
   end
 
   def in_battle?
@@ -114,6 +114,11 @@ class Player
 
   def current_landmark_states
     current_location_state.landmark_states
+  end
+
+  # The currently interacting landmark
+  def landmark
+    location.landmarks.find(landmark_id)
   end
 
   ##

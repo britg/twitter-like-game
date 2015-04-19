@@ -15,6 +15,7 @@ class Agent
   def stam() stat(:stam) end
   def int() stat(:int) end
   def luck() stat(:luck) end
+  def aggro() stat(:aggro) end
 
   def hp() stat(:hp) end
   def ap() stat(:ap) end

@@ -26,6 +26,14 @@ class ActionProcessor
     @find_processor ||= FindProcessor.new(@player)
   end
 
+  def interaction_creator
+    @interaction_creator ||= InteractionCreator.new(@player)
+  end
+
+  def interaction_processor
+    @interaction_processor ||= InteractionProcessor.new(@player)
+  end
+
   def process action_slug
     raise Event::InvalidAction unless available_action_keys.include?(action_slug.to_s)
 
@@ -55,15 +63,27 @@ class ActionProcessor
       return find_processor.process_survival
     end
 
-    if action_slug.to_s.match(/find_/)
-      resource_slug = action_slug.to_s.split('_').last.to_sym
+    if action_slug.to_s.match(/find->/)
+      resource_slug = action_slug.to_s.split('->').last.to_sym
       return find_processor.process_resource resource_slug
+    end
+
+    # Interacting with a landmark
+    if action_slug.to_s.match(/landmark->/)
+      landmark_state_id = action_slug.to_s.split('->').last.to_sym
+      return interaction_creator.create(landmark_state_id)
+    end
+
+    if action_slug.to_sym == :leave
+      landmark_state_id = action_slug.to_s.split('->').last.to_sym
+      interaction_processor.leave
     end
 
   end
 
   def available_actions
     return exploration_actions if @player.exploring?
+    return interaction_actions if @player.interacting?
     return battle_actions if @player.in_battle?
     []
   end
@@ -84,8 +104,7 @@ class ActionProcessor
     actions << Action.new(label: "Explore", key: :explore)
     # actions << Action.new(label: "Observe", key: :observe)
     find_action = Action.new(label: "Find", key: :find)
-    find_action.child_actions.build(label: "Survival", key: :find_survival)
-    find_action.child_actions.build(label: "Reagents", key: :find_reagents)
+    find_action.child_actions.build(label: "Reagents", key: "find->reagents")
     actions << find_action
     landmarks_action = Action.new(label: "Landmark", key: :landmark)
     @player.current_landmark_states.each do |landmark_state|
@@ -93,6 +112,15 @@ class ActionProcessor
     end
     actions << landmarks_action
     actions << Action.new(label: "Craft", key: :craft)
+    actions
+  end
+
+  # Return set of actions based on the
+  # landmark type
+  def interaction_actions
+    actions = []
+    actions << Action.new(label: "Leave", key: :leave)
+    actions |= interaction_processor.available_actions
     actions
   end
 

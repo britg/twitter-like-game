@@ -1,11 +1,10 @@
 class Landmark
   include Mongoid::Document
 
-  TYPES = ["Resource", "Npc"]
+  TYPES = ["Resource", "Npc", "Location"]
 
   embedded_in :location
-  embeds_many :discovery_conditions, class_name: "SkillRequirement"
-  embeds_many :aggro_conditions, class_name: "SkillRequirement"
+  embeds_many :discovery_requirements, class_name: "SkillRequirement"
 
   field :type, type: String
   field :object_id, type: BSON::ObjectId
@@ -13,6 +12,7 @@ class Landmark
 
   field :discovery_details, type: Array
   field :aggro_details, type: Array
+  field :start_interaction_details, type: Array
 
   validates_inclusion_of :type, in: TYPES
 
@@ -38,27 +38,31 @@ class Landmark
     obj_class.where(id: object_id).first
   end
 
-  def discovery_req= params
-    arr = Array(params)
-    arr.each do |p|
-      discovery_conditions.build(p)
-    end
-  end
-
-  def aggro_req= params
-    arr = Array(params)
-    arr.each do |p|
-      aggro_conditions.build(p)
-    end
+  def slug
+    obj.slug
   end
 
   def to_s
     obj.to_s
   end
 
-  def aggro_detail
-    return default_aggro_detail unless aggro_details.present?
-    aggro_details.sample
+  def npc?
+    type == "Npc"
+  end
+
+  def resource?
+    type == "Resource"
+  end
+
+  def location?
+    type == "Location"
+  end
+
+  def discovery_req= params
+    arr = Array(params)
+    arr.each do |p|
+      discovery_requirements.build(p)
+    end
   end
 
   def discovery_detail
@@ -70,8 +74,13 @@ class Landmark
     "You discover #{to_s}"
   end
 
-  def default_aggro_detail
-    "#{to_s} attacks you!"
+  def start_interaction_detail
+    return default_start_interaction_detail unless start_interaction_details.present?
+    start_interaction_details.sample
+  end
+
+  def default_start_interaction_detail
+    "You approach #{to_s}..."
   end
 
 end

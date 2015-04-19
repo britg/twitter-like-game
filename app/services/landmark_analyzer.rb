@@ -10,19 +10,11 @@ class LandmarkAnalyzer
   # True if meets _all_ of the checks
   def discoverable?
     fails_any = false
-    @landmark.discovery_conditions.each do |skillreq|
+    @landmark.discovery_requirements.each do |skillreq|
       fails_any = true unless meets?(skillreq)
     end
 
     return !fails_any
-  end
-
-  # True if meets _any_ of the checks
-  def aggro?
-    return false unless @landmark.aggro_conditions.any?
-    @landmark.aggro_conditions.each do |skillreq|
-      return true if meets?(skillreq)
-    end
   end
 
   def meets? skillreq

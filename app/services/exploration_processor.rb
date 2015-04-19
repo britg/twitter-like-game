@@ -94,7 +94,7 @@ class ExplorationProcessor
     landmark_state = location_state.landmark_states.create(landmark_id: landmark.id)
     create_discovery_event landmark
 
-    if landmark_analyzer(landmark).aggro?
+    if landmark.npc? && ExplorationAggroResolver.new(landmark.obj, @player).starts_battle?
       create_aggro_event landmark
       start_battle landmark.obj
     end

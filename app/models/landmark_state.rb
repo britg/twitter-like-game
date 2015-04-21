@@ -4,7 +4,6 @@ class LandmarkState
   embedded_in :location_state
 
   field :landmark_id, type: BSON::ObjectId
-  field :killed_at, type: DateTime
   field :slug, type: String
 
   def landmark
@@ -20,6 +19,10 @@ class LandmarkState
 
   def player
     location_state.player
+  end
+
+  def obj_instance
+    
   end
 
 end

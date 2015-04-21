@@ -5,4 +5,6 @@ class LocationState
   belongs_to :location
   embeds_many :landmark_states
 
+  delegate :slug, to: :location
+
 end

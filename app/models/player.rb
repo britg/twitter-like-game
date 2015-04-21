@@ -18,6 +18,8 @@ class Player
   belongs_to :location
   field :landmark_id
 
+  belongs_to :inventory
+
   has_many :events
   has_many :location_states
   index({"location_states.location_id" => 1}, {unique: true})
@@ -103,6 +105,10 @@ class Player
   ##
   # Location/Landmark Convenience Methods
   ##
+
+  def travel_to location_slug
+    enter_location(Location.slug(location_slug))
+  end
 
   def enter_location location
     LocationProcessor.new(self, location).enter

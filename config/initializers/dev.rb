@@ -28,6 +28,10 @@ def status
   out
 end
 
+def known_locations
+  pl.location_states.map(&:slug)
+end
+
 def input action_slug
   @mark = Time.now
   pl.input action_slug

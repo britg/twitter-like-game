@@ -10,6 +10,7 @@ class LocationProcessor
   end
 
   def enter
+    raise "Cannot travel - you're in battle!" if @player.in_battle?
     raise "Already at location" if already_at_location?
     set_location
     create_location_entrance_event

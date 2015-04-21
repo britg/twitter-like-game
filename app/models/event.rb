@@ -9,6 +9,7 @@ class Event
   field :character_name, type: String
   field :detail, type: String
   field :dialogue, type: String
+  field :chosen_action_key, type: String
 
   field :created_at, type: Time
 

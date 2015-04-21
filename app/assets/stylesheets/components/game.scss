@@ -1,0 +1,38 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.story {
+  flex: 1;
+}
+
+#game {
+  padding-right: $nav-bar-width;
+}
+
+#navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: $nav-bar-width;
+  height: 100%;
+  background: $dark-gray;
+
+  a {
+    display: block;
+    width: 100%;
+    height: $nav-bar-width;
+    background: darken($dark-gray, 5%);
+    border-bottom: 1px solid $dark-gray;
+    color: $light-gray;
+    font-size: 210%;
+    text-align: center;
+    
+    &.selected {
+      background: $dark-gray;
+    }
+
+  }
+}

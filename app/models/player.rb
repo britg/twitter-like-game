@@ -82,16 +82,16 @@ class Player
     events.last
   end
 
+  def last_acted_event
+    events.ne(chosen_action_key: nil).last
+  end
+
   def recent_events
     events.order(_id: -1).limit(20)
   end
 
   def new_events
-    events.order(_id: -1).gte(created_at: start_of_input_mark).limit(20)
-  end
-
-  def previous_events
-    
+    events.order(_id: -1).gt(_id: start_of_input_mark).limit(20)
   end
 
   def cache_new_event event
@@ -154,7 +154,7 @@ class Player
   end
 
   def input action_slug
-    @start_of_input_mark = Time.now
+    @start_of_input_mark = current_event.id
     action_processor.process(action_slug)
   end
 

@@ -1,5 +1,5 @@
 @Player = React.createClass
   render: ->
-    <div className="player-status">
+    <div id="player-bar" className="player-status">
       <span>{this.props.player.name}</span>
     </div>

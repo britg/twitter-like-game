@@ -1,8 +1,5 @@
 @StoryEvent = React.createClass
 
-  getInitialState: ->
-    status: 'new'
-
   onActionClick: (key) ->
     PubSub.publish Events.ACTION_TAKEN, key
 
@@ -12,7 +9,7 @@
     </span>
 
   render: ->
-    eventClasses = ["event", @state.status].join(' ')
+    eventClasses = ["event", @props.event.status].join(' ')
 
     <div className=eventClasses>
       <p className="detail">{this.props.event.detail}</p>

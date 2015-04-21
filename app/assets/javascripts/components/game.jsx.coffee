@@ -13,7 +13,11 @@
   navSelected: (key) ->
     @setState(activeScreen: key)
 
+  lastEvent: ->
+    @state.events[0]
+
   actionTaken: (key) ->
+    @lastActedId = @lastEvent()._id
     $game = @
     fetch Routes.api_v1_actions_path({format: "json"}),
       credentials: 'include'
@@ -36,14 +40,14 @@
   render: ->
 
     screen = switch @state.activeScreen
-      when "events" then <Story events={this.state.events} actions={this.state.actions} />
+      when "events" then <Story events={this.state.events} actions={this.state.actions} lastActedId={@lastActedId} />
       when "inventory" then <Inventory />
       when "landmarks" then <Landmarks />
       when "stats" then <Stats />
       when "chat" then <Chat />
 
     <div id="game">
-      <NavBar />
-      <Player player={this.state.player} />
+      <NavBar selected={this.state.activeScreen} />
       {screen}
+      <Player player={this.state.player} />
     </div>

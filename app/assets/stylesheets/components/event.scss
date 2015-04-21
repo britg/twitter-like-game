@@ -1,6 +1,13 @@
+.story {
+  position: relative;
+}
 .event {
   border-bottom: $base-border;
   padding: 10px 0;
+
+  &.old {
+    color: lighten($base-font-color, 50%)
+  }
 
   .action {
     margin-right: 10px;

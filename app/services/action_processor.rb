@@ -37,6 +37,8 @@ class ActionProcessor
   def process action_slug
     raise Event::InvalidAction unless available_action_keys.include?(action_slug.to_s)
 
+    current_event.update_attributes(chosen_action_key: action_slug)
+
     # temp implementation
 
     if action_slug.to_sym == :explore

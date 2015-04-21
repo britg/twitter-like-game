@@ -4,4 +4,3 @@
 asset "moment"
 asset "pubsub"
 asset "fetch"
-asset "react-router"

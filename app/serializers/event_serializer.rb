@@ -3,9 +3,10 @@ class EventSerializer < ActiveModel::Serializer
              :character_name,
              :detail,
              :dialogue,
-             :location_id,
-             :chosen_action_key,
-             :current_state
+             :time_marker
 
-  has_many :actions
+  def time_marker
+    object.created_at.to_i
+  end
+
 end

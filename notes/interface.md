@@ -2,6 +2,6 @@
 Tabs:
   - Game
   - Slots & equippable items
-  - Skills
+  - Skills and Stats
   - Location
   - Chat

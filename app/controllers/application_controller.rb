@@ -16,6 +16,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def require_player
+    find_player
+    raise "Player not found" unless current_player.present?
+  end
+
   def find_player
     return nil unless continue_token.present?
     @current_player = Player.where(continue_token: continue_token).first
@@ -26,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_player_location
-    redirect_to player_location_path and return if current_player.present? && request.path != player_location_path
+    redirect_to game_path and return if current_player.present? && request.path != game_path
   end
 
 end

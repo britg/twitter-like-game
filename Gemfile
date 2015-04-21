@@ -22,8 +22,9 @@ gem 'bower-rails'
 gem 'bourbon'                   ,'3.2.4'
 gem 'neat'                      ,'1.5.1'
 gem 'bitters'
-gem 'react-rails'               , github: 'reactjs/react-rails'
-gem 'sprockets-coffee-react'
+gem 'react-rails'               ,'~> 1.0'
+gem 'sprockets-coffee-react'    ,'~> 3.0'
+gem 'js-routes'                 ,'1.0.1'
 
 
 group :development, :test do
@@ -31,11 +32,11 @@ group :development, :test do
   gem 'byebug'                  ,'3.5.1'
   gem 'web-console'             ,'2.0.0'
   gem 'spring'                  ,'1.3.3'
-  gem 'guard'                   #,'2.7.0'
+  gem 'guard'                   ,'~> 2.7'
   gem 'guard-rails'             ,'0.7.0'
-  # gem 'guard-livereload'        ,'~> 2.4', require: false
+  gem 'guard-livereload'        ,'~> 2.4', require: false
   gem 'guard-rspec'             ,'4.5.0', require: false
-  # gem 'rack-livereload'         ,'0.3.15'
+  gem 'rack-livereload'         ,'0.3.15'
   gem 'factory_girl_rails'      ,'4.5.0'
   gem 'minitest'                ,'5.5.1'
   gem 'rspec-rails'             ,'3.2.0'
@@ -44,4 +45,3 @@ group :development, :test do
   gem 'quiet_assets'            ,'1.1.0'
   # gem 'meta_request'            ,'0.3.4'
 end
-

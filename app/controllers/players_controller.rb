@@ -2,6 +2,6 @@ class PlayersController < ApplicationController
   def create
     @current_player = PlayerCreator.new.create
     cookies.permanent.signed[:continue_token] = @current_player.continue_token
-    redirect_to player_location_path
+    redirect_to game_path
   end
 end

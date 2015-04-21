@@ -3,7 +3,6 @@
   "dependencies": {
     "moment": "latest",
     "pubsub": "latest",
-    "fetch": "latest",
-    "react-router": "latest"
+    "fetch": "latest"
   }
 }

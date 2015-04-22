@@ -162,6 +162,12 @@ class Player
     action_processor.explorer
   end
 
+  def status_line
+    return "Exploring #{location.to_s}" if exploring?
+    return "Interacting with #{landmark.to_s}" if interacting?
+    return "In battle!" if in_battle?
+  end
+
   ##
   # / End Action Convenience Methods
   ##

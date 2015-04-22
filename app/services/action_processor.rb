@@ -113,7 +113,7 @@ class ActionProcessor
       landmarks_action.child_actions.build(label: landmark_state.to_s, key: landmark_state.to_action_key)
     end
     actions << landmarks_action
-    actions << Action.new(label: "Craft", key: :craft)
+    # actions << Action.new(label: "Craft", key: :craft)
     actions
   end
 

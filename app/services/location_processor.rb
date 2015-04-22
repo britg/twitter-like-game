@@ -15,6 +15,7 @@ class LocationProcessor
     set_location
     create_location_entrance_event
     ensure_player_location
+    auto_discover_landmarks
     @player.save
   end
 
@@ -40,6 +41,17 @@ class LocationProcessor
     @player.location_states.create(
       location_id: @location.id
     )
+  end
+
+  def auto_discover_landmarks
+    @location.landmarks.each do |landmark|
+      auto_discover_landmark(landmark) if landmark.auto_discovered?
+    end
+  end
+
+  def auto_discover_landmark landmark
+    @player.current_landmark_states
+      .find_or_create_by(landmark_id: landmark.id, slug: landmark.slug)
   end
 
 end

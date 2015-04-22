@@ -10,6 +10,7 @@ class Landmark
   field :type, type: String
   field :object_id, type: BSON::ObjectId
   field :moves, type: Boolean, default: false
+  field :auto_discovered, type: Boolean, default: false
 
   field :discovery_details, type: Array
   field :aggro_details, type: Array

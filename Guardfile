@@ -12,8 +12,7 @@ guard 'livereload' do
   watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|png|jpg|jsx|scss))).*}) { |m| "/assets/#{m[3]}" }
 end
 
-guard 'rails', port: 9292 do
+guard 'rails', host: "0.0.0.0", port: 9292 do
   watch('Gemfile.lock')
   watch(%r{^(config|lib)/.*})
 end
-

@@ -36,6 +36,8 @@
         player: json.player,
         events: json.events.concat($game.state.events),
         actions: json.actions
+    .catch (err) ->
+      window.location.reload()
 
   render: ->
 

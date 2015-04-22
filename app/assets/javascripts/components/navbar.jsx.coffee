@@ -6,6 +6,7 @@
     switch @props.selected
       when "events" then eventsClass = "selected"
       when "inventory" then inventoryClass = "selected"
+      when "crafting" then craftingClass = "selected"
       when "landmarks" then landmarksClass = "selected"
       when "stats" then statsClass = "selected"
       when "chat" then chatClass = "selected"
@@ -16,6 +17,9 @@
       </a>
       <a className=inventoryClass onClick={this.navOptionSelected.bind(this, 'inventory')}>
         <i className="pe-7s-hammer"></i>
+      </a>
+      <a className=craftingClass onClick={this.navOptionSelected.bind(this, 'crafting')}>
+        <i className="pe-7s-box2"></i>
       </a>
       <a className=landmarksClass onClick={this.navOptionSelected.bind(this, 'landmarks')}>
         <i className="pe-7s-map-2"></i>

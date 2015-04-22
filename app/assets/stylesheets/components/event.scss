@@ -1,6 +1,7 @@
 .story {
   position: relative;
 }
+
 .event {
   border-bottom: $base-border;
   padding: 10px 0;
@@ -12,4 +13,8 @@
   .action {
     margin-right: 10px;
   }
+}
+
+.sub-actions {
+  display: none;
 }

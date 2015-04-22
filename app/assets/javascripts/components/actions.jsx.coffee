@@ -1,46 +1,49 @@
 @Actions = React.createClass
+  getInitialState: ->
+    activeKey: null
+
   onActionClick: (key) ->
-    if $('.action[name="' + key + '"]').hasClass('disabled')
-      return
-    PubSub.publish Events.ACTION_TAKEN, key
-
-  onActionToggle: (key) ->
-    if $('.action[name="' + key + '"]').hasClass('expanded')
-      @onActionUnExpand(key)
+    $sel = $('.action[name="' + key + '"]')
+    return if $sel.hasClass('disabled')
+    if $sel.hasClass('group')
+      if $sel.hasClass('expanded')
+        @setState(activeKey: null)
+      else
+        @setState(activeKey: key)
     else
-      @onActionExpand(key)
-
-  onActionUnExpand: (key) ->
-    $('.action[name="' + key + '"]').removeClass('expanded')
-    $('.action[name!="' + key + '"]').removeClass('disabled')
-    $('.sub-actions.' + key).fadeOut()
-
-  onActionExpand: (key) ->
-    $('.action[name="' + key + '"]')
-      .removeClass('disabled')
-      .addClass('expanded')
-    $('.action[name!="' + key + '"]:visible')
-      .removeClass('expanded')
-      .addClass('disabled')
-    $('.sub-actions.' + key).fadeIn()
+      PubSub.publish Events.ACTION_TAKEN, key
 
   hasSubActions: (action) ->
     action.child_actions != undefined && action.child_actions.length > 0
 
   actionComponent: (action, index) ->
+    classNames = ["action"]
     symbol = ""
-    clickFunc = @onActionClick
+
     if @hasSubActions(action)
-      clickFunc = @onActionToggle
+      classNames.push "group"
       symbol = "+"
       @subActionsComp.push(@subActionsComponent(action))
 
-    <span name=action.key className="action" key=action.label>
-      <a onClick={clickFunc.bind(this, action.key)}>{action.label} {symbol}</a>
+    if @state.activeKey?
+      if @state.activeKey == action.key
+        classNames.push "expanded"
+      else if !action.key.match('->')? # it's a sub-action
+        classNames.push "disabled"
+
+    classStr = classNames.join(' ')
+
+    <span name=action.key className=classStr key=action.label>
+      <a onClick={this.onActionClick.bind(this, action.key)}>{action.label} {symbol}</a>
     </span>
 
   subActionsComponent: (action) ->
-    className = ["sub-actions", action.key].join(' ')
+    classNames = ["sub-actions", action.key]
+    if @state.activeKey == action.key
+      classNames.push('active')
+
+    className = classNames.join(' ')
+
     <div className=className key=action.label>
       {action.child_actions.map(this.actionComponent)}
     </div>

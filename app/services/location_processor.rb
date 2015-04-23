@@ -54,4 +54,5 @@ class LocationProcessor
       .find_or_create_by(landmark_id: landmark.id, slug: landmark.slug)
   end
 
+
 end

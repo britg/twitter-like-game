@@ -32,6 +32,8 @@ class Agent
   # Skills - permanent increase from use
   #        - temporary increase from items
 
+  def adventuring() skill(:adventuring) end
+
   # Item Slots  - bonuses to stats and skills
   def head() slot(:head) end
   def shoulders() slot(:shoulders) end

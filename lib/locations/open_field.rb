@@ -3,6 +3,8 @@
     {
       name: "Open Field",
       slug: :open_field,
+      adventuring_level: 10.0,
+
       entrance_details: [
         "It's dusk. You find yourself in an open field of tall grass and sparse trees. A tavern's lights flicker in the distance."
         ],
@@ -18,11 +20,6 @@
     l.landmarks.create(
       slug: :mandrake_root,
       obj: Resource.slug(:mandrake_root)
-    )
-
-    l.landmarks.create(
-      slug: :injured_black_bear,
-      obj: Npc.slug(:injured_black_bear)
     )
 
     l.landmarks.create(

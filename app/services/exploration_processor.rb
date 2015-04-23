@@ -48,13 +48,21 @@ class ExplorationProcessor
 
   def first_undiscovered_landmark
     undiscovered_landmarks.each do |landmark|
-      return landmark if landmark_analyzer(landmark).discoverable?
+      return landmark if landmark_proc(landmark).discoverable?
     end
     nil
   end
 
-  def landmark_analyzer(landmark)
-    LandmarkAnalyzer.new(@player, landmark)
+  def landmark_proc(landmark)
+    LandmarkProcessor.new(@player, landmark)
+  end
+
+  def combat_proc
+    @combat_proc ||= ExplorationCombatProcessor.new(@player, location)
+  end
+
+  def resource_proc
+    @resource_proc ||= ExplorationResourceProcessor.new(@player, location)
   end
 
   def explore
@@ -73,11 +81,15 @@ class ExplorationProcessor
   end
 
   def process
+    return combat_proc.start_battle if combat_proc.combat?
+    return resource_proc.start_interaction if resource_proc.resource?
+    # If not in combat, determine if we're discovering a resource
+    # Or a Landmark
+
     # skill check against unfound landmarks at a location
     # If you pass against one, create event for it.
     # First
     @found_landmark = explore
-    @player.use_skill(:adventuring)
 
     if @found_landmark.present?
       process_landmark @found_landmark
@@ -93,12 +105,6 @@ class ExplorationProcessor
     # LandmarkDiscoverer.new(@player, landmark).discover
     landmark_state = location_state.landmark_states.create(landmark_id: landmark.id, slug: landmark.slug)
     create_discovery_event landmark
-
-    if landmark.npc? && ExplorationAggroResolver.new(landmark.obj, @player).starts_battle?
-      create_aggro_event landmark
-      start_battle landmark.obj
-    end
-
   end
 
   def create_discovery_event landmark
@@ -109,20 +115,7 @@ class ExplorationProcessor
 
   def create_nothing_found_event
     @player.add_event(
-      detail: "You search the area but find nothing interesting..."
+      detail: "Nothing new presents itself..."
     )
   end
-
-  def create_aggro_event landmark
-    @player.add_event(
-      detail: landmark.aggro_detail
-    )
-  end
-
-  def start_battle npc
-    participating_objs = [@player, npc]
-    @battle = BattleCreator.new(participating_objs).create
-    BattleProcessor.new(@battle).start
-  end
-
 end

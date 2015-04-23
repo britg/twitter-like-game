@@ -1,9 +1,12 @@
 @Story = React.createClass
 
   componentDidMount: ->
-    setInterval ->
+    @eventShowInterval = setInterval ->
       $('.event.new:hidden:last').fadeIn()
     ,1000
+
+  componentWillUnmount: ->
+    clearInterval(@eventShowInterval)
 
   eventComponent: (event, index) ->
     includeActions = (index == 0)

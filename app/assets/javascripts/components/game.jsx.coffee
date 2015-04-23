@@ -34,7 +34,7 @@
     .then (json) ->
       $game.setState
         player: json.player,
-        events: json.events.concat($game.state.events),
+        events: json.events.concat($game.state.events).slice(0, 100),
         actions: json.actions
     .catch (err) ->
       window.location.reload()

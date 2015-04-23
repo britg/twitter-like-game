@@ -22,7 +22,7 @@
 
     if @hasSubActions(action)
       classNames.push "group"
-      symbol = "+"
+      symbol = <i className="pe-7s-angle-down" />
       @subActionsComp.push(@subActionsComponent(action))
 
     if @state.activeKey?
@@ -33,8 +33,12 @@
 
     classStr = classNames.join(' ')
 
+    actionView = action.label
+    if action.label == "Landmarks"
+      actionView = <i className="pe-7s-map-marker landmarks-icon" />
+
     <span name=action.key className=classStr key=action.label>
-      <a onClick={this.onActionClick.bind(this, action.key)}>{action.label} {symbol}</a>
+      <a onClick={this.onActionClick.bind(this, action.key)}>{actionView}{symbol}</a>
     </span>
 
   subActionsComponent: (action) ->

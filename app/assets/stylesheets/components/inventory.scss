@@ -1,0 +1,20 @@
+#inventory {
+
+  .stats {
+    .stat-name {
+      font-size: 75%;
+      color: $medium-gray;
+      text-align: right;
+    }
+  }
+
+  .equipment {
+    th {
+      font-size: 75%;
+      color: $medium-gray;
+      text-align: left;
+      font-weight: normal;
+    }
+  }
+
+}

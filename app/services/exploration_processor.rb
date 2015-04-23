@@ -66,7 +66,6 @@ class ExplorationProcessor
   end
 
   def explore
-    create_explore_event
 
     # TEMP - we probably want more logic here
     # e.g. revisiting old landmarks
@@ -81,6 +80,7 @@ class ExplorationProcessor
   end
 
   def process
+    create_explore_event
     return combat_proc.start_battle if combat_proc.combat?
     return resource_proc.start_interaction if resource_proc.resource?
     # If not in combat, determine if we're discovering a resource

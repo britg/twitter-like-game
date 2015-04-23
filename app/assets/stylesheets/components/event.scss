@@ -6,6 +6,10 @@
   border-bottom: $base-border;
   padding: 10px 0;
 
+  &.new {
+    display: none;
+  }
+
   &.old {
     color: lighten($base-font-color, 50%)
   }

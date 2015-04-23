@@ -1,14 +1,9 @@
-class Mob
+class ResourceNode
   include Mongoid::Document
 
   embedded_in :location
 
-  belongs_to :npc
-
+  belongs_to :resource
   field :rarity, type: String, default: Rarity::COMMON
-
-  def to_s
-    npc.to_s
-  end
 
 end

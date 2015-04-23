@@ -17,9 +17,15 @@
   )
 
   @build.deferred -> {
-    l.landmarks.create(
-      slug: :mandrake_root,
-      obj: Resource.slug(:mandrake_root)
+
+    l.mobs.create(
+      npc: Npc.slug(:injured_black_bear),
+      rarity: Rarity::COMMON
+    )
+
+    l.resource_nodes.create(
+      resource: Resource.slug(:mandrake_root),
+      rarity: Rarity::UNCOMMON
     )
 
     l.landmarks.create(

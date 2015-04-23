@@ -8,19 +8,15 @@ class Location
   field :entrance_details, type: Array
   field :explore_details, type: Array
   field :observe_details, type: Array
-  field :event_timing_range, type: Range, default: 1..10
 
   embeds_many :landmarks
+  index({"landmarks.slug" => 1}, {unique: true})
+
   embeds_many :mobs
   embeds_many :resource_nodes
-  index({"landmarks.slug" => 1}, {unique: true})
 
   def to_s
     name
-  end
-
-  def next_event_delay
-    rand(event_timing_range)
   end
 
   def add_landmark obj

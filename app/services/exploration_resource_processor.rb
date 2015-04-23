@@ -11,7 +11,11 @@ class ExplorationResourceProcessor
   end
 
   def start_interaction
+    resource_node = choose_resource_node
+  end
 
+  def choose_resource_node
+    @location.resource_nodes.sample
   end
 
 end

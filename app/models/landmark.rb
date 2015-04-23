@@ -13,7 +13,6 @@ class Landmark
   field :auto_discovered, type: Boolean, default: false
 
   field :discovery_details, type: Array
-  field :aggro_details, type: Array
   field :start_interaction_details, type: Array
 
   validates_inclusion_of :type, in: TYPES

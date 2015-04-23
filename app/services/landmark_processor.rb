@@ -1,4 +1,4 @@
-class LandmarkAnalyzer
+class LandmarkProcessor
 
   attr_accessor :player, :landmark
 

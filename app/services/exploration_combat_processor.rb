@@ -1,7 +1,7 @@
 # Determine if we're doing combat or not by comparing
 # adventuring with location's adventuring_level
   # If combat, start a battle
-  
+
 class ExplorationCombatProcessor
 
   def initialize _player, _location
@@ -10,7 +10,7 @@ class ExplorationCombatProcessor
   end
 
   def combat_percentage
-    # @player.adventuring vs. @location.adventuring_level
+    # TODO @player.adventuring vs. @location.adventuring_level
     50
   end
 
@@ -21,7 +21,7 @@ class ExplorationCombatProcessor
   def start_battle
     mob = choose_mob
     create_aggro_event(mob)
-    create_battle(mob)
+    create_battle(mob.npc)
   end
 
   def choose_mob
@@ -30,9 +30,9 @@ class ExplorationCombatProcessor
     @location.mobs.sample
   end
 
-  def create_aggro_event landmark
+  def create_aggro_event mob
     @player.add_event(
-      detail: landmark.aggro_detail
+      detail: "#{mob.to_s} notices you and attacks!"
     )
   end
 

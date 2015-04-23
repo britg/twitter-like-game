@@ -1,5 +1,10 @@
 @Story = React.createClass
 
+  componentDidMount: ->
+    setInterval ->
+      $('.event.new:hidden:last').fadeIn()
+    ,1000
+
   eventComponent: (event, index) ->
     includeActions = (index == 0)
 
@@ -18,9 +23,5 @@
   render: ->
     @status = "new"
     <div className="story">
-      {this.props.events.map(this.eventComponent)}
+      {this.eventComponent(event, index) for event, index in this.props.events}
     </div>
-
-  componentDidUpdate: ->
-    top = $('.event.new:last').offset().top
-    $(window).scrollTop(top)

@@ -22,3 +22,8 @@ Default Actions:
 - 15 Uncommon
 - 7 Rare
 - 3 Epic
+
+
+- Mob: random occurrence, pulled from a pool of mobs with rarity in a location
+- Resource Node: until discovered, random occurrence, then you can go back to that resource node from the landmarks menu again after discovering it in a location
+- Landmarks - random until discovered. then available through landmarks.

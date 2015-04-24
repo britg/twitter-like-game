@@ -8,6 +8,9 @@
 
   &.new {
     display: none;
+    &.initial-load {
+      display: inherit;
+    }
   }
 
   &.old {

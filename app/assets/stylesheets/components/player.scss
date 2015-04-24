@@ -1,9 +1,15 @@
 #player-bar {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
-  height: 30px;
+  height: $player-bar-height;
   background: $dark-gray;
   color: $light-gray;
+  padding-left: $nav-bar-width;
+
+  .status-line {
+    font-size: 75%;
+    color: $medium-gray;
+  }
 }

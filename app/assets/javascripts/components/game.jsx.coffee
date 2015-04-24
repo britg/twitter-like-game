@@ -37,10 +37,9 @@
         events: json.events.concat($game.state.events).slice(0, 100),
         actions: json.actions
     .catch (err) ->
-      window.location.reload()
+      console.log(err)
 
-  render: ->
-
+  screen: ->
     screen = switch @state.activeScreen
       when "events" then <Story events={this.state.events} actions={this.state.actions} lastActedId={@lastActedId} />
       when "inventory" then <Inventory />
@@ -49,8 +48,9 @@
       when "stats" then <Stats />
       when "chat" then <Chat />
 
+  render: ->
     <div id="game">
       <NavBar selected={this.state.activeScreen} />
-      {screen}
+      {this.screen()}
       <Player player={this.state.player} />
     </div>

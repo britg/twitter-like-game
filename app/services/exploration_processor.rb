@@ -115,7 +115,7 @@ class ExplorationProcessor
 
   def create_nothing_found_event
     @player.add_event(
-      detail: "Nothing new presents itself..."
+      detail: "Nothing new presents itself."
     )
   end
 end

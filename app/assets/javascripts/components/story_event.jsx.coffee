@@ -1,5 +1,4 @@
 @StoryEvent = React.createClass
-
   render: ->
     eventClasses = ["event", @props.event.status].join(' ')
 

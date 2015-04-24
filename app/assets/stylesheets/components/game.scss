@@ -9,13 +9,14 @@ body {
 }
 
 #game {
-  padding-right: $nav-bar-width;
+  padding-left: $nav-bar-width;
+  padding-top: $player-bar-height;
 }
 
 #navbar {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: $player-bar-height;
+  left: 0;
   width: $nav-bar-width;
   height: 100%;
   background: $dark-gray;
@@ -29,7 +30,7 @@ body {
     color: $light-gray;
     font-size: 210%;
     text-align: center;
-    
+
     &.selected {
       background: $dark-gray;
     }

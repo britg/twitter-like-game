@@ -8,7 +8,7 @@ def ex
   pl.ex
 end
 
-def ap
+def act
   pl.action_processor
 end
 

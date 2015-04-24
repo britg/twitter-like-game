@@ -46,7 +46,8 @@ class Agent
   def neck() slot(:neck) end
 
   def stat slug
-    stats.find_or_create_by(slug: slug)
+    @stat_cache ||= {}
+    @stat_cache[slug] ||= stats.find_or_create_by(slug: slug)
   end
 
   def skill slug

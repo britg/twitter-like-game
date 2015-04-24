@@ -24,9 +24,14 @@ class BattleProcessor
     process
   end
 
+  def attack_from player
+    player.add_event(detail: "You attack for massive damage!")
+    process
+  end
+
   def process
     debug "processing battle"
-    @current_turn_participant = initiative_resolver.next
+    @current_turn_participant = initiative_resolver.next_participant
     if @current_turn_participant.player?
       prompt_battle_event @current_turn_participant.player
     else
@@ -46,7 +51,7 @@ class BattleProcessor
 
   def prompt_battle_event player
     player.add_event(
-      detail: "You prepare for combat..."
+      detail: "You see an opportunity to attack..."
     )
   end
 

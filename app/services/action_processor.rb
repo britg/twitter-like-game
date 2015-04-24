@@ -46,7 +46,7 @@ class ActionProcessor
     end
 
     if action_slug.to_sym == :attack
-      return battle_processor.process
+      return battle_processor.attack_from(@player)
     end
 
     if action_slug.to_sym == :flee
@@ -112,7 +112,7 @@ class ActionProcessor
     # find_action.child_actions.build(label: "Ore", key: "find->ore")
     # find_action.child_actions.build(label: "Wood", key: "find->wood")
     # actions << find_action
-    
+
     landmarks_action = Action.new(label: "Landmarks", key: :landmark)
     @player.current_landmark_states.each do |landmark_state|
       landmarks_action.child_actions.build(label: landmark_state.to_s, key: landmark_state.to_action_key)

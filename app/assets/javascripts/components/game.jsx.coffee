@@ -30,6 +30,9 @@
         player_action:
           key: key
     .then (response) ->
+      if response.status != 200
+        window.location.reload()
+        return
       response.json()
     .then (json) ->
       $game.setState

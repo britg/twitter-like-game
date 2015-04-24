@@ -1,9 +1,11 @@
 class Battle
   include Mongoid::Document
 
+  DEFAULT_INITIATIVE = 100
+
   embeds_many :participants
 
-  field :turns, type: Array
+  field :combined_initiative, type: Integer, default: DEFAULT_INITIATIVE
 
   def player_ids
     participants.map(&:player_id).compact

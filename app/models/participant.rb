@@ -8,8 +8,20 @@ class Participant
 
   embedded_in :battle
 
+  field :current_initiative, type: Integer, default: 0
+
+  def obj
+    return @obj if @obj.present?
+    return @obj = player if player?
+    @obj = npc if npc?
+  end
+
   def to_s
     (player||npc).to_s
+  end
+
+  def ap
+    obj.ap
   end
 
   def npc?

@@ -2,6 +2,7 @@
   injured_black_bear = Npc.create(
     name: "Injured Black Bear",
     slug: :injured_black_bear,
+    combat_profile: CombatProfile.slug(:attack)
   )
 
   injured_black_bear.create_agent

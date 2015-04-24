@@ -87,6 +87,7 @@ def rebuild_game!
   @build = Build.new
   reset_stats
   reset_skills
+  reset_combat_profiles
   reset_resources
   reset_npcs
   reset_locations
@@ -118,6 +119,11 @@ end
 def reset_resources
   Resource.delete_all
   load_manifests(:resources)
+end
+
+def reset_combat_profiles
+  CombatProfile.delete_all
+  load_manifests(:combat_profiles)
 end
 
 def reset_stats

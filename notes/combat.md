@@ -28,3 +28,14 @@
 
   Defensive
   - any condition: 50% block, 50% attack
+
+  CombatProfile
+    HasSlug
+    field :name
+    embeds_many CombatProfileCondition
+
+
+  - Result of a condition match can be:
+    - :attack - a basic attack
+    - :skill - a random available skill
+    - :skill_* - a specific skill

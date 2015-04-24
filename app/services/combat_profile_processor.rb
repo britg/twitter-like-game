@@ -10,6 +10,7 @@ class CombatProfileProcessor
     # Use the npc's combat profile to determine the next
     # course of action
     @action = determine_action
+    @target = determine_target
 
     @battle.players.each do |player|
       #temp
@@ -33,6 +34,10 @@ class CombatProfileProcessor
   def meets? condition
     # TODO see if the battle meets the conditions
     true
+  end
+
+  def determine_target
+    
   end
 
 end

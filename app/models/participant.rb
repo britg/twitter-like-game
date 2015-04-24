@@ -4,7 +4,7 @@ class Participant
   belongs_to :player
 
   belongs_to :npc
-  embeds_one :agent
+  embeds_one :agent_instance, class_name: "Agent"
 
   embedded_in :battle
 

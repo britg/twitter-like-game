@@ -19,7 +19,7 @@ class BattleCreator
         @battle.participants.create(player: player)
         player.update_attributes(battle: @battle)
       else #obj.class == Npc
-        @battle.participants.create(npc: obj, agent: obj.agent)
+        @battle.participants.create(npc: obj, agent_instance: obj.agent)
       end
     end
   end

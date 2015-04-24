@@ -14,6 +14,10 @@ class BattleProcessor
     @initiative_resolver ||= InitiativeResolver.new(@battle)
   end
 
+  def evasion_resolver
+    @evasion_resolver ||= EvasionResolver.new(@battle)
+  end
+
   def start
     @battle.players.each do |p|
       p.add_event(
@@ -35,18 +39,22 @@ class BattleProcessor
     if @current_turn_participant.player?
       prompt_battle_event @current_turn_participant.player
     else
-      process_npc_turn @current_turn_participant.agent
+      process_npc_turn @current_turn_participant.npc
       process
     end
   end
 
   def flee player
-    player.add_event(detail: "You attempt to flee from the battle...")
-    player.use_skill(:evasion)
-    player.add_event(
-      detail: "You successfully escape!"
-    )
-    player.update_attributes(battle_id: nil)
+    player.add_event(detail: "You attempt to run from battle...")
+    if evasion_resolver.attempt_evade(player)
+      player.add_event(
+        detail: "You successfully escape!"
+      )
+      player.update_attributes(battle_id: nil)
+    else
+      player.add_event(detail: "You're unable to escape!")
+      process
+    end
   end
 
   def prompt_battle_event player
@@ -55,11 +63,16 @@ class BattleProcessor
     )
   end
 
-  def process_npc_turn agent
-    @battle.players.each do |player|
-      #temp
-      player.add_event(detail: "Other participant takes their turn...")
-    end
+  def process_npc_turn npc
+    CombatProfileProcessor.new(npc, @battle).process
+  end
+
+  def available_actions_for player
+    actions = []
+    actions << Action.new(label: "Attack", key: :attack)
+    actions << Action.new(label: "Skill", key: :special)
+    actions << Action.new(label: "Flee", key: :flee)
+    actions
   end
 
 end

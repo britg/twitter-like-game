@@ -13,8 +13,8 @@
 
       <table className="equipment">
         <tr>
-          <th>L Hand</th>
-          <th>R Hand</th>
+          <th>Main Hand</th>
+          <th>Off Hand</th>
           <th></th>
         </tr>
         <tr>

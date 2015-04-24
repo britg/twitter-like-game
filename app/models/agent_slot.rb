@@ -10,4 +10,8 @@ class AgentSlot
     Slot.slug(:slug)
   end
 
+  def empty?
+    !item?
+  end
+
 end

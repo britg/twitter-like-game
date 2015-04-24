@@ -132,10 +132,6 @@ class ActionProcessor
   end
 
   def battle_actions
-    actions = []
-    actions << Action.new(label: "Attack", key: :attack)
-    actions << Action.new(label: "Skill", key: :special)
-    actions << Action.new(label: "Flee", key: :flee)
-    actions
+    battle_processor.available_actions_for(@player)
   end
 end

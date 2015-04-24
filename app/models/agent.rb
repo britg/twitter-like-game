@@ -3,6 +3,7 @@ class Agent
 
   embedded_in :player
   embedded_in :npc
+  embedded_in :participant
 
   embeds_many :stats, class_name: "AgentStat"
   embeds_many :slots, class_name: "AgentSlot"
@@ -45,6 +46,9 @@ class Agent
   def right_ring() slot(:right_ring) end
   def neck() slot(:neck) end
 
+  def main_hand() slot(:main_hand) end
+  def off_hand() slot(:off_hand) end
+
   def stat slug
     @stat_cache ||= {}
     @stat_cache[slug] ||= stats.find_or_create_by(slug: slug)
@@ -58,9 +62,10 @@ class Agent
     slots.find_or_create_by(slug: slug)
   end
 
-  def equip item
-    raise "Item not equippable #{item}" unless item.equippable?
+  def weapon_type
+    # TODO
+    # Look down at the main hand weapon to determine type
+    # Default if no weapon equipped is Melee
+    return WeaponType::UNARMED if main_hand.empty?
   end
-
-
 end

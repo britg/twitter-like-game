@@ -25,14 +25,16 @@ body {
     display: block;
     width: 100%;
     height: $nav-bar-width;
-    background: darken($dark-gray, 5%);
-    border-bottom: 1px solid $dark-gray;
+    background: $dark-gray;
+    border-bottom: 1px solid darken($dark-gray, 5%);
     color: $light-gray;
     font-size: 210%;
     text-align: center;
 
     &.selected {
-      background: $dark-gray;
+      background: $white;
+      color: $dark-gray;
+      font-weight: bold;
     }
 
   }

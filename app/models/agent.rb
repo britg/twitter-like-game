@@ -26,9 +26,9 @@ class Agent
   def attack() stat(:attack) end
   def armor() stat(:armor) end
   def hit_chance() stat(:hit_chance) end
+  def crit_chance() stat(:crit_chance) end
   def dodge() stat(:dodge) end
   def magic_resistance() stat(:magic_res) end
-  def physical_resistance() stat(:physical_res) end
 
   # Skills - permanent increase from use
   #        - temporary increase from items

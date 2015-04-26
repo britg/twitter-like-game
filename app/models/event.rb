@@ -4,7 +4,7 @@ class Event
   class InvalidAction < Exception; end
 
   belongs_to :player
-  belongs_to :location
+  index({player_id: 1})
 
   field :character_name, type: String
   field :detail, type: String

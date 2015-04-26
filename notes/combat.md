@@ -39,3 +39,10 @@
     - :attack - a basic attack
     - :skill - a random available skill
     - :skill_* - a specific skill
+
+### Processing an attack
+
+  1. Determine if a hit was made by checking the [hit_chance] versus the enemies [dodge]
+  2. Determine if it's a critical hit
+  3. Determine damage by comparing [attack] against enemies [armor]
+      - if critical hit, 2x damage

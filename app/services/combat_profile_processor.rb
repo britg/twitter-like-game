@@ -1,28 +1,18 @@
 class CombatProfileProcessor
 
-  def initialize npc, battle
-    @npc = npc
+  def initialize combat_profile, agent_instance, battle
+    @combat_profile = combat_profile
+    @agent_instance = agent_instance
     @battle = battle
   end
 
-  def process
+  def determine_action
     # TODO
     # Use the npc's combat profile to determine the next
     # course of action
-    @action = determine_action
-    @target = determine_target
-
-    @battle.players.each do |player|
-      #temp
-      player.add_event(detail: "[#{@npc.to_s}] does [#{@action}]!")
-    end
-  end
-
-  def determine_action
-    @profile = @npc.combat_profile
     @result = :attack
 
-    @profile.combat_profile_conditions.each do |condition|
+    @combat_profile.combat_profile_conditions.each do |condition|
       if meets?(condition)
         @result = condition.result
         break
@@ -36,8 +26,8 @@ class CombatProfileProcessor
     true
   end
 
-  def determine_target
-    
+  def determine_targets
+    [@battle.players.first]
   end
 
 end

@@ -2,12 +2,12 @@ class Participant
   include Mongoid::Document
 
   belongs_to :player
-
   belongs_to :npc
+  belongs_to :combat_profile
   embeds_one :agent_instance, class_name: "Agent"
-
   embedded_in :battle
-
+  
+  field :name, type: String
   field :current_initiative, type: Integer, default: 0
 
   def obj
@@ -17,7 +17,7 @@ class Participant
   end
 
   def to_s
-    (player||npc).to_s
+    name
   end
 
   def ap

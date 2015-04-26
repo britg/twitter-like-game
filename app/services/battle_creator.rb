@@ -16,10 +16,14 @@ class BattleCreator
     objs.each do |obj|
       if obj.class == Player
         player = obj
-        @battle.participants.create(player: player)
+        @battle.participants.create(player: player, name: player.name)
         player.update_attributes(battle: @battle)
       else #obj.class == Npc
-        @battle.participants.create(npc: obj, agent_instance: obj.agent)
+        npc = obj
+        @battle.participants.create(npc: npc,
+                                    agent_instance: npc.agent,
+                                    name: npc.name,
+                                    combat_profile: npc.combat_profile)
       end
     end
   end

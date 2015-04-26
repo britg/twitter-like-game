@@ -1,8 +1,8 @@
 @Game = React.createClass
 
   getInitialState: ->
-    player: @props.player,
-    events: @props.events,
+    player: @props.player
+    events: @props.events
     actions: @props.actions
     activeScreen: "events"
 

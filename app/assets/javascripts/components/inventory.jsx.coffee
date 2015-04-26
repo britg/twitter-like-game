@@ -13,34 +13,13 @@
 
       <table className="equipment">
         <tr>
-          <th>Main Hand</th>
-          <th>Off Hand</th>
-          <th></th>
+          <td className="slot-name">Main Hand</td>
+          <td></td>
         </tr>
         <tr>
+          <td className="slot-name">Off Hand</td>
+          <td></td>
         </tr>
-        <tr>
-          <th>Head</th>
-          <th>Shoulders</th>
-          <th>Back</th>
-        </tr>
-        <tr>
-        </tr>
-        <tr>
-          <th>Chest</th>
-          <th>Legs</th>
-          <th>Feet</th>
-        </tr>
-        <tr>
-        </tr>
-        <tr>
-          <th>L Ring</th>
-          <th>R Ring</th>
-          <th>Neck</th>
-        </tr>
-        <tr>
-        </tr>
-
       </table>
 
 

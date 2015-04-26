@@ -39,7 +39,7 @@ class BattleProcessor
     if @current_turn_participant.player?
       prompt_battle_event @current_turn_participant.player
     else
-      process_npc_turn @current_turn_participant.npc
+      process_npc_turn @current_turn_participant
       process
     end
   end
@@ -63,8 +63,33 @@ class BattleProcessor
     )
   end
 
-  def process_npc_turn npc
-    CombatProfileProcessor.new(npc, @battle).process
+  def process_npc_turn npc_participant
+    profile_proc = CombatProfileProcessor.new(npc_participant.combat_profile,
+                                              npc_participant.agent_instance,
+                                              @battle)
+    action = profile_proc.determine_action
+    targets = profile_proc.determine_targets
+
+    @battle.players.each do |player|
+      player.add_event(detail: "[#{npc.to_s}] does [#{action}] against [#{targets}]!")
+    end
+
+    #TODO perform action in a more graceful way
+    perform_attack(npc_participant, targets) if action.to_sym == :attack
+    process
+  end
+  
+  def perform_attack npc_participant, targets
+    targets.each do |target|
+      agent_delta = AttackProcessor.new(npc_participant, target.agent).agent_delta
+      apply_agent_delta(target.agent, agent_delta)
+
+    end
+  end
+
+  def apply_agent_delta agent, delta
+    #TODO delegate to some service to apply the delta
+
   end
 
   def available_actions_for player

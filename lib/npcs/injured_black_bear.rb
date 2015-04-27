@@ -7,6 +7,10 @@
 
   injured_black_bear.create_agent
   injured_black_bear.stats.create(
+    slug: :hp,
+    base_value: 10
+  )
+  injured_black_bear.stats.create(
     slug: :str,
     base_value: 8
   )

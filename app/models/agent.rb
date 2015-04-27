@@ -50,8 +50,7 @@ class Agent
   def off_hand() slot(:off_hand) end
 
   def stat slug
-    @stat_cache ||= {}
-    @stat_cache[slug] ||= stats.find_or_create_by(slug: slug)
+    stats.find_or_create_by(slug: slug)
   end
 
   def skill slug
@@ -62,10 +61,23 @@ class Agent
     slots.find_or_create_by(slug: slug)
   end
 
+  def dead?
+    hp.value < 1
+  end
+
   def weapon_type
     # TODO
     # Look down at the main hand weapon to determine type
     # Default if no weapon equipped is Melee
     return WeaponType::UNARMED if main_hand.empty?
+  end
+
+  def apply agent_delta
+    agent_delta.attributes.each do |stat_name, stat_delta|
+      stat_to_change = stat(stat_name.to_sym)
+      debug stat_name, stat_to_change
+      stat_to_change.inc(current_offset: stat_delta)
+    end
+    save
   end
 end

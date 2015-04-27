@@ -7,7 +7,7 @@ class InitiativeResolver
   end
 
   def participants
-    @battle.participants
+    @battle.participants.active
   end
 
   # return the next participant

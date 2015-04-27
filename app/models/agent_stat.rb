@@ -3,7 +3,7 @@ class AgentStat
 
   embedded_in :agent
   field :base_value, type: Integer, default: 10
-  field :current_reduction, type: Integer, default: 0
+  field :current_offset, type: Integer, default: 0
   field :slug, type: String
 
   def stat
@@ -16,7 +16,7 @@ class AgentStat
   alias_method :max_value, :derived_value
 
   def value
-    derived_value - current_reduction
+    derived_value + current_offset
   end
 
 end

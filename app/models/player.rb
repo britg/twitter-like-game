@@ -156,6 +156,15 @@ class Player
   def input action_slug
     @start_of_input_mark = current_event.id
     action_processor.process(action_slug)
+    reload
+    check_dead
+  end
+
+  def check_dead
+    if dead?
+      add_event(detail: "You're dead...")
+      update_attributes(continue_token: nil)
+    end
   end
 
   def ex

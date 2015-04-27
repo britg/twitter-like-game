@@ -39,8 +39,6 @@ class ActionProcessor
 
     current_event.update_attributes(chosen_action_key: action_slug)
 
-    # temp implementation
-
     if action_slug.to_sym == :explore
       return explorer.process
     end
@@ -84,6 +82,7 @@ class ActionProcessor
   end
 
   def available_actions
+    return dead_actions if @player.dead?
     return exploration_actions if @player.exploring?
     return interaction_actions if @player.interacting?
     return battle_actions if @player.in_battle?
@@ -133,5 +132,11 @@ class ActionProcessor
 
   def battle_actions
     battle_processor.available_actions_for(@player)
+  end
+  
+  def dead_actions
+    actions = []
+    actions << Action.new(label: "Restart", key: :restart)
+    actions
   end
 end

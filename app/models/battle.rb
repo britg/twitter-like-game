@@ -23,6 +23,10 @@ class Battle
     Npc.find(npc_ids)
   end
 
+  def npc_participants
+    participants.ne(npc_id: nil)
+  end
+
   def agents
     (players.map(&:agent) | participants.map(&:agent)).compact
   end

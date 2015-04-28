@@ -104,7 +104,7 @@ class ActionProcessor
     actions = []
     actions << Action.new(label: "Explore", key: :explore)
 
-    # actions << Action.new(label: "Observe", key: :observe)
+    actions << Action.new(label: "Observe", key: :observe)
 
     # find_action = Action.new(label: "Find", key: :find)
     # find_action.child_actions.build(label: "Reagents", key: "find->reagents")
@@ -112,11 +112,13 @@ class ActionProcessor
     # find_action.child_actions.build(label: "Wood", key: "find->wood")
     # actions << find_action
 
-    landmarks_action = Action.new(label: "Landmarks", key: :landmark)
-    @player.current_landmark_states.each do |landmark_state|
-      landmarks_action.child_actions.build(label: landmark_state.to_s, key: landmark_state.to_action_key)
+    if @player.current_landmark_states.any?
+      landmarks_action = Action.new(label: "Landmarks", key: :landmark)
+      @player.current_landmark_states.each do |landmark_state|
+        landmarks_action.child_actions.build(label: landmark_state.to_s, key: landmark_state.to_action_key)
+      end
+      actions << landmarks_action
     end
-    actions << landmarks_action
     # actions << Action.new(label: "Craft", key: :craft)
     actions
   end
@@ -133,7 +135,7 @@ class ActionProcessor
   def battle_actions
     battle_processor.available_actions_for(@player)
   end
-  
+
   def dead_actions
     actions = []
     actions << Action.new(label: "Restart", key: :restart)

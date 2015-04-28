@@ -31,4 +31,8 @@ class Battle
     (players.map(&:agent) | participants.map(&:agent)).compact
   end
 
+  def victory?
+    !npc_participants.active.any?
+  end
+
 end

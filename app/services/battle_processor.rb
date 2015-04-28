@@ -38,23 +38,60 @@ class BattleProcessor
 
   def process
     handle_dead_participants
-    next_turn!
+    if @battle.victory?
+      notify_victory
+      assign_loot
+      cleanup_battle
+    else
+      next_turn!
+    end
   end
 
   def handle_dead_participants
     # TODO change the status and
     # 'active' flag of participants
     # that are dead
+    @battle.npc_participants.each do |npc_participant|
+      if npc_participant.dead?
+        npc_participant.update_attributes(active: false)
+        @battle.players.each do |player|
+          player.add_event("#{npc_participant} is dead!")
+        end
+      end
+    end
+    
+    @battle.save
+  end
+
+  def notify_victory
+    @battle.players.each do |player|
+      player.add_event("Victory!")
+    end
+  end
+
+  def assign_loot
+    # TODO
+    @battle.players.each do |player|
+      player.add_event("You get some loot...")
+    end
+  end
+
+  def cleanup_battle
+    @battle.players.each do |player|
+      player.update_attributes(battle: nil)
+    end
   end
 
   def next_turn!
     @current_turn_participant = initiative_resolver.next_participant
+    return unless @current_turn_participant.present?
     if @current_turn_participant.player?
       prompt_battle_event @current_turn_participant.player
-    else
-      process_npc_turn @current_turn_participant
-      process
+      return
     end
+
+    process_npc_turn @current_turn_participant
+    process
   end
 
   def flee player
@@ -89,7 +126,6 @@ class BattleProcessor
 
     #TODO perform action in a more graceful way
     perform_attack(npc_participant, targets) if action.to_sym == :attack
-    process
   end
 
 
@@ -103,17 +139,11 @@ class BattleProcessor
     targets.each do |target|
       agent_delta = AttackDeltaResolver.new(attacker, target.agent).agent_delta
       create_attack_event(target, attacker, agent_delta)
-      apply_agent_delta(target.agent, agent_delta)
+      target.agent.apply(agent_delta)
     end
   end
 
-  def apply_agent_delta agent, delta
-    #TODO delegate to some service to apply the delta
-    agent.apply(delta)
-  end
-
   def create_attack_event target, perp, agent_delta
-    # TODO actually make events from delta
     @battle.players.each do |player|
       player.add_event(detail: "#{target} takes #{agent_delta.to_s} from #{perp}")
     end

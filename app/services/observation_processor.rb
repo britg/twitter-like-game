@@ -18,7 +18,7 @@ class ObservationProcessor
 
   def process
     create_observe_event
-    create_percent_explored_event
+    # create_percent_explored_event
   end
 
   def explored_percentage

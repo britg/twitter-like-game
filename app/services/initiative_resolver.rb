@@ -12,6 +12,7 @@ class InitiativeResolver
 
   # return the next participant
   def next_participant
+    return nil unless participants.any?
     loop do
       participants.each do |participant|
         raise InvalidInitiative if participant.ap.value < 1

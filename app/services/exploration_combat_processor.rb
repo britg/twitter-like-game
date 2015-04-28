@@ -21,7 +21,8 @@ class ExplorationCombatProcessor
   def start_battle
     mob = choose_mob
     create_aggro_event(mob)
-    create_battle(mob.npc)
+    npc = generate_npc(mob)
+    create_battle(npc)
   end
 
   def choose_mob
@@ -36,9 +37,12 @@ class ExplorationCombatProcessor
     )
   end
 
+  def generate_npc mob
+    npc = NpcCreator.new(mob.npc_blueprint).create
+  end
+
   def create_battle npc
-    participating_objs = [@player, npc]
-    @battle = BattleCreator.new(participating_objs).create
+    @battle = BattleCreator.new([@player], [npc]).create
     BattleProcessor.new(@battle).start
   end
 

@@ -7,7 +7,7 @@ class AgentStat
   field :slug, type: String
 
   def stat
-    Stat.slug(slug)
+    @stat ||= Stat.slug(slug)
   end
 
   def derived_value

@@ -3,11 +3,12 @@ class Agent
 
   embedded_in :player
   embedded_in :npc
-  embedded_in :participant
 
   embeds_many :stats, class_name: "AgentStat"
   embeds_many :slots, class_name: "AgentSlot"
   embeds_many :skills, class_name: "AgentSkill"
+
+  field :current_initiative, type: Integer, default: 0
 
   # Stats - increase through skills and items
 

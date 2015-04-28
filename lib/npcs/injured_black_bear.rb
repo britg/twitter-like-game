@@ -1,17 +1,16 @@
 @build << -> {
-  injured_black_bear = Npc.create(
+  injured_black_bear = NpcBlueprint.create(
     name: "Injured Black Bear",
     slug: :injured_black_bear,
     combat_profile: CombatProfile.slug(:attack)
   )
 
-  injured_black_bear.create_agent
-  injured_black_bear.stats.create(
+  injured_black_bear.stat_blueprints.create(
     slug: :hp,
-    base_value: 10
+    range: (8..12)
   )
-  injured_black_bear.stats.create(
+  injured_black_bear.stat_blueprints.create(
     slug: :str,
-    base_value: 8
+    range: (8..12)
   )
 }

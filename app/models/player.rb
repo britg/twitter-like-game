@@ -29,7 +29,6 @@ class Player
   field :name, type: String
   field :experience, type: Integer
   field :level, type: Integer
-
   field :gold, type: Integer, default: configatron.player_gold
 
   def ensure_continue_token
@@ -99,6 +98,9 @@ class Player
   end
 
   def add_event params
+    if params.class == String
+      params = {detail: params}
+    end
     e = events.create(params.merge(created_at: Time.now))
     cache_new_event(e)
     e
@@ -161,9 +163,9 @@ class Player
   end
 
   def check_dead
-    if dead?
+    if agent.dead?
       add_event(detail: "You're dead...")
-      update_attributes(continue_token: nil)
+      update_attributes(dead: true, continue_token: nil)
     end
   end
 

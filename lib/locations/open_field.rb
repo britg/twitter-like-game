@@ -19,7 +19,7 @@
   @build.deferred -> {
 
     l.mobs.create(
-      npc: Npc.slug(:injured_black_bear),
+      npc_blueprint: NpcBlueprint.slug(:injured_black_bear),
       rarity: Rarity::COMMON
     )
 

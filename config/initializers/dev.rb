@@ -108,6 +108,7 @@ end
 
 def reset_npcs
   Npc.delete_all
+  NpcBlueprint.delete_all
   load_manifests(:npcs)
 end
 

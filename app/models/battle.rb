@@ -3,36 +3,22 @@ class Battle
 
   DEFAULT_INITIATIVE = 100
 
-  embeds_many :participants
+  has_and_belongs_to_many :players, inverse_of: nil
+  has_and_belongs_to_many :npcs, inverse_of: nil
 
   field :combined_initiative, type: Integer, default: DEFAULT_INITIATIVE
 
-  def player_ids
-    participants.map(&:player_id).compact
-  end
-
-  def players
-    Player.find(player_ids)
-  end
-
-  def npc_ids
-    participants.map(&:npc_id).compact
-  end
-
-  def npcs
-    Npc.find(npc_ids)
-  end
-
-  def npc_participants
-    participants.ne(npc_id: nil)
-  end
-
-  def agents
-    (players.map(&:agent) | participants.map(&:agent)).compact
-  end
-
   def victory?
-    !npc_participants.active.any?
+    # TODO determine if any npcs are still alive
+    !npcs.where(dead: false).any?
+  end
+
+  def participants
+    players | npcs
+  end
+
+  def active_participants
+    players.where(dead: false) | npcs.where(dead: false)
   end
 
 end

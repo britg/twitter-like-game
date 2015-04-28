@@ -4,10 +4,10 @@ class EvasionResolver
     @battle = _battle
   end
 
-  def attempt_evade(participant_obj)
+  def attempt_evade(participant)
     # TODO do some kind of determination
     successful = [true, false].sample
-    participant_obj.use_skill(:evasion)
+    participant.use_skill(:evasion) if participant.player?
     successful
   end
 

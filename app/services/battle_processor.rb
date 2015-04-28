@@ -51,34 +51,35 @@ class BattleProcessor
     # TODO change the status and
     # 'active' flag of participants
     # that are dead
-    @battle.npc_participants.each do |npc_participant|
-      if npc_participant.dead?
-        npc_participant.update_attributes(active: false)
+    @battle.npcs.each do |npc|
+      if npc.agent.dead?
+        npc.update_attributes(dead: true)
         @battle.players.each do |player|
-          player.add_event("#{npc_participant} is dead!")
+          player.add_event(detail: "#{npc} is dead!")
         end
       end
     end
-    
+
     @battle.save
   end
 
   def notify_victory
     @battle.players.each do |player|
-      player.add_event("Victory!")
+      player.add_event(detail: "Victory!")
     end
   end
 
   def assign_loot
     # TODO
     @battle.players.each do |player|
-      player.add_event("You get some loot...")
+      player.add_event(detail: "You get some loot...")
     end
   end
 
   def cleanup_battle
     @battle.players.each do |player|
       player.update_attributes(battle: nil)
+      player.add_event("The battle has ended...")
     end
   end
 
@@ -113,25 +114,25 @@ class BattleProcessor
     )
   end
 
-  def process_npc_turn npc_participant
-    profile_proc = CombatProfileProcessor.new(npc_participant.combat_profile,
-                                              npc_participant.agent_instance,
+  def process_npc_turn npc
+    profile_proc = CombatProfileProcessor.new(npc.combat_profile,
+                                              npc.agent,
                                               @battle)
     action = profile_proc.determine_action
     targets = profile_proc.determine_targets
 
     @battle.players.each do |player|
-      player.add_event(detail: "[#{npc_participant.to_s}] does [#{action}] against [#{targets.map(&:to_s)}]!")
+      player.add_event(detail: "[#{npc.to_s}] does [#{action}] against [#{targets.map(&:to_s)}]!")
     end
 
     #TODO perform action in a more graceful way
-    perform_attack(npc_participant, targets) if action.to_sym == :attack
+    perform_attack(npc, targets) if action.to_sym == :attack
   end
 
 
   def attack_from player
     # TODO we are assuming there is only one enemy here!
-    perform_attack(player, [@battle.npc_participants.first])
+    perform_attack(player, [@battle.npcs.first])
     process
   end
 
@@ -139,7 +140,7 @@ class BattleProcessor
     targets.each do |target|
       agent_delta = AttackDeltaResolver.new(attacker, target.agent).agent_delta
       create_attack_event(target, attacker, agent_delta)
-      target.agent.apply(agent_delta)
+      target.agent.apply_delta(agent_delta)
     end
   end
 

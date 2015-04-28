@@ -1,31 +1,17 @@
 class BattleCreator
 
-  def initialize participant_objs
-    @participant_objs = participant_objs
+  # Made up of players and npcs
+  def initialize players, npcs
+    @players = Array(players)
+    @npcs = Array(npcs)
   end
 
   def create
-    @battle = Battle.create
-    create_participants(@participant_objs)
-    set_initiative_mark
-    @battle
-  end
-
-  # Objs can be Player or Npc
-  def create_participants objs
-    objs.each do |obj|
-      if obj.class == Player
-        player = obj
-        @battle.participants.create(player: player, name: player.name)
-        player.update_attributes(battle: @battle)
-      else #obj.class == Npc
-        npc = obj
-        @battle.participants.create(npc: npc,
-                                    agent_instance: npc.agent,
-                                    name: npc.name,
-                                    combat_profile: npc.combat_profile)
-      end
+    @battle = Battle.create(players: @players, npcs: @npcs)
+    @players.each do |player|
+      player.update_attributes(battle: @battle)
     end
+    @battle
   end
 
   def set_initiative_mark

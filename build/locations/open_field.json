@@ -1,0 +1,27 @@
+{
+  "type": "Location",
+  "name": "Open Field",
+  "slug": "open_field",
+  "adventure_level": 10.0,
+  "entrance_details": [],
+  "observe_details": [],
+  "mobs": [
+    {
+      "npc_blueprint": "injured_black_bear",
+      "rarity": "common"
+    }
+  ],
+  "resource_nodes": [
+    {
+      "resource": "mandrake_root",
+      "rarity": "uncommon"
+    }
+  ],
+  "landmarks": [
+    {
+      "slug": "worlds_end_tavern",
+      "obj": "worlds_end_tavern",
+      "rarity": "common"
+    }
+  ]
+}

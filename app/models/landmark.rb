@@ -7,6 +7,7 @@ class Landmark
   embeds_many :discovery_requirements, class_name: "SkillRequirement"
 
   field :slug, type: String
+  field :rarity, type: String, default: Rarity::COMMON
   field :type, type: String
   field :object_id, type: BSON::ObjectId
   field :moves, type: Boolean, default: false

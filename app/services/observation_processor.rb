@@ -43,13 +43,15 @@ class ObservationProcessor
   def next_observation_detail
     details = location.observe_details.to_a
     next_index = next_observation_detail_index
-    if details[next_index].present?
-      location_state.observed_details << next_index
-      location_state.save
-      return details[next_index]
+    if next_index >= details.count
+      next_index = 0
+      location_state.observed_details = [0]
     else
-      details.sample
+      location_state.observed_details << next_index
     end
+
+    location_state.save
+    return details[next_index]
   end
 
   def create_observe_event

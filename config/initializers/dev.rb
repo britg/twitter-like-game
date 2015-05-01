@@ -114,6 +114,7 @@ end
 
 def reset_locations
   Location.delete_all
+  LocationState.delete_all
   load_manifests(:locations)
 end
 

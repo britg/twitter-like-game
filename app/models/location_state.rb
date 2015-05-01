@@ -7,4 +7,6 @@ class LocationState
 
   delegate :slug, to: :location
 
+  field :observed_details, type: Array, default: []
+
 end

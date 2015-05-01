@@ -9,11 +9,11 @@ class ObservationProcessor
   end
 
   def location_state
-    @player.current_location_state
+    @location_state ||= @player.current_location_state
   end
 
   def location
-    @player.location
+    @location ||= @player.location
   end
 
   def process
@@ -34,9 +34,27 @@ class ObservationProcessor
     )
   end
 
+  def next_observation_detail_index
+    details = location.observe_details.to_a
+    observed_index = location_state.observed_details.last || -1
+    observed_index+1
+  end
+
+  def next_observation_detail
+    details = location.observe_details.to_a
+    next_index = next_observation_detail_index
+    if details[next_index].present?
+      location_state.observed_details << next_index
+      location_state.save
+      return details[next_index]
+    else
+      details.sample
+    end
+  end
+
   def create_observe_event
     @player.add_event(
-      detail: location.observe_details.sample
+      detail: next_observation_detail
     )
   end
 

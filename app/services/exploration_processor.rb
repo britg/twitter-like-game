@@ -65,26 +65,10 @@ class ExplorationProcessor
     @resource_proc ||= ExplorationResourceProcessor.new(@player, location)
   end
 
-  def explore
-
-    # TEMP - we probably want more logic here
-    # e.g. revisiting old landmarks
-    # hinting at landmarks
-    first_undiscovered_landmark
-  end
-
-  def create_explore_event
-    @player.add_event(
-      detail: location.explore_detail
-    )
-  end
-
   def process
     create_explore_event
     return combat_proc.start_battle if combat_proc.combat?
     return resource_proc.start_interaction if resource_proc.resource?
-    # If not in combat, determine if we're discovering a resource
-    # Or a Landmark
 
     # skill check against unfound landmarks at a location
     # If you pass against one, create event for it.
@@ -99,6 +83,20 @@ class ExplorationProcessor
       create_nothing_found_event
     end
   end
+
+  def explore
+    # TEMP - we probably want more logic here
+    # e.g. revisiting old landmarks
+    # hinting at landmarks
+    first_undiscovered_landmark
+  end
+
+  def create_explore_event
+    @player.add_event(
+      detail: location.explore_detail
+    )
+  end
+
 
   def process_landmark landmark
     # Add to player's landmarks
@@ -117,5 +115,28 @@ class ExplorationProcessor
     @player.add_event(
       detail: "Nothing new presents itself."
     )
+  end
+
+  def available_actions
+    actions = []
+    actions << Action.new(label: "Explore", key: :explore)
+
+    actions << Action.new(label: "Observe", key: :observe)
+
+    # find_action = Action.new(label: "Find", key: :find)
+    # find_action.child_actions.build(label: "Reagents", key: "find->reagents")
+    # find_action.child_actions.build(label: "Ore", key: "find->ore")
+    # find_action.child_actions.build(label: "Wood", key: "find->wood")
+    # actions << find_action
+
+    if @player.current_landmark_states.any?
+      landmarks_action = Action.new(label: "Landmarks", key: :landmark)
+      @player.current_landmark_states.each do |landmark_state|
+        landmarks_action.child_actions.build(label: landmark_state.to_s, key: landmark_state.to_action_key)
+      end
+      actions << landmarks_action
+    end
+    # actions << Action.new(label: "Craft", key: :craft)
+    actions
   end
 end

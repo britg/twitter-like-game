@@ -1,3 +1,5 @@
+# A reference to NPC Blueprint in a location,
+# with an attached rarity
 class Mob
   include Mongoid::Document
 

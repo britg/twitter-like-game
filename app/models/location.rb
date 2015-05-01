@@ -12,7 +12,7 @@ class Location
   embeds_many :landmarks
   index({"landmarks.slug" => 1}, {unique: true})
 
-  embeds_many :mobs
+  embeds_many :mobs # A reference to an NPC Blueprint with attached rarity
   embeds_many :resource_nodes
 
   def to_s

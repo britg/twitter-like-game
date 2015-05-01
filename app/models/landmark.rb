@@ -1,11 +1,12 @@
 class Landmark
   include Mongoid::Document
 
-  TYPES = ["Resource", "Npc", "Location"]
+  TYPES = ["Location"]
 
   embedded_in :location
   embeds_many :discovery_requirements, class_name: "SkillRequirement"
 
+  field :name, type: String
   field :slug, type: String
   field :rarity, type: String, default: Rarity::COMMON
   field :type, type: String
@@ -41,7 +42,7 @@ class Landmark
   end
 
   def to_s
-    obj.to_s
+    name || obj.to_s
   end
 
   def npc?

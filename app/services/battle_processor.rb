@@ -22,6 +22,7 @@ class BattleProcessor
     actions = []
     actions << Action.new(label: "Attack", key: :attack)
     actions << Action.new(label: "Skill", key: :special)
+    # actions << Action.new(label: "Observe", key: :battle_observe)
     actions << Action.new(label: "Flee", key: :flee)
     actions
   end

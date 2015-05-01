@@ -101,26 +101,7 @@ class ActionProcessor
   end
 
   def exploration_actions
-    actions = []
-    actions << Action.new(label: "Explore", key: :explore)
-
-    actions << Action.new(label: "Observe", key: :observe)
-
-    # find_action = Action.new(label: "Find", key: :find)
-    # find_action.child_actions.build(label: "Reagents", key: "find->reagents")
-    # find_action.child_actions.build(label: "Ore", key: "find->ore")
-    # find_action.child_actions.build(label: "Wood", key: "find->wood")
-    # actions << find_action
-
-    if @player.current_landmark_states.any?
-      landmarks_action = Action.new(label: "Landmarks", key: :landmark)
-      @player.current_landmark_states.each do |landmark_state|
-        landmarks_action.child_actions.build(label: landmark_state.to_s, key: landmark_state.to_action_key)
-      end
-      actions << landmarks_action
-    end
-    # actions << Action.new(label: "Craft", key: :craft)
-    actions
+    explorer.available_actions
   end
 
   # Return set of actions based on the

@@ -6,6 +6,7 @@
 
   @build.deferred -> {
     worlds_end_tavern.landmarks.create(
+      name: "Exit",
       slug: :tavern_door,
       obj: Location.slug(:open_field),
       auto_discovered: true

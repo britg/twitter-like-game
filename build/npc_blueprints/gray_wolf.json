@@ -1,0 +1,6 @@
+{
+  "type": "Npc",
+  "name": "Gray Wolf",
+  "slug": "gray_wolf",
+  "combat_profile": "attack"
+}

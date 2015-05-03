@@ -8,10 +8,9 @@ namespace :build do
     rebuild_game!
   end
 
-  task complete: :environment do
+  task update: :environment do
     b = Build.new
-    b.load_all
-    b.hashes
+    b.update_all
   end
 
 end

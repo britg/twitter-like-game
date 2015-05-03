@@ -2,9 +2,16 @@
   "type": "Location",
   "name": "Open Field",
   "slug": "open_field",
-  "adventure_level": 10.0,
-  "entrance_details": [],
-  "observe_details": [],
+  "adventuring_level": 10.0,
+  "entrance_details": [
+    "You find yourself in an open field of tall grass and short trees.",
+     "The lights from a tavern flicker in the distance."
+  ],
+  "observe_details": [
+    "The massive peaks of the Terminus mountain range are just visible on the horizon",
+    "World's End. They say you can hear the Argent Falls from miles away, but you can't hear them yet.",
+    "The light is fading, and you've slept on the hard ground for weeks. There's a tavern ahead."
+  ],
   "mobs": [
     {
       "npc_blueprint": "injured_black_bear",

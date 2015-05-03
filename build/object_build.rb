@@ -18,10 +18,11 @@ class ObjectBuild
 
   def create_or_update
     if existing.present?
-      update  
+      puts "#{type} #{slug} exists, so updating"
+      update
       return existing
     end
-    puts "!!#{slug} not found!!"
+    puts "#{type} #{slug} not found, so creating"
     create
   end
 

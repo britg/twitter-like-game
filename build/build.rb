@@ -35,12 +35,14 @@ class Build
   end
 
   def update_all
+    puts "Updating all"
     RESOURCE_TYPES.each do |t|
       update_type(t)
     end
   end
 
   def update_type type
+    puts "Loading #{type}"
     load_json(type)
     @hashes[type].each do |hash|
       create_or_update(hash)
@@ -49,7 +51,10 @@ class Build
 
   def ensure_existence type, slug
     existing = type.constantize.where(slug: slug).first
-    return existing if existing.present?
+    if existing.present?
+      puts "#{type} #{slug} already exists"
+      return existing
+    end
     load_json(type)
     found = nil
     @hashes[type].each do |hash|

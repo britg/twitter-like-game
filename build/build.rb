@@ -5,7 +5,12 @@ class Build
 
   attr_accessor :hashes
 
-  RESOURCE_TYPES = ["Location", "NpcBlueprint", "Resource",
+  RESOURCE_TYPES = [
+    "Skill",
+    "Stat",
+    "Location",
+    "NpcBlueprint",
+    "Resource",
     "CombatProfile"]
 
   def initialize

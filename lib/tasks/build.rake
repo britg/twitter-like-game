@@ -2,8 +2,7 @@ require "#{Rails.root}/build/build"
 
 def y(*args) end
 namespace :build do
-  desc "TODO"
-
+  desc "Tasks for build the game"
   task clean: :environment do
     rebuild_game!
   end

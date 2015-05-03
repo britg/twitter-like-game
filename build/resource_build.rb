@@ -1,0 +1,3 @@
+class ResourceBuild < ObjectBuild
+
+end

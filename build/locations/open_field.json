@@ -14,7 +14,7 @@
   ],
   "mobs": [
     {
-      "npc_blueprint": "injured_black_bear",
+      "npc_blueprint": "gray_wolf",
       "rarity": "common"
     }
   ],

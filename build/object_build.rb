@@ -1,6 +1,7 @@
 class ObjectBuild
-  def initialize hash
+  def initialize hash, build
     @hash = hash
+    @build = build
   end
 
   def slug
@@ -16,12 +17,21 @@ class ObjectBuild
   end
 
   def create_or_update
-    return update if existing.preset?
+    return update if existing.present?
     create
   end
 
   def build_dependency obj_type, slug
-    Build.new.update_slug(obj_type, slug)
+    puts "Building dependency #{obj_type} #{slug}"
+    @build.ensure_existence(obj_type, slug)
+  end
+
+  def create
+    puts "#{self.class} needs a create implementation"
+  end
+
+  def update
+    puts "#{self.class} needs an update implementation"
   end
 
 end

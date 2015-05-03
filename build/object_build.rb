@@ -17,7 +17,11 @@ class ObjectBuild
   end
 
   def create_or_update
-    return update if existing.present?
+    if existing.present?
+      update  
+      return existing
+    end
+    puts "!!#{slug} not found!!"
     create
   end
 
@@ -32,6 +36,19 @@ class ObjectBuild
 
   def update
     puts "#{self.class} needs an update implementation"
+  end
+
+  def method_missing method, *args
+    if method.match(/associate_/)
+      do_association(method)
+    end
+  end
+
+  def do_association method_name
+    name = method_name.to_s.gsub("associate_", '')
+    type = name.camelcase
+    assoc = build_dependency(type, @hash[name])
+    existing.update_attributes("#{name}" => assoc)
   end
 
 end

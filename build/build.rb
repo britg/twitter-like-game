@@ -48,6 +48,8 @@ class Build
   end
 
   def ensure_existence type, slug
+    existing = type.constantize.where(slug: slug).first
+    return existing if existing.present?
     load_json(type)
     found = nil
     @hashes[type].each do |hash|

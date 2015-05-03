@@ -16,6 +16,7 @@ class LocationBuild < ObjectBuild
     embed_mobs
     associate_resource_nodes
     embed_landmarks
+    @location
   end
 
   def update
@@ -32,8 +33,7 @@ class LocationBuild < ObjectBuild
 
   def embed_mob mob_hash
     npc_blueprint = mob_hash["npc_blueprint"]
-    build_dependency("NpcBlueprint", npc_blueprint)
-    blueprint = NpcBlueprint.where(slug: npc_blueprint).first
+    blueprint = build_dependency("NpcBlueprint", npc_blueprint)
     mob = @location.mobs.find_or_create_by(
       npc_blueprint: blueprint
     )

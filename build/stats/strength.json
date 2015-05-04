@@ -1,0 +1,6 @@
+{
+  "type": "Stat",
+  "name": "Strength",
+  "slug": "str",
+  "calculator_class": "StrengthCalculator"
+}

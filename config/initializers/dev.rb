@@ -57,30 +57,30 @@ end
 # Rebuilding
 ##
 
-class Build
-
-  def initialize
-    @stages = { 0 => [], 1 => [] }
-  end
-
-  def <<(_proc)
-    @stages[0] << _proc
-  end
-
-  def deferred _proc
-    @stages[1] << _proc
-  end
-
-  def run!
-    @stages.each do |stage, arr|
-      arr.each do |_proc|
-        _proc.call
-      end
-    end
-
-  end
-
-end
+# class Build
+#
+#   def initialize
+#     @stages = { 0 => [], 1 => [] }
+#   end
+#
+#   def <<(_proc)
+#     @stages[0] << _proc
+#   end
+#
+#   def deferred _proc
+#     @stages[1] << _proc
+#   end
+#
+#   def run!
+#     @stages.each do |stage, arr|
+#       arr.each do |_proc|
+#         _proc.call
+#       end
+#     end
+#
+#   end
+#
+# end
 
 def rebuild_game!
   @mark = Time.now

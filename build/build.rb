@@ -8,13 +8,14 @@ class Build
   RESOURCE_TYPES = [
     "Skill",
     "Stat",
-    "Location",
-    "NpcBlueprint",
     "Resource",
-    "CombatProfile"]
+    "CombatProfile",
+    "NpcBlueprint",
+    "Location"
+  ]
 
   def initialize
-    @hashes = []
+    @hashes = {}
   end
 
   def load_all
@@ -76,6 +77,7 @@ class Build
 
   def create_or_update hash
     type = hash["type"]
+    raise "No type defined" if type.empty?
     builder = "#{type}Build"
     klass = builder.constantize
     inst = klass.new(hash, self)

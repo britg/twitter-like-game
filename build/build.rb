@@ -11,8 +11,18 @@ class Build
     "Resource",
     "CombatProfile",
     "NpcBlueprint",
-    "Location"
+    "Location",
+    "Character"
   ]
+
+  def self.whipe!
+    RESOURCE_TYPES.each do |t|
+      t.constantize.delete_all
+    end
+    Player.delete_all
+    User.delete_all
+    Battle.delete_all
+  end
 
   def initialize
     @hashes = {}

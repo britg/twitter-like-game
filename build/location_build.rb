@@ -13,16 +13,15 @@ class LocationBuild < ObjectBuild
 
   def create
     @location = Location.create(props)
-    embed_mobs
-    associate_resource_nodes
-    embed_landmarks
-    @location
+    update
   end
 
   def update
-    @location = existing
+    @location ||= existing
     @location.update_attributes(props)
     embed_mobs
+    embed_landmarks
+    @location
   end
 
   def embed_mobs
@@ -47,7 +46,18 @@ class LocationBuild < ObjectBuild
   end
 
   def embed_landmarks
+    @hash["landmarks"].each do |landmark_hash|
+      embed_landmark(landmark_hash)
+    end
+  end
 
+  def embed_landmark landmark_hash
+    build_dependency(landmark_hash["type"], landmark_hash["slug"])
+    @location.landmarks.create(
+      name: landmark_hash["name"],
+      slug: landmark_hash["slug"],
+      rarity: landmark_hash["rarity"]
+    )
   end
 
 end

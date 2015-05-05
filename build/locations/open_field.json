@@ -26,8 +26,9 @@
   ],
   "landmarks": [
     {
+      "type": "Location",
+      "name": "World's End Tavern",
       "slug": "worlds_end_tavern",
-      "obj": "worlds_end_tavern",
       "rarity": "common"
     }
   ]

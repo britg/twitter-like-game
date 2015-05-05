@@ -1,0 +1,15 @@
+{
+  "type": "Location",
+  "name": "World's End Tavern",
+  "slug": "worlds_end_tavern",
+  "entrance_details": [
+    "It's the World's End Tavern. For how legendary it is, you though it would be more... grand."
+  ],
+  "observe_details": [
+    "The tavern looks like it blew into place during the last storm.",
+    "Looks like it'll blow out of place in the next"
+  ],
+  "mobs": [],
+  "resource_nodes": [],
+  "landmarks": []
+}

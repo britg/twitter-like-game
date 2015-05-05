@@ -45,6 +45,7 @@ class ObjectBuild
     puts "#{self.class} needs an update implementation"
     @obj ||= existing
     @obj.update_attributes(props)
+    @obj
   end
 
   def method_missing method, *args

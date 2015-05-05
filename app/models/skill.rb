@@ -6,7 +6,10 @@ class Skill
 
   field :name, type: String
   field :group, type: String
-  field :calculator_class, type: String
+
+  def calculator_class
+    "#{slug.camelcase}Calculator"
+  end
 
   def calculator
     calculator_class.constantize rescue PassthroughCalculator

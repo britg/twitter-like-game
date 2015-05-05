@@ -1,6 +1,6 @@
 {
   "type": "Skill",
-  "name": "Adventuring",
+  "name": "Evasion",
   "slug": "adventuring",
-  "group": "Basic"
+  "group": "Stealth"
 }

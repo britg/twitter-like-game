@@ -33,7 +33,7 @@ class ExplorationCombatProcessor
 
   def create_aggro_event mob
     @player.add_event(
-      detail: "#{mob.to_s} notices you and attacks!"
+      detail: "While exploring, a #{mob.to_s} notices you and attacks!"
     )
   end
 

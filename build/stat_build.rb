@@ -4,7 +4,6 @@ class StatBuild < ObjectBuild
     {
       name: @hash["name"],
       slug: @hash["slug"],
-      calculator_class: @hash["calculator_class"]
     }
   end
 

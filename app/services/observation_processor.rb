@@ -40,10 +40,11 @@ class ObservationProcessor
     observed_index+1
   end
 
-  def next_observation_detail
+  def next_observation_detail should_reset = false
     details = location.observe_details.to_a
     next_index = next_observation_detail_index
     if next_index >= details.count
+      return nil unless should_reset
       next_index = 0
       location_state.observed_details = [0]
     else
@@ -55,8 +56,10 @@ class ObservationProcessor
   end
 
   def create_observe_event
+    detail = next_observation_detail
+    return unless detail.present?
     @player.add_event(
-      detail: next_observation_detail
+      detail: detail
     )
   end
 

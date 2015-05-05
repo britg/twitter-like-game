@@ -67,6 +67,7 @@ class ExplorationProcessor
 
   def process
     create_explore_event
+    ObservationProcessor.new(@player).create_observe_event
     return combat_proc.start_battle if combat_proc.combat?
     return resource_proc.start_interaction if resource_proc.resource?
 
@@ -121,7 +122,7 @@ class ExplorationProcessor
     actions = []
     actions << Action.new(label: "Explore", key: :explore)
 
-    actions << Action.new(label: "Observe", key: :observe)
+    # actions << Action.new(label: "Observe", key: :observe)
 
     # find_action = Action.new(label: "Find", key: :find)
     # find_action.child_actions.build(label: "Reagents", key: "find->reagents")

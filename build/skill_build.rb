@@ -4,8 +4,7 @@ class SkillBuild < ObjectBuild
     {
       name: @hash["name"],
       slug: @hash["slug"],
-      group: @hash["group"],
-      calculator_class: @hash["calculator_class"]
+      group: @hash["group"]
     }
   end
 

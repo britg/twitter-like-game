@@ -10,7 +10,6 @@ class Landmark
   field :slug, type: String
   field :rarity, type: String, default: Rarity::COMMON
   field :type, type: String
-  field :object_id, type: BSON::ObjectId
   field :moves, type: Boolean, default: false
   field :auto_discovered, type: Boolean, default: false
 
@@ -19,26 +18,12 @@ class Landmark
 
   validates_inclusion_of :type, in: TYPES
 
-  def set_object obj
-    self.type = obj.class.to_s
-    self.object_id = obj.id
-  end
-
-  def set_object! obj
-    set_object(obj)
-    save
-  end
-
   def obj_class
     type.constantize
   end
 
-  def obj= thing
-    set_object(thing)
-  end
-
   def obj
-    obj_class.where(id: object_id).first
+    obj_class.where(slug: slug).first
   end
 
   def to_s

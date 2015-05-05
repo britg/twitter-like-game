@@ -1,4 +1,5 @@
 {
   "type": "CombatProfile",
+  "name": "Basic Attack",
   "slug": "attack"
 }

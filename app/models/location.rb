@@ -10,7 +10,7 @@ class Location
   field :observe_details, type: Array
 
   embeds_many :landmarks
-  index({"landmarks.slug" => 1}, {unique: true})
+  index({"landmarks.slug" => 1})
 
   embeds_many :mobs # A reference to an NPC Blueprint with attached rarity
   embeds_many :resource_nodes

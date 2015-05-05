@@ -54,9 +54,11 @@ class LocationBuild < ObjectBuild
   def embed_landmark landmark_hash
     build_dependency(landmark_hash["type"], landmark_hash["slug"])
     @location.landmarks.create(
+      type: landmark_hash["type"],
       name: landmark_hash["name"],
       slug: landmark_hash["slug"],
-      rarity: landmark_hash["rarity"]
+      rarity: landmark_hash["rarity"],
+      auto_discovered: landmark_hash["auto_discovered"]
     )
   end
 

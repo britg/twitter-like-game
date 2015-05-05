@@ -10,6 +10,7 @@ configatron.stamina_to_hp_multiplier = 2
 
 configatron.player_gold = 100
 
+configatron.player_base_hp = 100
 configatron.player_base_strength = 10
 configatron.player_base_dexterity = 10
 configatron.player_base_stamina = 10

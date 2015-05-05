@@ -16,12 +16,21 @@ class Build
   ]
 
   def self.whipe!
-    RESOURCE_TYPES.each do |t|
-      t.constantize.delete_all
-    end
-    Player.delete_all
-    User.delete_all
-    Battle.delete_all
+    Player.collection.drop
+    LocationState.collection.drop
+    Event.collection.drop
+    User.collection.drop
+    Battle.collection.drop
+    Character.collection.drop
+    CombatProfile.collection.drop
+    Location.collection.drop
+    NpcBlueprint.collection.drop
+    Npc.collection.drop
+    Resource.collection.drop
+    Skill.collection.drop
+    Slot.collection.drop
+    Stat.collection.drop
+    ::Mongoid::Tasks::Database.create_indexes
   end
 
   def initialize

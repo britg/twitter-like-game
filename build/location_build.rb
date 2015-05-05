@@ -58,7 +58,8 @@ class LocationBuild < ObjectBuild
       name: landmark_hash["name"],
       slug: landmark_hash["slug"],
       rarity: landmark_hash["rarity"],
-      auto_discovered: landmark_hash["auto_discovered"]
+      auto_discovered: landmark_hash["auto_discovered"],
+      discovery_details: landmark_hash["discovery_details"]
     )
   end
 

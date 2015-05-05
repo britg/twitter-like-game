@@ -29,7 +29,10 @@
       "type": "Location",
       "name": "World's End Tavern",
       "slug": "worlds_end_tavern",
-      "rarity": "common"
+      "rarity": "common",
+      "discovery_details": [
+        "A run-down tavern stands (barely) off in the distance. Its windows glow with orange light."
+      ]
     }
   ]
 }

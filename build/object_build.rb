@@ -31,12 +31,20 @@ class ObjectBuild
     @build.ensure_existence(obj_type, slug)
   end
 
+  def props
+    @hash.except("type")
+  end
+
   def create
     puts "#{self.class} needs a create implementation"
+    @obj = type.create(props)
+    update
   end
 
   def update
     puts "#{self.class} needs an update implementation"
+    @obj ||= existing
+    @obj.update_attributes(props)
   end
 
   def method_missing method, *args

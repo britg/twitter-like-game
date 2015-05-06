@@ -6,6 +6,7 @@ class Build
   attr_accessor :hashes
 
   RESOURCE_TYPES = [
+    "Rarity",
     "Skill",
     "Stat",
     "Slot",
@@ -17,6 +18,7 @@ class Build
   ]
 
   def self.whipe!
+    Rarity.collection.drop
     Player.collection.drop
     LocationState.collection.drop
     Event.collection.drop

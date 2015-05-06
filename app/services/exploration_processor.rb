@@ -67,7 +67,7 @@ class ExplorationProcessor
 
   def process
     create_explore_event
-    ObservationProcessor.new(@player).create_observe_event
+    create_observe_event
     return combat_proc.start_battle if combat_proc.combat?
     return resource_proc.start_interaction if resource_proc.resource?
 
@@ -90,6 +90,10 @@ class ExplorationProcessor
     # e.g. revisiting old landmarks
     # hinting at landmarks
     first_undiscovered_landmark
+  end
+
+  def create_observe_event
+    ObservationProcessor.new(@player).create_observe_event
   end
 
   def create_explore_event

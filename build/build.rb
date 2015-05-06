@@ -8,6 +8,7 @@ class Build
   RESOURCE_TYPES = [
     "Skill",
     "Stat",
+    "Slot",
     "Resource",
     "CombatProfile",
     "NpcBlueprint",

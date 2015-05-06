@@ -1,0 +1,2 @@
+class SlotBuild < ObjectBuild
+end

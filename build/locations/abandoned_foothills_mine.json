@@ -1,0 +1,18 @@
+{
+  "type": "Location",
+  "name": "Abandoned Foothills Mine",
+  "slug": "abandoned_foothills_mine",
+  "adventuring_level": 10.0,
+  "entrance_details": [
+    "This mine hasn't been used in years but remnants of rusty mining equipment lay about. Rail tracks lead down into the darkness."
+  ],
+  "observe_details": [
+
+  ],
+  "mobs": [
+    {
+      "npc_blueprint": "loadstone_rat",
+      "rarity": "common"
+    }
+  ]
+}

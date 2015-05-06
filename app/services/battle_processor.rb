@@ -111,7 +111,7 @@ class BattleProcessor
 
   def prompt_battle_event player
     player.add_event(
-      detail: "You see an opportunity to attack..."
+      detail: "You consider your strategy..."
     )
   end
 

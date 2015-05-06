@@ -12,12 +12,6 @@
   "mobs": [],
   "resource_nodes": [],
   "landmarks": [
-    {
-      "type": "Location",
-      "name": "Open Field",
-      "slug": "open_field",
-      "rarity": "common",
-      "auto_discovered": true
-    }
+
   ]
 }

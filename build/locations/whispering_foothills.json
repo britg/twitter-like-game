@@ -1,0 +1,31 @@
+{
+  "type": "Location",
+  "name": "Whispering Foothills",
+  "slug": "whispering_foothills",
+  "adventuring_level": 10.0,
+  "entrance_details": [
+    "The rolling slopes of the Whispering Foothills begin just a few spans away: the gateway to World's End."
+  ],
+  "observe_details": [
+
+  ],
+  "mobs": [
+    {
+      "npc_blueprint": "gray_wolf",
+      "rarity": "common"
+    }
+  ],
+  "resource_nodes": [],
+  "landmarks": [
+    {
+      "type": "Location",
+      "name": "World's End Tavern",
+      "slug": "worlds_end_tavern",
+      "rarity": "common",
+      "discovery_details": [
+        "A haphazardly constructed tavern sits along the road just inside the first foothills."
+      ]
+    }
+  ]
+
+}

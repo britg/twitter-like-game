@@ -17,4 +17,4 @@ configatron.player_base_stamina = 10
 configatron.player_base_intelligence = 10
 configatron.player_base_luck = 10
 
-configatron.location = :open_field
+configatron.location = :whispering_foothills

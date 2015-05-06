@@ -1,5 +1,5 @@
 module Calculator
-  include ActiveSupport::Concern
+  extend ActiveSupport::Concern
 
   def initialize _agent, _base_value
     @agent = _agent

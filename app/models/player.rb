@@ -24,7 +24,6 @@ class Player
 
   has_many :events
   has_many :location_states
-  index({"location_states.location_id" => 1}, {unique: true})
 
   field :name, type: String
   field :experience, type: Integer

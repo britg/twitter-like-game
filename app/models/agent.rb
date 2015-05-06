@@ -8,6 +8,8 @@ class Agent
   embeds_many :slots, class_name: "AgentSlot"
   embeds_many :skills, class_name: "AgentSkill"
 
+  field :level, type: Integer, default: 1
+  field :exp, type: Integer, default: 0
   field :current_initiative, type: Integer, default: 0
 
   # Stats - increase through skills and items
@@ -64,13 +66,6 @@ class Agent
 
   def dead?
     hp.value < 1
-  end
-
-  def weapon_type
-    # TODO
-    # Look down at the main hand weapon to determine type
-    # Default if no weapon equipped is Melee
-    return WeaponType::UNARMED if main_hand.empty?
   end
 
   def apply_delta agent_delta

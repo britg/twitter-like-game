@@ -1,0 +1,6 @@
+{
+  "type": "NpcBlueprint",
+  "name": "Loadstone Rat",
+  "slug": "loadstone_rat",
+  "combat_profile": "attack"
+}

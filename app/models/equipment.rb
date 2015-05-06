@@ -11,6 +11,6 @@ class Equipment
   has_many :skill_requirements
 
   field :name, type: String
-  field :rarity, type: String
+  belongs_to :rarity
 
 end

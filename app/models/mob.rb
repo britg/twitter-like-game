@@ -5,7 +5,7 @@ class Mob
 
   embedded_in :location
   belongs_to :npc_blueprint
-  field :rarity, type: String, default: Rarity::COMMON
+  belongs_to :rarity
 
   def to_s
     npc_blueprint.name

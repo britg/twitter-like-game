@@ -4,6 +4,6 @@ class ResourceNode
   embedded_in :location
 
   belongs_to :resource
-  field :rarity, type: String, default: Rarity::COMMON
+  belongs_to :rarity
 
 end

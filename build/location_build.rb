@@ -37,7 +37,7 @@ class LocationBuild < ObjectBuild
       npc_blueprint: blueprint
     )
     mob.update_attributes(
-      rarity: mob_hash["rarity"]
+      rarity: Rarity.slug(mob_hash["rarity"])
     )
   end
 
@@ -57,7 +57,7 @@ class LocationBuild < ObjectBuild
       type: landmark_hash["type"],
       name: landmark_hash["name"],
       slug: landmark_hash["slug"],
-      rarity: landmark_hash["rarity"],
+      rarity: Rarity.slug(landmark_hash["rarity"]),
       auto_discovered: landmark_hash["auto_discovered"],
       discovery_details: landmark_hash["discovery_details"]
     )

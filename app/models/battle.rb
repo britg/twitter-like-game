@@ -7,6 +7,7 @@ class Battle
   has_and_belongs_to_many :npcs, inverse_of: nil
 
   field :combined_initiative, type: Integer, default: DEFAULT_INITIATIVE
+  field :current_tick, type: Integer, default: 0
 
   def victory?
     # TODO determine if any npcs are still alive
@@ -19,6 +20,10 @@ class Battle
 
   def active_participants
     players.where(dead: false) | npcs.where(dead: false)
+  end
+
+  def tick!
+    inc(current_tick: 1)
   end
 
 end

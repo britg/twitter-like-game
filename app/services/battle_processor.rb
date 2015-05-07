@@ -10,8 +10,8 @@ class BattleProcessor
     @names ||= @battle.participants.map(&:to_s)
   end
 
-  def initiative_resolver
-    @initiative_resolver ||= InitiativeResolver.new(@battle)
+  def initiative_processor
+    @initiative_processor ||= InitiativeProcessor.new(@battle)
   end
 
   def evasion_resolver
@@ -44,7 +44,7 @@ class BattleProcessor
       assign_loot
       cleanup_battle
     else
-      next_turn!
+      next_tick
     end
   end
 
@@ -84,8 +84,33 @@ class BattleProcessor
     end
   end
 
+  def next_tick
+    @battle.tick!
+    battle_actions = initiative_processor.process
+    
+    process and return if battle_actions.empty?
+
+    battle_actions.each do |battle_action|
+      process_battle_action(battle_action)
+    end
+  end
+
+  def process_battle_action battle_action
+    if battle_action.attack?
+      # TEMP - need real target determination
+      targets = @battle.participants - [battle_action.participant]
+      perform_attack(battle_action.participant, targets)
+    else
+      if battle_action.npc_decision?
+        process_npc_turn(battle_action.participant)
+      else
+        prompt_battle_event(battle_action.participant)
+      end
+    end
+  end
+
   def next_turn!
-    @current_turn_participant = initiative_resolver.next_participant
+    @current_turn_participant = initiative_processor.next_participant
     return unless @current_turn_participant.present?
     if @current_turn_participant.player?
       prompt_battle_event @current_turn_participant.player

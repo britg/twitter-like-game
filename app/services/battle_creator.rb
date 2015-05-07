@@ -14,10 +14,12 @@ class BattleCreator
     @battle
   end
 
-  def set_initiative_mark
+  def set_ticks
     sum = 0
     @battle.participants.each do |participant|
       sum += participant.ap.value
+      participant.agent.update_attributes(current_battle_tick: 0,
+        current_initiative: 0)
     end
     @battle.update_attributes(combined_initiative: sum)
   end

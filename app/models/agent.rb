@@ -11,6 +11,7 @@ class Agent
   field :level, type: Integer, default: 1
   field :exp, type: Integer, default: 0
   field :current_initiative, type: Integer, default: 0
+  field :current_battle_tick, type: Integer, default: 0
 
   # Stats - increase through skills and items
 
@@ -28,6 +29,7 @@ class Agent
   # based on current weapon and your skills
   def attack() stat(:attack) end
   def armor() stat(:armor) end
+  def attack_speed() stat(:attack_speed) end # attacks/sec
   def hit_chance() stat(:hit_chance) end
   def crit_chance() stat(:crit_chance) end
   def dodge() stat(:dodge) end

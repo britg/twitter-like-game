@@ -1,6 +1,7 @@
-class AgentDelta < ActiveHash::Base
+class AgentDelta
+  include Mongoid::Document
 
-  field :hp
+  field :hp, type: Integer
 
   def to_s
     parts = []

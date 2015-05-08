@@ -1,14 +1,12 @@
 class AgentDelta
   include Mongoid::Document
 
-  field :hp, type: Integer
+  field :type, type: String
+  field :slug, type: String
+  field :amount, type: Integer
 
   def to_s
-    parts = []
-    attributes.each do |name, value|
-      parts << "#{name}: #{value}"
-    end
-    parts.join(' ')
+    "#{slug}: #{amount}"
   end
 
 end

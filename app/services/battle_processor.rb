@@ -167,6 +167,8 @@ class BattleProcessor
   end
 
   def perform_attack attacker, targets
+    # TODO Refactor to produce more than one agent delta for
+    # an attack
     targets.each do |target|
       agent_delta = AttackDeltaResolver.new(attacker, target.agent).agent_delta
       create_attack_event(target, attacker, agent_delta)

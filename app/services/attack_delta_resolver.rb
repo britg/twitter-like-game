@@ -10,7 +10,8 @@ class AttackDeltaResolver
     # use agent info like:
       # weapon
       # str, dex, etc
-    AgentDelta.new(hp: -Random.rand(5) - 5)
+    amount = -Random.rand(5) - 5
+    AgentDelta.new(type: "Stat", slug: "hp", amount: amount)
   end
 
 end

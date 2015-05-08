@@ -71,12 +71,7 @@ class Agent
   end
 
   def apply_delta agent_delta
-    agent_delta.attributes.each do |stat_name, stat_delta|
-      debug stat_name, stat_delta
-      stat_to_change = stat(stat_name.to_sym)
-      debug stat_name, stat_to_change.to_json
-      stat_to_change.update_attribute(:current_offset, stat_to_change.current_offset + stat_delta)
-    end
-    save
+    # TODO actually implement
+    hp.inc(current_offset: agent_delta.amount)
   end
 end

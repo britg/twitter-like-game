@@ -6,8 +6,6 @@ class Resource
   ORE = "ore"
 
   # Requirements
-  embeds_many :discovery_requirements, class_name: "SkillRequirement"
-  embeds_many :harvest_requirements, class_name: "SkillRequirement"
 
   field :type, type: String
   field :name, type: String

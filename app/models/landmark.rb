@@ -4,7 +4,6 @@ class Landmark
   TYPES = ["Location"]
 
   embedded_in :location
-  embeds_many :discovery_requirements, class_name: "SkillRequirement"
 
   field :name, type: String
   field :slug, type: String
@@ -40,13 +39,6 @@ class Landmark
 
   def location?
     type == "Location"
-  end
-
-  def discovery_req= params
-    arr = Array(params)
-    arr.each do |p|
-      discovery_requirements.build(p)
-    end
   end
 
   def discovery_detail

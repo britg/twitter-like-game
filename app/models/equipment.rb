@@ -3,12 +3,10 @@ class Equipment
 
   belongs_to :slot
 
-  has_many :stat_bonuses
-  has_many :skill_bonuses
+  embeds_many :agent_deltas
+  embeds_many :agent_requirements
 
-  field :level_requirement
-  has_many :stat_requirements
-  has_many :skill_requirements
+  field :level_requirement, type: Integer
 
   field :name, type: String
   belongs_to :rarity

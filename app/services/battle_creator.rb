@@ -11,6 +11,7 @@ class BattleCreator
     @players.each do |player|
       player.update_attributes(battle: @battle)
     end
+    set_ticks
     @battle
   end
 

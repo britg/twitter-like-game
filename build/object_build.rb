@@ -36,13 +36,11 @@ class ObjectBuild
   end
 
   def create
-    puts "#{self.class} needs a create implementation"
     @obj = type.create(props)
     update
   end
 
   def update
-    puts "#{self.class} needs an update implementation"
     @obj ||= existing
     @obj.update_attributes(props)
     @obj

@@ -1,2 +1,0 @@
-class SlotBuild < ObjectBuild
-end

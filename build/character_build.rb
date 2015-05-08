@@ -1,3 +1,0 @@
-class CharacterBuild < ObjectBuild
-
-end

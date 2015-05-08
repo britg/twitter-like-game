@@ -103,7 +103,7 @@ class Build
     type = hash["type"]
     raise "No type defined" if type.empty?
     builder = "#{type}Build"
-    klass = builder.constantize
+    klass = builder.constantize rescue ObjectBuild
     inst = klass.new(hash, self)
     inst.create_or_update
   end

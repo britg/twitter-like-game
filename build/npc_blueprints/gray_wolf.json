@@ -2,5 +2,12 @@
   "type": "NpcBlueprint",
   "name": "Gray Wolf",
   "slug": "gray_wolf",
-  "combat_profile": "attack"
+  "_combat_profile": "attack",
+  "agent_attributes": [
+    {
+      "type": "Stat",
+      "slug": "str",
+      "amount": 3
+    }
+  ]
 }

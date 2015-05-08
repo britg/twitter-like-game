@@ -6,23 +6,7 @@
   "_slot": "main_hand",
   "level_requirement": 0,
   "agent_deltas": [
-    {
-      "type": "Stat",
-      "slug": "str",
-      "range": [5, 10],
-      "amount": 7
-    },
-    {
-      "type": "Stat",
-      "slug": "dex",
-      "range": [1, 3]
-    }
   ],
   "agent_requirements": [
-    {
-      "type": "Skill",
-      "slug": "adventuring",
-      "min": 20.1
-    }
   ]
 }

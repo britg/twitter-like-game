@@ -10,16 +10,6 @@ class NpcBlueprintBuild < ObjectBuild
   def create
     @npc_blueprint = NpcBlueprint.create(props)
     associate_combat_profile
-    embed_stat_blueprints
-    embed_skill_blueprints
-  end
-
-  def embed_stat_blueprints
-
-  end
-
-  def embed_skill_blueprints
-
   end
 
 end

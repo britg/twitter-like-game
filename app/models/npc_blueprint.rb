@@ -5,9 +5,7 @@ class NpcBlueprint
   belongs_to :combat_profile
 
   field :name, type: String
-
-  embeds_many :stat_blueprints
-  embeds_many :skill_blueprints
+  embeds_many :agent_deltas
 
   def to_s
     name

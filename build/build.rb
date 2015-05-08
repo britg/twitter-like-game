@@ -11,6 +11,7 @@ class Build
     "Stat",
     "Slot",
     "Resource",
+    "EquipmentBlueprint",
     "CombatProfile",
     "NpcBlueprint",
     "Location",
@@ -33,6 +34,7 @@ class Build
     Skill.collection.drop
     Slot.collection.drop
     Stat.collection.drop
+    EquipmentBlueprint.collection.drop
     ::Mongoid::Tasks::Database.create_indexes
   end
 

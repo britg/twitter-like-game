@@ -1,0 +1,3 @@
+class EquipmentBlueprintBuild < ObjectBuild
+
+end

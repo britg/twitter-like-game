@@ -3,10 +3,17 @@ class AgentDelta
 
   field :type, type: String
   field :slug, type: String
-  field :amount, type: Integer
+  field :range, type: Range
+  field :amount, type: Float
 
   def to_s
-    "#{slug}: #{amount}"
+    "#{slug}: #{value}"
   end
+
+  def value
+    return amount if amount.present?
+    rand(range)
+  end
+
 
 end

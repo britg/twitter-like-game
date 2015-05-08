@@ -1,3 +1,5 @@
 if defined?(Pry) && Rails.env.development?
-  # Moped.logger = Logger.new($stdout)
+  def debug_mongo!
+    Moped.logger = Logger.new($stdout)
+  end
 end

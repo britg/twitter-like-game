@@ -39,13 +39,11 @@ class BattleProcessor
 
   def process
     handle_dead_participants
-    if @battle.victory?
-      notify_victory
-      assign_loot
-      cleanup_battle
-    else
-      next_tick
-    end
+    do_victory and return if @battle.victory?
+
+    tick_actions = next_tick
+    return if tick_actions.last.try(:player_decision?)
+    process
   end
 
   def handle_dead_participants
@@ -62,6 +60,12 @@ class BattleProcessor
     end
 
     @battle.save
+  end
+
+  def do_victory
+    notify_victory
+    assign_loot
+    cleanup_battle
   end
 
   def notify_victory
@@ -87,18 +91,18 @@ class BattleProcessor
   def next_tick
     @battle.tick!
     battle_actions = initiative_processor.process
-    
-    process and return if battle_actions.empty?
-
     battle_actions.each do |battle_action|
       process_battle_action(battle_action)
+      handle_dead_participants
     end
+    battle_actions
   end
 
   def process_battle_action battle_action
     if battle_action.attack?
       # TEMP - need real target determination
-      targets = @battle.participants - [battle_action.participant]
+      targets = @battle.active_participants - [battle_action.participant]
+      process and return if targets.empty?
       perform_attack(battle_action.participant, targets)
     else
       if battle_action.npc_decision?
@@ -136,7 +140,7 @@ class BattleProcessor
 
   def prompt_battle_event player
     player.add_event(
-      detail: "You consider your strategy..."
+      detail: "You've gained the initiative and consider your strategy..."
     )
   end
 
@@ -148,7 +152,7 @@ class BattleProcessor
     targets = profile_proc.determine_targets
 
     @battle.players.each do |player|
-      player.add_event(detail: "[#{npc.to_s}] does [#{action}] against [#{targets.map(&:to_s)}]!")
+      player.add_event(detail: "#{npc.to_s} has seized initiative and chooses [#{action}] against [#{targets.map(&:to_s)}]!")
     end
 
     #TODO perform action in a more graceful way
@@ -172,7 +176,7 @@ class BattleProcessor
 
   def create_attack_event target, perp, agent_delta
     @battle.players.each do |player|
-      player.add_event(detail: "#{target} takes #{agent_delta.to_s} from #{perp}")
+      player.add_event(detail: "#{perp} attacks: #{target} takes #{agent_delta.to_s} from #{perp}")
     end
   end
 

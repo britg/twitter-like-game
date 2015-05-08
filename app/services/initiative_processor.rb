@@ -16,15 +16,13 @@ class InitiativeProcessor
     attack_actions
     decision_actions
 
-    @tick_actions
+    @tick_actions.sort_by{ |a| a.player_decision? ? 1 : 0 }
   end
 
-
-  def process_battle_actions
+  def attack_actions
     participants.each do |participant|
       participant.agent.tap do |agent|
         agent.current_battle_tick += 1
-        agent.current_initiative += agent.ap.value
 
         if agent.current_battle_tick >= agent.attack_speed.value
           @tick_actions << BattleAction.new(
@@ -42,7 +40,6 @@ class InitiativeProcessor
   def decision_actions
     participants.each do |participant|
       participant.agent.tap do |agent|
-        agent.current_battle_tick += 1
         agent.current_initiative += agent.ap.value
 
         if agent.current_initiative >= @battle.combined_initiative

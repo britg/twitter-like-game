@@ -31,6 +31,9 @@ class Player
   field :gold, type: Integer, default: configatron.player_gold
 
   has_many :equipment
+  has_many :consumables
+  has_many :quest_items
+  has_many :vendor_items
 
   def ensure_continue_token
     if continue_token.blank?

@@ -1,0 +1,6 @@
+{
+  "type": "VendorItemBlueprint",
+  "name": "Bone Fragment",
+  "slug": "bone_fragment",
+  "gold_value_range": [5, 10]
+}

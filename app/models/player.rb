@@ -30,6 +30,8 @@ class Player
   field :level, type: Integer
   field :gold, type: Integer, default: configatron.player_gold
 
+  has_many :equipment
+
   def ensure_continue_token
     if continue_token.blank?
       self.continue_token = generate_continue_token

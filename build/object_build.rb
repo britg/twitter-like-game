@@ -13,7 +13,7 @@ class ObjectBuild
   end
 
   def existing
-    type.where(slug: slug).first
+    type.slug(slug)
   end
 
   def create_or_update

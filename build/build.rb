@@ -35,6 +35,7 @@ class Build
     Slot.collection.drop
     Stat.collection.drop
     EquipmentBlueprint.collection.drop
+    Equipment.collection.drop
     ::Mongoid::Tasks::Database.create_indexes
   end
 

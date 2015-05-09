@@ -5,7 +5,16 @@
   "_rarity": "common",
   "_slot": "main_hand",
   "level_requirement": 0,
+  "durability": [90, 100]
   "agent_deltas": [
+    {
+      "slug": "attack",
+      "range": [7, 12]
+    },
+    {
+      "slug": "attack_speed",
+      "amount": 1.3
+    }
   ],
   "agent_requirements": [
   ]

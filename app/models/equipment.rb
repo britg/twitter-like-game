@@ -1,5 +1,6 @@
 class Equipment
   include Mongoid::Document
+  include HasRarity
 
   belongs_to :slot
   belongs_to :player, index: true
@@ -12,6 +13,5 @@ class Equipment
   field :current_durability, type: Integer
 
   field :name, type: String
-  belongs_to :rarity
 
 end

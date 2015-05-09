@@ -1,8 +1,10 @@
 {
   "type": "ConsumableBlueprint",
   "name": "Minor Health Potion",
-  "slug": "minore_health_potion",
+  "slug": "minor_health_potion",
+  "level_requirement": 0,
   "target_type": "Player",
+  "_rarity": "common",
   "agent_deltas": [
     {
       "type": "Stat",

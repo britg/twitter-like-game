@@ -18,3 +18,7 @@ configatron.player_base_intelligence = 10
 configatron.player_base_luck = 10
 
 configatron.location = :whispering_foothills
+
+configatron.initial_quest_items = [:help_wanted_parchment]
+configatron.initial_equipment = [:short_sword]
+configatron.initial_consumables = [:minor_health_potion]

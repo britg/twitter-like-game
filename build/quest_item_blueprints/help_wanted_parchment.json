@@ -1,0 +1,6 @@
+{
+  "type": "QuestItemBlueprint",
+  "name": "Help Wanted Parchment",
+  "slug": "help_wanted_parchment",
+  "description": "A 'Help Wanted' parchment, saying to bring this to Otto at the World's End Tavern if you're looking for work and know how to fight."
+}

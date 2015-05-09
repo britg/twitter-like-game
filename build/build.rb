@@ -14,10 +14,12 @@ class Build
     "EquipmentBlueprint",
     "ConsumableBlueprint",
     "VendorItemBlueprint",
+    "QuestItemBlueprint",
     "CombatProfile",
     "NpcBlueprint",
     "Location",
-    "Character"
+    "Character",
+    "Quest",
   ]
 
   def self.whipe!
@@ -42,6 +44,9 @@ class Build
     Consumable.collection.drop
     VendorItemBlueprint.collection.drop
     VendorItem.collection.drop
+    Quest.collection.drop
+    QuestItemBlueprint.collection.drop
+    QuestItem.collection.drop
     ::Mongoid::Tasks::Database.create_indexes
   end
 

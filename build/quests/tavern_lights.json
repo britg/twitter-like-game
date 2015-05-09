@@ -1,0 +1,19 @@
+{
+  "type": "Quest",
+  "name": "The Tavern Lights",
+  "slug": "the_tavern_lights",
+  "description": "You've ridden east for weeks, headed for World's End. You're looking for a tavernkeep named Otto at the World's End Tavern. The sign back in Chathum said he was looking to hire anyone who could fight.",
+
+  "level_range": [0, 10],
+  "gold_reward": 0,
+  "experience_reward": 100,
+
+  "quest_requirements": [
+    {
+      "_quest_item": "help_wanted_parchment",
+      "quantity": 1
+    }
+  ],
+
+  "quest_rewards": []
+}

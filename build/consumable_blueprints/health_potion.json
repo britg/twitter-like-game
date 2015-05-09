@@ -1,0 +1,13 @@
+{
+  "type": "ConsumableBlueprint",
+  "name": "Minor Health Potion",
+  "slug": "minore_health_potion",
+  "target_type": "Player",
+  "agent_deltas": [
+    {
+      "type": "Stat",
+      "slug": "hp",
+      "range": [20, 30]
+    }
+  ]
+}

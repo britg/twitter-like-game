@@ -1,7 +1,9 @@
 
 Tabs:
   - Game
-  - Slots & equippable items
-  - Skills and Stats
-  - Location
+  - Equipment
+  - Inventory
+  - Quests
+  - Map
+  - Skills
   - Chat

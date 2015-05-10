@@ -19,21 +19,25 @@ body {
   left: 0;
   width: $nav-bar-width;
   height: 100%;
-  background: $dark-gray;
+  // background: $white;
 
   a {
     display: block;
     width: 100%;
-    height: $nav-bar-width;
-    background: $dark-gray;
-    border-bottom: 1px solid darken($dark-gray, 5%);
-    color: $light-gray;
-    font-size: 210%;
+    // background: $dark-gray;
+    // border-bottom: 1px solid darken($dark-gray, 5%);
+    color: $dark-gray;
+    // font-size: 210%;
     text-align: center;
+
+    i {
+      padding: $nav-bar-width/2 - 7;
+      display: block;
+    }
 
     &.selected {
       background: $white;
-      color: $dark-gray;
+      color: $blue;
       font-weight: bold;
     }
 

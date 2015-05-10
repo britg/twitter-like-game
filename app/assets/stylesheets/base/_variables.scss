@@ -3,7 +3,7 @@ $base-font-family: $helvetica;
 $heading-font-family: $base-font-family;
 
 // Font Sizes
-$base-font-size: 1em;
+$base-font-size: 0.8em;
 
 // Line height
 $base-line-height: 1.5;
@@ -37,4 +37,4 @@ $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $l
 
 // Layout
 $nav-bar-width: 50px;
-$player-bar-height: 30px;
+$player-bar-height: 20px;

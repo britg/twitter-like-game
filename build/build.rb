@@ -17,6 +17,7 @@ class Build
     "QuestItemBlueprint",
     "CombatProfile",
     "NpcBlueprint",
+    "Zone",
     "Location",
     "Character",
     "Quest",
@@ -31,6 +32,7 @@ class Build
     Battle.collection.drop
     Character.collection.drop
     CombatProfile.collection.drop
+    Zone.collection.drop
     Location.collection.drop
     NpcBlueprint.collection.drop
     Npc.collection.drop

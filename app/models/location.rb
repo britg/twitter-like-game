@@ -2,7 +2,10 @@ class Location
   include Mongoid::Document
   include HasSlug
 
+  belongs_to :zone
+
   field :name, type: String
+  field :description, type: String
   field :adventuring_level, type: Float
 
   field :entrance_details, type: Array

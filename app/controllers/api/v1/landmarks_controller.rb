@@ -1,6 +1,7 @@
 class Api::V1::LandmarksController < ApplicationController
 
   def index
-    render json: current_player.location_states, root: "locations"
+    @map = PlayerMapService.new(current_player).map
+    render json: @map, root: "map"
   end
 end

@@ -7,6 +7,7 @@ class LocationState
 
   delegate :slug, to: :location
   delegate :name, to: :location
+  delegate :zone, to: :location
 
   field :observed_details, type: Array, default: []
 

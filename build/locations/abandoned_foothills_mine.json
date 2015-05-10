@@ -1,5 +1,6 @@
 {
   "type": "Location",
+  "_zone": "loadstone_approach",
   "name": "Abandoned Foothills Mine",
   "slug": "abandoned_foothills_mine",
   "adventuring_level": 10.0,
@@ -16,6 +17,6 @@
     }
   ],
   "landmarks": [
-    
+
   ]
 }

@@ -1,5 +1,6 @@
 {
   "type": "Location",
+  "_zone": "loadstone_approach",
   "name": "World's End Tavern",
   "slug": "worlds_end_tavern",
   "entrance_details": [

@@ -1,5 +1,6 @@
 {
   "type": "Location",
+  "_zone": "loadstone_approach",
   "name": "Whispering Foothills",
   "slug": "whispering_foothills",
   "adventuring_level": 10.0,

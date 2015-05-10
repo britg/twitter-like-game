@@ -3,6 +3,7 @@ class LocationBuild < ObjectBuild
   def props
     {
       name: @hash["name"],
+      zone: Zone.slug(@hash["_zone"]),
       slug: @hash["slug"],
       adventuring_level: @hash["adventuring_level"],
       entrance_details: @hash["entrance_details"],

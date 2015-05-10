@@ -18,6 +18,7 @@ class Player
   belongs_to :user
   belongs_to :battle
   belongs_to :location
+  delegate :zone, to: :location
   field :landmark_id
 
   belongs_to :inventory

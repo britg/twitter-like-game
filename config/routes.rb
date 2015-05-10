@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :players, only: :show
       resources :actions, only: :create
+      resources :landmarks, only: :index
       get 'chat' => 'chat#chat'
     end
   end

@@ -12,6 +12,7 @@ class LandmarkState
 
   delegate :to_s, to: :landmark
   delegate :obj, to: :landmark
+  delegate :name, to: :landmark
 
   def to_action_key
     "landmark->#{slug}"
@@ -22,7 +23,7 @@ class LandmarkState
   end
 
   def obj_instance
-    
+
   end
 
 end

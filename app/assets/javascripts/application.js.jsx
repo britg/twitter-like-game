@@ -8,4 +8,5 @@
 //= require fetch
 //= require js-routes
 //= require constants
+//= require_tree ./lib
 //= require_tree ./components

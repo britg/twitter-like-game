@@ -15,6 +15,9 @@
       <a className=eventsClass onClick={this.navOptionSelected.bind(this, 'events')}>
         <i className="pe-7s-angle-right"></i>
       </a>
+      <a className=landmarksClass onClick={this.navOptionSelected.bind(this, 'landmarks')}>
+        <i className="pe-7s-map-2"></i>
+      </a>
       <a className=inventoryClass onClick={this.navOptionSelected.bind(this, 'inventory')}>
         <i className="pe-7s-hammer"></i>
       </a>
@@ -23,9 +26,6 @@
       </a>
       <a className=craftingClass onClick={this.navOptionSelected.bind(this, 'crafting')}>
         <i className="pe-7s-box2"></i>
-      </a>
-      <a className=landmarksClass onClick={this.navOptionSelected.bind(this, 'landmarks')}>
-        <i className="pe-7s-map-2"></i>
       </a>
       <a className=chatClass onClick={this.navOptionSelected.bind(this, 'chat')}>
         <i className="pe-7s-chat"></i>

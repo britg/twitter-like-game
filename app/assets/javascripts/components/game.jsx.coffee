@@ -19,35 +19,24 @@
   actionTaken: (key) ->
     @lastActedId = @lastEvent()._id
     $game = @
-    fetch Routes.api_v1_actions_path({format: "json"}),
-      credentials: 'include'
-      method: 'post'
-      headers:
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': $('meta[name=csrf-token]').attr("content")
-      body: JSON.stringify
-        player_action:
-          key: key
-    .then (response) ->
-      if response.status != 200
-        window.location.reload()
-        return
-      response.json()
-    .then (json) ->
-      $game.setState
-        player: json.player,
-        events: json.events.concat($game.state.events).slice(0, 100),
-        actions: json.actions
-    .catch (err) ->
-      console.log(err)
+    endpoint = Routes.api_v1_actions_path({format: "json"})
+    body =
+      player_action:
+        key: key
+    Api.req(endpoint, @updateGameState, "post", body)
+
+  updateGameState: (json) ->
+    @setState
+      player: json.player,
+      events: json.events.concat(@state.events).slice(0, 100),
+      actions: json.actions
 
   screen: ->
     screen = switch @state.activeScreen
       when "events" then <Story events={this.state.events} actions={this.state.actions} lastActedId={@lastActedId} />
+      when "landmarks" then <Landmarks />
       when "inventory" then <Inventory />
       when "crafting" then <Crafting />
-      when "landmarks" then <Landmarks />
       when "stats" then <Stats />
       when "chat" then <Chat />
 

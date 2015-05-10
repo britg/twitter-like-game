@@ -6,6 +6,7 @@ class LocationState
   embeds_many :landmark_states
 
   delegate :slug, to: :location
+  delegate :name, to: :location
 
   field :observed_details, type: Array, default: []
 

@@ -6,6 +6,7 @@ class PlayerMapService
 
   def map
     @map = Map.new
+    @map.can_travel = @player.can_travel?
     @map.discoveries = []
     @player.location_states.each do |location_state|
       zone = location_state.zone

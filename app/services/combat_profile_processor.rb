@@ -12,6 +12,8 @@ class CombatProfileProcessor
     # course of action
     @result = :attack
 
+    return @result unless @combat_profile.present?
+
     @combat_profile.combat_profile_conditions.each do |condition|
       if meets?(condition)
         @result = condition.result

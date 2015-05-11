@@ -5,7 +5,7 @@ class Api::V1::ActionsController < ApplicationController
   def create
     current_player.input action_params[:key]
     render json: current_player,
-           serializer: ActionResultSerializer,
+           serializer: StorySerializer,
            root: nil
   end
 

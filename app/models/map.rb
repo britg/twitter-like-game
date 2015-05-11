@@ -1,7 +1,7 @@
 class Map
   include Mongoid::Document
 
-  attr_accessor :discoveries
+  attr_accessor :discoveries, :can_travel
 
   def index_for_zone zone
     discoveries.each_with_index do |discovery, i|
@@ -18,6 +18,10 @@ class Map
       zone: ZoneSerializer.new(zone, root: nil),
       locations: []
     }
+  end
+
+  def can_travel?
+    !!@can_travel
   end
 
 end

@@ -1,3 +1,3 @@
 class LocationStateSerializer < ActiveModel::Serializer
-  attributes :id, :slug, :name
+  attributes :id, :slug, :name, :current_location?
 end

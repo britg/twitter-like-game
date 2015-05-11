@@ -22,7 +22,8 @@ class BattleCreator
       participant.agent.update_attributes(current_battle_tick: 0,
         current_initiative: 0)
     end
-    @battle.update_attributes(combined_initiative: sum)
+    mark = sum * configatron.battle_initiative_multiplier
+    @battle.update_attributes(combined_initiative: mark)
   end
 
 end

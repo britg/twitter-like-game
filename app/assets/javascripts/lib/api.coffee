@@ -1,7 +1,13 @@
 class window.Api
 
   @get: (endpoint, callback) ->
-    @req(endpoint, callback, "get")
+    @req(endpoint, callback, "GET")
+
+  @patch: (endpoint, callback, body) ->
+    @req(endpoint, callback, "PATCH", body)
+
+  @post: (endpoint, callback, body) ->
+    @req(endpoint, callback, "POST", body)
 
   @req: (endpoint, callback, method, body) ->
     params =

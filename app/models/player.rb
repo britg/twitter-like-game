@@ -119,6 +119,10 @@ class Player
   # Location/Landmark Convenience Methods
   ##
 
+  def can_travel?
+    !in_battle?
+  end
+
   def travel_to location_slug
     enter_location(Location.slug(location_slug))
   end
@@ -160,8 +164,11 @@ class Player
     action_processor.available_action_keys
   end
 
+  def mark_start_of_input event_id
+    @start_of_input_mark = event_id
+  end
+
   def input action_slug
-    @start_of_input_mark = current_event.id
     action_processor.process(action_slug)
     reload
     check_dead

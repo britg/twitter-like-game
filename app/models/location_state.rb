@@ -11,4 +11,13 @@ class LocationState
 
   field :observed_details, type: Array, default: []
 
+  def self.slug(slug)
+    l = Location.slug(slug)
+    where(location_id: l.id).first
+  end
+
+  def current_location?
+    player.location_id == location_id
+  end
+
 end

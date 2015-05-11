@@ -9,9 +9,14 @@
   componentDidMount: ->
     PubSub.subscribe Events.ACTION_TAKEN, @actionTaken
     PubSub.subscribe Events.NAV_SELECTED, @navSelected
+    PubSub.subscribe Events.SHOW_STORY, @showStoryAndUpdate
 
   navSelected: (key) ->
-    @setState(activeScreen: key)
+    if key == "events"
+      @showStoryAndUpdate()
+    else
+      @setState(activeScreen: key)
+
 
   lastEvent: ->
     @state.events[0]
@@ -19,11 +24,20 @@
   actionTaken: (key) ->
     @lastActedId = @lastEvent()._id
     $game = @
-    endpoint = Routes.api_v1_actions_path({format: "json"})
+    endpoint = Routes.api_v1_actions_path()
     body =
       player_action:
         key: key
-    Api.req(endpoint, @updateGameState, "post", body)
+      mark_id: @lastActedId
+    Api.post(endpoint, @updateGameState, body)
+
+  showStoryAndUpdate: ->
+    @setState(activeScreen: "events")
+    @requestUpdate()
+
+  requestUpdate: ->
+    endpoint = Routes.api_v1_story_index_path({mark_id: @lastEvent()._id})
+    Api.get(endpoint, @updateGameState)
 
   updateGameState: (json) ->
     @setState

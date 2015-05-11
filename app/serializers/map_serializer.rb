@@ -1,3 +1,3 @@
 class MapSerializer < ActiveModel::Serializer
-  attributes :id, :discoveries
+  attributes :id, :discoveries, :can_travel
 end

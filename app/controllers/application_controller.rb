@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
   def find_player
     return nil unless continue_token.present?
     @current_player = Player.where(continue_token: continue_token).first
+    return nil unless @current_player.present?
     @current_player.mark_start_of_input(params[:mark_id])
     @current_player
   end

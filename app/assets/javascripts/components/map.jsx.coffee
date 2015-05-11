@@ -1,4 +1,4 @@
-@Landmarks = React.createClass
+@Map = React.createClass
   getInitialState: ->
     map:
       id: ""
@@ -54,7 +54,7 @@
       travelMessage = @travelDisabledMessage()
 
     <div id="map">
-      <h1>Turrn</h1>
+      <h1>Map</h1>
       {travelMessage}
       <ul>
         {this.zoneComponent(zone) for zone in this.state.map.discoveries}

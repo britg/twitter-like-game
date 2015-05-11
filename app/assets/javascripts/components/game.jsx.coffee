@@ -48,9 +48,10 @@
   screen: ->
     screen = switch @state.activeScreen
       when "events" then <Story events={this.state.events} actions={this.state.actions} lastActedId={@lastActedId} />
-      when "landmarks" then <Landmarks />
+      when "map" then <Map />
+      when "equipment" then <Equipment />
       when "inventory" then <Inventory />
-      when "crafting" then <Crafting />
+      when "quests" then <Quests />
       when "stats" then <Stats />
       when "chat" then <Chat />
 

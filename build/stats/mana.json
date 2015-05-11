@@ -1,0 +1,6 @@
+{
+  "type": "Stat",
+  "name": "Mana",
+  "slug": "mana",
+  "base_value": 100
+}

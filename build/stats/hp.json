@@ -1,0 +1,6 @@
+{
+  "type": "Stat",
+  "name": "Hitpoints",
+  "slug": "hp",
+  "base_value": 100
+}

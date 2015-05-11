@@ -15,5 +15,13 @@ class AgentDelta
     rand(range)
   end
 
+  def stat?
+    type == "Stat"
+  end
+
+  def skill?
+    type == "Skill"
+  end
+
 
 end

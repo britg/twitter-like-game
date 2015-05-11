@@ -1,0 +1,6 @@
+{
+  "type": "Stat",
+  "name": "Action Points",
+  "slug": "ap",
+  "base_value": 10
+}

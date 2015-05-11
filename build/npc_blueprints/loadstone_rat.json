@@ -2,5 +2,17 @@
   "type": "NpcBlueprint",
   "name": "Loadstone Rat",
   "slug": "loadstone_rat",
-  "combat_profile": "attack"
+  "_combat_profile": "attack",
+  "agent_attributes": [
+    {
+      "type": "Stat",
+      "slug": "hp",
+      "amount": 12
+    },
+    {
+      "type": "Stat",
+      "slug": "str",
+      "amount": 2
+    }
+  ]
 }

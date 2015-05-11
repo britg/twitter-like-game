@@ -15,6 +15,19 @@ class NpcCreator
     @npc.create_agent
     # TODO use the blueprint to assign skill and stat
     # ranges
+
+    @npc_blueprint.agent_attributes.each do |agent_delta|
+      convert_agent_delta_to_agent_attribute(agent_delta)
+    end
+  end
+
+  def convert_agent_delta_to_agent_attribute agent_delta
+    if agent_delta.stat?
+      @npc.agent.stats.create(
+        slug: agent_delta.slug,
+        base_value: agent_delta.amount,
+      )
+    end
   end
 
 end

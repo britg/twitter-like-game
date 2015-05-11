@@ -6,6 +6,11 @@
   "agent_attributes": [
     {
       "type": "Stat",
+      "slug": "hp",
+      "amount": 20
+    },
+    {
+      "type": "Stat",
       "slug": "str",
       "amount": 3
     }

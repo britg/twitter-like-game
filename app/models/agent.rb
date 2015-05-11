@@ -54,6 +54,10 @@ class Agent
   def main_hand() slot(:main_hand) end
   def off_hand() slot(:off_hand) end
 
+  def owner
+    player||npc
+  end
+
   def stat slug
     stats.find_or_create_by(slug: slug)
   end
@@ -73,5 +77,6 @@ class Agent
   def apply_delta agent_delta
     # TODO actually implement
     hp.inc(current_offset: agent_delta.amount)
+    owner.check_dead
   end
 end

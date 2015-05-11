@@ -4,5 +4,6 @@ class Stat
   include HasCalculator
 
   field :name, type: String
+  field :base_value, type: Float
 
 end

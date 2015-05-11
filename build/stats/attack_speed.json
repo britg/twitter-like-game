@@ -1,0 +1,7 @@
+{
+  "type": "Stat",
+  "name": "Attack Speed",
+  "slug": "attack_speed",
+  "calculator_type": "AttackSpeedCalculator",
+  "base_value": 1
+}

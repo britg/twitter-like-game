@@ -1,5 +1,6 @@
 {
   "type": "Stat",
   "name": "Strength",
-  "slug": "str"
+  "slug": "str",
+  "base_value": 10
 }

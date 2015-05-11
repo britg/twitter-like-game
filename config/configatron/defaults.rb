@@ -16,6 +16,7 @@ configatron.player_base_dexterity = 10
 configatron.player_base_stamina = 10
 configatron.player_base_intelligence = 10
 configatron.player_base_luck = 10
+configatron.player_base_attack_speed = 1
 
 configatron.location = :whispering_foothills
 

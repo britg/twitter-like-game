@@ -2,7 +2,7 @@ class AgentStat
   include Mongoid::Document
 
   embedded_in :agent
-  field :base_value, type: Integer, default: 10
+  field :base_value, type: Integer, default: -> { stat.base_value }
   field :current_offset, type: Integer, default: 0
   field :slug, type: String
 

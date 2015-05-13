@@ -63,4 +63,10 @@ class ObservationProcessor
     )
   end
 
+  def create_all_observation_events
+    location.observe_details.each do |observe_detail|
+      @player.add_event(detail: observe_detail)
+    end
+  end
+
 end

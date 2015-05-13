@@ -18,6 +18,10 @@ class BattleProcessor
     @evasion_resolver ||= EvasionResolver.new(@battle)
   end
 
+  def npcs_as_sentence
+    @npcs_as_sentence ||= @battle.npcs.map(&:to_s).to_sentence
+  end
+
   def available_actions_for player
     if @battle.started?
       return initiative_actions_for player
@@ -39,7 +43,7 @@ class BattleProcessor
     actions = []
     actions << Action.new(label: "Attack", key: :attack)
     actions << Action.new(label: "Avoid", key: :avoid)
-    actions << Action.new(label: "Observe", key: :battle_flee)
+    actions << Action.new(label: "Observe", key: :battle_observe)
     actions
   end
 
@@ -48,13 +52,14 @@ class BattleProcessor
     @battle.players.each do |player|
       player.add_event(
         type: Event::MOB_APPROACH,
-        target: @battle.npcs.map(&:to_s).to_sentence,
-        detail: "You spot #{@battle.npcs.map(&:to_s).to_sentence} ahead."
+        target: npcs_as_sentence,
+        detail: "You spot #{npcs_as_sentence} ahead."
       )
     end
   end
 
   def process
+    @battle.update_attributes(started: true)
     check_dead_participants
     do_victory and return if @battle.victory?
 
@@ -154,6 +159,19 @@ class BattleProcessor
     process
   end
 
+  def avoid player
+    player.add_event(detail: "You attempt to avoid #{npcs_as_sentence}")
+    if evasion_resolver.attempt_evade(player)
+      player.add_event(
+        detail: "You avoid #{npcs_as_sentence}"
+      )
+      player.update_attributes(battle_id: nil)
+    else
+      player.add_event(detail: "You're unable to avoid #{npcs_as_sentence} and they attack")
+      process
+    end
+  end
+
   def flee player
     player.add_event(detail: "You attempt to run from battle...")
     if evasion_resolver.attempt_evade(player)
@@ -191,7 +209,6 @@ class BattleProcessor
 
   def attack_from player
     # TODO we are assuming there is only one enemy here!
-    @battle.update_attributes(started: true)
     perform_attack(player, [@battle.npcs.first])
     process
   end

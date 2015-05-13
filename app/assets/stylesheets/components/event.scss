@@ -44,6 +44,12 @@
     vertical-align: middle;
     font-weight: bold;
   }
+
+  &.attack {
+    .detail {
+      display: none;
+    }
+  }
 }
 
 .sub-actions {

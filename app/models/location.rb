@@ -8,6 +8,7 @@ class Location
   field :description, type: String
   field :adventuring_level, type: Float
 
+  field :story, type: Array
   field :entrance_details, type: Array
   field :explore_details, type: Array
   field :observe_details, type: Array

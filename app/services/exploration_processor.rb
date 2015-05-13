@@ -112,13 +112,16 @@ class ExplorationProcessor
 
   def create_discovery_event landmark
     @player.add_event(
-      detail: landmark.discovery_detail
+      type: Event::DISCOVERY,
+      detail: landmark.discovery_detail,
+      landmark_name: landmark.name,
+      landmark_slug: landmark.slug
     )
   end
 
   def create_nothing_found_event
     @player.add_event(
-      detail: "Nothing new presents itself."
+      detail: "You cover new ground but don't find anything else interesting."
     )
   end
 

@@ -1,8 +1,7 @@
 %main
   #home
-    %h1 Tavernlight
     %p A timeworn traveller rides through the night, drawn by the tavern light.
 
     = form_for @new_player do |f|
-      = link_to "Play", nil, onclick: "$('#new_player').submit()"
+      = link_to "Play Tavernlight &rarr;".html_safe, nil, onclick: "$('#new_player').submit()"
       -# = f.submit "Play"

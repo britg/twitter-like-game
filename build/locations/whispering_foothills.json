@@ -4,6 +4,10 @@
   "name": "Whispering Foothills",
   "slug": "whispering_foothills",
   "adventuring_level": 10.0,
+  "story": [
+    "The road east through the barren expanse that separates the civilized world and World's End has been rough and unforgiving.",
+    "After three weeks travel, your destination is in site. The dim lights of a tavern are barely visible in the distance."
+  ],
   "entrance_details": [
     "The rolling slopes of the Whispering Foothills begin just a few spans away: the gateway to World's End."
   ],

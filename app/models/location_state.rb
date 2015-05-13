@@ -9,6 +9,7 @@ class LocationState
   delegate :name, to: :location
   delegate :zone, to: :location
 
+  field :story_index, type: Integer
   field :observed_details, type: Array, default: []
 
   def self.slug(slug)

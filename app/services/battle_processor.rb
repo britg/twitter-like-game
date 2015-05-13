@@ -178,7 +178,14 @@ class BattleProcessor
 
   def create_attack_event target, perp, agent_delta
     @battle.players.each do |player|
-      player.add_event(detail: "#{perp} attacks: #{target} takes #{agent_delta.to_s} from #{perp}")
+      player.add_event(
+        type: Event::ATTACK,
+        attacker: perp.to_s,
+        attacker_id: perp.id,
+        target: target.to_s,
+        target_id: target.id,
+        delta: agent_delta.to_s,
+        detail: "#{perp} attacks: #{target} takes #{agent_delta.to_s} from #{perp}")
     end
   end
 

@@ -13,6 +13,12 @@
   "mobs": [],
   "resource_nodes": [],
   "landmarks": [
-
+    {
+      "type": "Location",
+      "name": "Exit",
+      "slug": "whispering_foothills",
+      "rarity": "common",
+      "auto_discovered": true
+    }
   ]
 }

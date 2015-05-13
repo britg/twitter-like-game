@@ -13,9 +13,7 @@
       when "chat" then chatClass = "selected"
 
     <div id="navbar">
-      <a className=eventsClass onClick={this.navOptionSelected.bind(this, 'events')}>
-        <i className="pe-7s-share"></i>
-      </a>
+      <a className=eventsClass onClick={this.navOptionSelected.bind(this, 'events')} dangerouslySetInnerHTML={{__html: icon_story}}></a>
       <a className=mapClass onClick={this.navOptionSelected.bind(this, 'map')}>
         <i className="pe-7s-map-2"></i>
       </a>

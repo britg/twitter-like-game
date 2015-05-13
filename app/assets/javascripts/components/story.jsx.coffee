@@ -8,7 +8,7 @@
   showNextEvent: ->
     $nextEvent = $('.event.new:hidden:last')
     return unless $nextEvent.length > 0
-    id = $nextEvent.attr("id")
+    id = $nextEvent.attr("data-reactid")
     $nextEvent.fadeIn 200, =>
       randNextTime = Math.random() * 700 + 500;
       setTimeout @showNextEvent, randNextTime
@@ -19,14 +19,14 @@
     if !@props.lastActedId?
       @status = "old" if event.chosen_action_key != null
     else
-      @status = "old" if event._id == @props.lastActedId
+      @status = "old" if event.id == @props.lastActedId
 
     event.status = @status
 
     if includeActions
-      <StoryEvent event=event key=event._id actions=this.props.actions />
+      <StoryEvent event=event key=event.id actions=this.props.actions />
     else
-      <StoryEvent event=event key=event._id actions=[] />
+      <StoryEvent event=event key=event.id actions=[] />
 
   render: ->
     @status = "new"

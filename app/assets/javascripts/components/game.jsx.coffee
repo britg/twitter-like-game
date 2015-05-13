@@ -17,12 +17,11 @@
     else
       @setState(activeScreen: key)
 
-
   lastEvent: ->
     @state.events[0]
 
   actionTaken: (key) ->
-    @lastActedId = @lastEvent()._id
+    @lastActedId = @lastEvent().id
     $game = @
     endpoint = Routes.api_v1_actions_path()
     body =
@@ -36,12 +35,11 @@
     @requestUpdate()
 
   requestUpdate: ->
-    endpoint = Routes.api_v1_story_index_path({mark_id: @lastEvent()._id})
+    endpoint = Routes.api_v1_story_index_path({mark_id: @lastEvent().id})
     Api.get(endpoint, @updateGameState)
 
   updateGameState: (json) ->
     @setState
-      player: json.player,
       events: json.events.concat(@state.events).slice(0, 100),
       actions: json.actions
 

@@ -1,3 +1,3 @@
 = react_component("Game", player: PlayerSerializer.new(current_player, root: nil),
-                          events: current_player.recent_events,
+                          events: current_player.recent_events.map{ |event| EventSerializer.new(event, root: nil) },
                           actions: current_player.available_actions)

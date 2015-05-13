@@ -6,10 +6,13 @@ class StorySerializer < ActiveModel::Serializer
   end
 
   def events
-    object.new_events
+    object.new_events.map do |event|
+      EventSerializer.new(event, root: nil)
+    end
   end
 
   def actions
     object.available_actions
   end
+
 end

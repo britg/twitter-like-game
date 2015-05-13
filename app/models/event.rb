@@ -12,6 +12,7 @@ class Event
 
   belongs_to :player
   index({player_id: 1})
+  index({created_at: -1})
 
   field :type, type: String, default: Event::DETAIL
   field :character_name, type: String

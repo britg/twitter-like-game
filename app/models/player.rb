@@ -94,8 +94,16 @@ class Player
     events.order(created_at: -1).limit(20)
   end
 
+  def mark_event_created_at
+    if @start_of_input_mark.present?
+      events.find(@start_of_input_mark).created_at
+    else
+      0
+    end
+  end
+
   def new_events
-    events.order(created_at: -1).gt(_id: start_of_input_mark).limit(20)
+    events.order(created_at: -1).gt(created_at: mark_event_created_at).limit(20)
   end
 
   def cache_new_event event
@@ -166,6 +174,7 @@ class Player
 
   def mark_start_of_input event_id
     @start_of_input_mark = event_id
+    # @start_of_input_mark = Time.now
   end
 
   def input action_slug

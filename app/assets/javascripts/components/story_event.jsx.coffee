@@ -18,7 +18,7 @@
 
   aggroEvent: ->
     <div className={this.eventClasses(this.props.event)}>
-      <p>{this.props.event.attacker} !! {ent_rightArrow} {this.props.event.target}</p>
+      <p>{this.props.event.attacker} {ent_aggro} {ent_rightArrow} {this.props.event.target}</p>
       <p className="detail">{this.props.event.detail}</p>
       <Actions actions=this.props.actions />
     </div>
@@ -39,6 +39,7 @@
 
 
   render: ->
+
     switch @props.event.type
       when "detail" then return @detailEvent()
       when "discovery" then return @discoveryEvent()

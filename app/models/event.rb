@@ -5,6 +5,7 @@ class Event
   ATTACK = "attack"
   SKILL = "skill"
   DISCOVERY = "discovery"
+  BATTLE_DECISION = "battle_decision"
   AGGRO = "aggro"
   NPC_DEATH = "npc_death"
 

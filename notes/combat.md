@@ -1,5 +1,12 @@
 ### Combat
 
+
+- When entering combat, give the player a choice:
+  - Attack
+  - Avoid
+  - Observe
+
+
 - Combat skills are based on the combo of main-hand and off-hand equipped
 
   - One-handed - MH: weapon, OH: shield

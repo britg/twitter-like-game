@@ -21,14 +21,25 @@ class ExplorationCombatProcessor
   def start_battle
     mob = choose_mob
     npc = generate_npc(mob)
-    create_aggro_event(npc)
-    create_battle(npc)
+    create_battle_decision_event(npc)
+    # create_aggro_event(npc)
+    # create_battle(npc)
   end
 
   def choose_mob
     # TODO
     # Make this rarity based.
     @location.mobs.sample
+  end
+
+  def create_battle_decision_event npc
+    # TODO Bestiary stuff
+    @player.add_event(
+      type: Event::BATTLE_DECISION,
+      target: npc,
+      target_id: npc.id,
+      detail: "You spot a #{npc}"
+    )
   end
 
   def create_aggro_event npc

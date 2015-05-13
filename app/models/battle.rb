@@ -6,6 +6,7 @@ class Battle
   has_and_belongs_to_many :players, inverse_of: nil
   has_and_belongs_to_many :npcs, inverse_of: nil
 
+  field :started, type: Boolean, default: false
   field :combined_initiative, type: Integer, default: DEFAULT_INITIATIVE
   field :current_tick, type: Integer, default: 0
 

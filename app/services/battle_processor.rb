@@ -19,6 +19,14 @@ class BattleProcessor
   end
 
   def available_actions_for player
+    if @battle.started?
+      return initiative_actions_for player
+    else
+      return approach_actions_for player
+    end
+  end
+
+  def initiative_actions_for player
     actions = []
     actions << Action.new(label: "Attack", key: :attack)
     actions << Action.new(label: "Skill", key: :special)
@@ -27,8 +35,23 @@ class BattleProcessor
     actions
   end
 
-  def start
-    process
+  def approach_actions_for player
+    actions = []
+    actions << Action.new(label: "Attack", key: :attack)
+    actions << Action.new(label: "Avoid", key: :avoid)
+    actions << Action.new(label: "Observe", key: :battle_flee)
+    actions
+  end
+
+  def prompt_approach
+    # TODO Bestiary stuff
+    @battle.players.each do |player|
+      player.add_event(
+        type: Event::MOB_APPROACH,
+        target: @battle.npcs.map(&:to_s).to_sentence,
+        detail: "You spot #{@battle.npcs.map(&:to_s).to_sentence} ahead."
+      )
+    end
   end
 
   def process
@@ -139,14 +162,14 @@ class BattleProcessor
       )
       player.update_attributes(battle_id: nil)
     else
-      player.add_event(detail: "You're unable to escape!")
+      player.add_event(detail: "Unable to escape!")
       process
     end
   end
 
   def prompt_battle_event player
     player.add_event(
-      detail: "You've gained the initiative and consider your strategy..."
+      detail: "You have gained the initiative and consider your strategy..."
     )
   end
 
@@ -168,6 +191,7 @@ class BattleProcessor
 
   def attack_from player
     # TODO we are assuming there is only one enemy here!
+    @battle.update_attributes(started: true)
     perform_attack(player, [@battle.npcs.first])
     process
   end

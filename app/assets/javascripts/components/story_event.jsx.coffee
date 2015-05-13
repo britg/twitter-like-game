@@ -37,6 +37,12 @@
       <Actions actions=this.props.actions />
     </div>
 
+  mobApproachEvent: ->
+    <div className={this.eventClasses(this.props.event)}>
+      <p>{ent_aggro} {this.props.event.target}</p>
+      <p className="detail">{this.props.event.detail}</p>
+      <Actions actions=this.props.actions />
+    </div>
 
   render: ->
 
@@ -46,6 +52,7 @@
       when "attack" then return @attackEvent()
       when "aggro" then return @aggroEvent()
       when "npc_death" then return @npcDeathEvent()
+      when "mob_approach" then return @mobApproachEvent()
       else
         <div>
           <p>Event type #{@props.event.type} is not defined</p>

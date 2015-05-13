@@ -20,6 +20,7 @@ class Player
   belongs_to :location
   delegate :zone, to: :location
   field :landmark_id
+  field :mob_id
 
   belongs_to :inventory
 

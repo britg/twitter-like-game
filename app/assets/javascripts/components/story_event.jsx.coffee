@@ -16,9 +16,23 @@
       <Actions actions=this.props.actions />
     </div>
 
+  aggroEvent: ->
+    <div className={this.eventClasses(this.props.event)}>
+      <p>{this.props.event.attacker} !! {ent_rightArrow} {this.props.event.target}</p>
+      <p className="detail">{this.props.event.detail}</p>
+      <Actions actions=this.props.actions />
+    </div>
+
   attackEvent: ->
     <div className={this.eventClasses(this.props.event)}>
       <p>{this.props.event.attacker} {ent_crossedSwords} {ent_rightArrow} {this.props.event.target} ({this.props.event.delta})</p>
+      <p className="detail">{this.props.event.detail}</p>
+      <Actions actions=this.props.actions />
+    </div>
+
+  npcDeathEvent: ->
+    <div className={this.eventClasses(this.props.event)}>
+      <p>{ent_skullCrossbones} {this.props.event.target}</p>
       <p className="detail">{this.props.event.detail}</p>
       <Actions actions=this.props.actions />
     </div>
@@ -29,6 +43,8 @@
       when "detail" then return @detailEvent()
       when "discovery" then return @discoveryEvent()
       when "attack" then return @attackEvent()
+      when "aggro" then return @aggroEvent()
+      when "npc_death" then return @npcDeathEvent()
       else
         <div>
           <p>Event type #{@props.event.type} is not defined</p>

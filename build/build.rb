@@ -30,6 +30,7 @@ class Build
     Event.collection.drop
     User.collection.drop
     Battle.collection.drop
+    BattleTurn.collection.drop
     Character.collection.drop
     CombatProfile.collection.drop
     Zone.collection.drop

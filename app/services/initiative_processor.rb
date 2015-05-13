@@ -25,8 +25,8 @@ class InitiativeProcessor
         agent.current_battle_tick += 1
 
         if agent.current_battle_tick >= agent.attack_speed.value
-          @tick_actions << BattleAction.new(
-            type: BattleAction::ATTACK,
+          @tick_actions << BattleTurn.new(
+            type: BattleTurn::ATTACK,
             participant: participant
           )
           agent.current_battle_tick = 0
@@ -43,8 +43,8 @@ class InitiativeProcessor
         agent.current_initiative += agent.ap.value
 
         if agent.current_initiative >= @battle.combined_initiative
-          @tick_actions << BattleAction.new(
-            type: BattleAction::DECISION,
+          @tick_actions << BattleTurn.new(
+            type: BattleTurn::DECISION,
             participant: participant
           )
           agent.current_initiative -= @battle.combined_initiative

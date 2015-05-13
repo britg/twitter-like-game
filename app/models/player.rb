@@ -91,11 +91,11 @@ class Player
   end
 
   def recent_events
-    events.order(_id: -1).limit(20)
+    events.order(created_at: -1).limit(20)
   end
 
   def new_events
-    events.order(_id: -1).gt(_id: start_of_input_mark).limit(20)
+    events.order(created_at: -1).gt(_id: start_of_input_mark).limit(20)
   end
 
   def cache_new_event event

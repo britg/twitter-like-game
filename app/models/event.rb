@@ -5,6 +5,8 @@ class Event
   ATTACK = "attack"
   SKILL = "skill"
   DISCOVERY = "discovery"
+  AGGRO = "aggro"
+  NPC_DEATH = "npc_death"
 
   class InvalidAction < Exception; end
 

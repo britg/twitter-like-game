@@ -1,4 +1,4 @@
-class BattleAction
+class BattleTurn
   include Mongoid::Document
 
   ATTACK = "attack"

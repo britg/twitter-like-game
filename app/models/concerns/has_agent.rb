@@ -13,7 +13,7 @@ module HasAgent
     agent.send(m, *args)
   end
 
-  def check_dead
+  def transition_to_dead
     if agent.dead?
       update_attributes(dead: true)
     end

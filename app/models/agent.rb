@@ -77,6 +77,5 @@ class Agent
   def apply_delta agent_delta
     # TODO actually implement
     hp.inc(current_offset: agent_delta.amount)
-    owner.check_dead
   end
 end

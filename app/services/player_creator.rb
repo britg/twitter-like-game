@@ -14,7 +14,7 @@ class PlayerCreator
 
   def create_player
     @player = Player.create(
-      name: "Stranger",
+      name: "Traveller",
       gold: configatron.player_gold
     )
 

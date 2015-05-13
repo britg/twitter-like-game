@@ -11,7 +11,7 @@ class ExplorationCombatProcessor
 
   def combat_percentage
     # TODO @player.adventuring vs. @location.adventuring_level
-    50
+    100
   end
 
   def combat?
@@ -20,8 +20,8 @@ class ExplorationCombatProcessor
 
   def start_battle
     mob = choose_mob
-    create_aggro_event(mob)
     npc = generate_npc(mob)
+    create_aggro_event(npc)
     create_battle(npc)
   end
 
@@ -31,9 +31,14 @@ class ExplorationCombatProcessor
     @location.mobs.sample
   end
 
-  def create_aggro_event mob
+  def create_aggro_event npc
     @player.add_event(
-      detail: "While exploring, a #{mob.to_s} notices you and attacks!"
+      type: Event::AGGRO,
+      attacker: npc,
+      attacker_id: npc.id,
+      target: @player,
+      target_id: @player.id,
+      detail: "#{npc} notices you and attacks!"
     )
   end
 

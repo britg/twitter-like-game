@@ -28,38 +28,53 @@ class BattleProcessor
   end
 
   def start
-    @battle.players.each do |p|
-      p.add_event(
-        detail: "Battle has started between #{participant_names.to_sentence}"
-      )
-    end
-
     process
   end
 
   def process
-    handle_dead_participants
+    check_dead_participants
     do_victory and return if @battle.victory?
 
-    tick_actions = next_tick
-    return if tick_actions.last.try(:player_decision?)
+    tick_results = next_tick
+    return if tick_results.last.try(:player_decision?)
     process
   end
 
-  def handle_dead_participants
-    # TODO change the status and
-    # 'active' flag of participants
-    # that are dead
-    @battle.npcs.each do |npc|
-      if npc.agent.dead?
-        npc.update_attributes(dead: true)
-        @battle.players.each do |player|
-          player.add_event(detail: "#{npc} is dead!")
+  def next_tick
+    @battle.tick!
+    battle_turns = initiative_processor.process
+    battle_turns.each do |battle_turn|
+      next if battle_turn.participant.dead?
+      process_battle_turn(battle_turn)
+      check_dead_participants
+    end
+    battle_turns
+  end
+
+  def check_dead_participants
+    @battle.active_participants.each do |participant|
+      if !participant.dead?
+        died = participant.agent.dead?
+        if died && participant.npc?
+          notify_npc_died(participant)
+          participant.transition_to_dead
         end
       end
     end
 
     @battle.save
+  end
+
+  def notify_npc_died npc
+    npc.update_attributes(dead: true)
+    @battle.players.each do |player|
+      player.add_event(
+        type: Event::NPC_DEATH,
+        target: npc,
+        target_id: npc.id,
+        detail: "#{npc} has died"
+      )
+    end
   end
 
   def do_victory
@@ -84,31 +99,22 @@ class BattleProcessor
   def cleanup_battle
     @battle.players.each do |player|
       player.update_attributes(battle: nil)
-      player.add_event("The battle has ended...")
+      player.add_event("You gather yourself after battle.")
     end
   end
 
-  def next_tick
-    @battle.tick!
-    battle_actions = initiative_processor.process
-    battle_actions.each do |battle_action|
-      process_battle_action(battle_action)
-      handle_dead_participants
-    end
-    battle_actions
-  end
 
-  def process_battle_action battle_action
-    if battle_action.attack?
+  def process_battle_turn battle_turn
+    if battle_turn.attack?
       # TEMP - need real target determination
-      targets = @battle.active_participants - [battle_action.participant]
+      targets = @battle.active_participants - [battle_turn.participant]
       process and return if targets.empty?
-      perform_attack(battle_action.participant, targets)
+      perform_attack(battle_turn.participant, targets)
     else
-      if battle_action.npc_decision?
-        process_npc_turn(battle_action.participant)
+      if battle_turn.npc_decision?
+        process_npc_turn(battle_turn.participant)
       else
-        prompt_battle_event(battle_action.participant)
+        prompt_battle_event(battle_turn.participant)
       end
     end
   end

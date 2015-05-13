@@ -50,6 +50,18 @@
       display: none;
     }
   }
+
+  &.aggro {
+    .detail {
+      display: none;
+    }
+  }
+
+  &.npc_death {
+    .detail {
+      display: none;
+    }
+  }
 }
 
 .sub-actions {

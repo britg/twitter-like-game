@@ -33,7 +33,7 @@ class ExplorationCombatProcessor
 
   def create_aggro_event npc
     @player.add_event(
-      type: Event::AGGRO,
+      format: Event::AGGRO,
       attacker: npc,
       attacker_id: npc.id,
       target: @player,

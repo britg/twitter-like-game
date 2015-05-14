@@ -51,7 +51,7 @@ class BattleProcessor
     # TODO Bestiary stuff
     @battle.players.each do |player|
       player.add_event(
-        type: Event::MOB_APPROACH,
+        format: Event::MOB_APPROACH,
         target: npcs_as_sentence,
         detail: "You spot #{npcs_as_sentence} ahead."
       )
@@ -97,7 +97,7 @@ class BattleProcessor
     npc.update_attributes(dead: true)
     @battle.players.each do |player|
       player.add_event(
-        type: Event::NPC_DEATH,
+        format: Event::NPC_DEATH,
         target: npc,
         target_id: npc.id,
         detail: "#{npc} has died"
@@ -226,7 +226,7 @@ class BattleProcessor
   def create_attack_event target, perp, agent_delta
     @battle.players.each do |player|
       player.add_event(
-        type: Event::ATTACK,
+        format: Event::ATTACK,
         attacker: perp.to_s,
         attacker_id: perp.id,
         target: target.to_s,

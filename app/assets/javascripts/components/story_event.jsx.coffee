@@ -1,7 +1,7 @@
 @StoryEvent = React.createClass
 
   eventClasses: ->
-    ["event", this.props.event.type, this.props.event.status].join(' ')
+    ["event", this.props.event.format, this.props.event.status].join(' ')
 
   detailEvent: ->
     <div className={this.eventClasses(this.props.event)}>
@@ -46,7 +46,7 @@
 
   render: ->
 
-    switch @props.event.type
+    switch @props.event.format
       when "detail" then return @detailEvent()
       when "discovery" then return @discoveryEvent()
       when "attack" then return @attackEvent()
@@ -55,5 +55,5 @@
       when "mob_approach" then return @mobApproachEvent()
       else
         <div>
-          <p>Event type #{@props.event.type} is not defined</p>
+          <p>Event type #{@props.event.format} is not defined</p>
         </div>

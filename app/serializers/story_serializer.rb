@@ -1,18 +1,21 @@
 class StorySerializer < ActiveModel::Serializer
-  attributes :player, :events, :actions
+  # attributes :player, :events, :actions
 
-  def player
-    PlayerSerializer.new(object, root: nil)
-  end
+  # attribute :player, serializer: PlayerSerializer
+  has_one :player
+  has_many :events
+  has_many :actions
+
+  # def player
+  #   PlayerSerializer.new(object, root: false)
+  # end
 
   def events
-    object.new_events.map do |event|
-      EventSerializer.new(event, root: nil)
-    end
+    player.new_events
   end
 
   def actions
-    object.available_actions
+    player.available_actions
   end
 
 end

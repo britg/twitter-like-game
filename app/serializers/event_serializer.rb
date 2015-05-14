@@ -1,7 +1,6 @@
 class EventSerializer < ActiveModel::Serializer
-  root :nil
   attributes :id,
-             :type,
+             :format,
              :chosen_action_key,
              :character_name,
              :detail,
@@ -11,10 +10,6 @@ class EventSerializer < ActiveModel::Serializer
              :delta,
              :landmark_name, :landmark_slug,
              :player_id,
-             :player
-
-  def player
-    PlayerSerializer.new(object.player, root: nil)
-  end
+             :player_state_during_event
 
 end

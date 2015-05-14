@@ -57,6 +57,10 @@ class Player
     true
   end
 
+  def story
+    Story.new(player: self)
+  end
+
   ##
   # Possible States
   ##
@@ -111,9 +115,15 @@ class Player
       params = {detail: params}
     end
     e = events.create(params.merge(
-      created_at: Time.now
+      created_at: Time.now,
+      player_state_during_event: state_serialized
     ))
     e
+  end
+
+  def state_serialized
+    serializer = PlayerSerializer.new(self)
+    ActiveModel::Serializer.adapter.new(serializer).as_json
   end
 
   ##

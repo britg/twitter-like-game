@@ -27,7 +27,8 @@
   applyPlayer: ($event) ->
     id = $event.attr("data-reactid").split('$')[1]
     event = @eventById(id)
-    PubSub.publish(Events.APPLY_PLAYER, event.player)
+    if event.player_state_during_event?
+      PubSub.publish(Events.APPLY_PLAYER, event.player_state_during_event)
 
   eventById: (id) ->
     for event in this.props.events

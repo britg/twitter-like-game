@@ -1,9 +1,9 @@
 @Game = React.createClass
 
   getInitialState: ->
-    player: @props.player
-    events: @props.events
-    actions: @props.actions
+    player: @props.story.player
+    events: @props.story.events
+    actions: @props.story.actions
     activeScreen: "events"
 
   componentDidMount: ->

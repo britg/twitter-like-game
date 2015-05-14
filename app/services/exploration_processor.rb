@@ -112,7 +112,7 @@ class ExplorationProcessor
 
   def create_discovery_event landmark
     @player.add_event(
-      type: Event::DISCOVERY,
+      format: Event::DISCOVERY,
       detail: landmark.discovery_detail,
       landmark_name: landmark.name,
       landmark_slug: landmark.slug

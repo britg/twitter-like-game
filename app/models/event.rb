@@ -15,7 +15,9 @@ class Event
   index({player_id: 1})
   index({created_at: -1})
 
-  field :type, type: String, default: Event::DETAIL
+  field :player_state_during_event, type: Hash
+
+  field :format, type: String, default: Event::DETAIL
   field :character_name, type: String
   field :detail, type: String
   field :dialogue, type: String

@@ -57,17 +57,17 @@
 
   updateGameState: (json) ->
     @setState
-      events: json.events.concat(@state.events).slice(0, 100),
+      # events: json.events.concat(@state.events).slice(0, 100),
+      events: @state.events.concat(json.events).slice(0, 100),
       actions: json.actions
 
   localActionEvent: (action) ->
-    event = {
-      "id": Math.random
-      "format": "detail",
+    event =
+      "id": Math.random()
+      "format": "detail"
       "detail": action.feedback
-    }
 
-    @setState(events: [event].concat(@state.events), actions: [])
+    @setState(events: @state.events.concat([event]), actions: [])
 
   screen: ->
     screen = switch @state.activeScreen

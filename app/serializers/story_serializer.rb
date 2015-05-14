@@ -11,7 +11,7 @@ class StorySerializer < ActiveModel::Serializer
   # end
 
   def events
-    player.new_events
+    player.new_events.reverse
   end
 
   def actions

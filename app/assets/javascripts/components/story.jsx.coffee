@@ -7,16 +7,23 @@
     $('.event.new:hidden').addClass('initial-load')
 
   componentDidUpdate: ->
+    console.log("component did update")
     @showNextEvent()
+    @scrollBottom()
 
   showNextEvent: ->
+    console.log("showing next event")
     $nextEvent = $('.event.new:hidden:last')
     return unless $nextEvent.length > 0
     nextDelay = @delayForEvent($nextEvent)
-
     $nextEvent.fadeIn @fadeInTime, =>
       @applyPlayer($nextEvent)
       setTimeout @showNextEvent, nextDelay
+
+  scrollBottom: ->
+    to = $(document).height()-$(window).height()
+    console.log(to)
+    $('html, body').animate scrollTop: to
 
   delayForEvent: ($event) ->
     detailCount = $event.find(".detail").html().split(' ').length
@@ -33,8 +40,8 @@
     for event in this.props.events
       return event if event.id == id
 
-  eventComponent: (event, index) ->
-    includeActions = (index == 0)
+  eventComponent: (event, index, lastIndex) ->
+    includeActions = (index == lastIndex)
 
     if !@props.lastActedId?
       @status = "old" if event.chosen_action_key != null
@@ -51,5 +58,5 @@
   render: ->
     @status = "new"
     <div className="story">
-      {this.eventComponent(event, index) for event, index in this.props.events}
+      {this.eventComponent(event, index, this.props.events.length-1) for event, index in this.props.events}
     </div>

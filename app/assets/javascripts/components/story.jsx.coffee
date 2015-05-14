@@ -7,7 +7,6 @@
     $('.event.new:hidden').addClass('initial-load')
 
   componentDidUpdate: ->
-    console.log("update called")
     @showNextEvent()
 
   showNextEvent: ->
@@ -27,7 +26,7 @@
   applyPlayer: ($event) ->
     id = $event.attr("data-reactid").split('$')[1]
     event = @eventById(id)
-    if event.player_state_during_event?
+    if event? && event.player_state_during_event?
       PubSub.publish(Events.APPLY_PLAYER, event.player_state_during_event)
 
   eventById: (id) ->

@@ -24,15 +24,24 @@
   lastEvent: ->
     @state.events[0]
 
+  actionByKey: (key) ->
+    for action in @state.actions
+      return action if action.key == key
+
   actionTaken: (key) ->
     @lastActedId = @lastEvent().id
     $game = @
+    action = @actionByKey(key)
+    @localActionEvent(action)
     endpoint = Routes.api_v1_actions_path()
     body =
       player_action:
         key: key
       mark_id: @lastActedId
-    Api.post(endpoint, @updateGameState, body)
+
+    setTimeout =>
+      Api.post(endpoint, @updateGameState, body)
+    , 500
 
   showStoryAndUpdate: ->
     @setState(activeScreen: "events")
@@ -50,6 +59,15 @@
     @setState
       events: json.events.concat(@state.events).slice(0, 100),
       actions: json.actions
+
+  localActionEvent: (action) ->
+    event = {
+      "id": Math.random
+      "format": "detail",
+      "detail": action.feedback
+    }
+
+    @setState(events: [event].concat(@state.events), actions: [])
 
   screen: ->
     screen = switch @state.activeScreen

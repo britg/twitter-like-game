@@ -1,3 +1,3 @@
 class ActionSerializer < ActiveModel::Serializer
-  attributes :key, :label
+  attributes :key, :label, :feedback
 end

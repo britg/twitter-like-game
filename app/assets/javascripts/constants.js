@@ -4,5 +4,5 @@ var Events = {
   NAV_SELECTED: "nav:selected",
   STORY_UPDATED: "story:updated",
   SHOW_STORY: "story:show",
-  AGENT_DELTA_BROADCAST: "agent:delta_broadcast"
+  APPLY_PLAYER: "player:apply"
 }

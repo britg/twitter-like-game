@@ -106,16 +106,13 @@ class Player
     events.order(created_at: -1).gt(created_at: mark_event_created_at).limit(20)
   end
 
-  def cache_new_event event
-    new_events << event
-  end
-
   def add_event params
     if params.class == String
       params = {detail: params}
     end
-    e = events.create(params.merge(created_at: Time.now))
-    cache_new_event(e)
+    e = events.create(params.merge(
+      created_at: Time.now
+    ))
     e
   end
 

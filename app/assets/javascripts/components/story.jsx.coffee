@@ -8,10 +8,12 @@
   showNextEvent: ->
     $nextEvent = $('.event.new:hidden:last')
     return unless $nextEvent.length > 0
-    id = $nextEvent.attr("data-reactid")
+    detailCount = $nextEvent.find(".detail").html().split(' ').length
+    nextDelay = detailCount * 0.2 * 1000;
+    console.log(detailCount, nextDelay)
+
     $nextEvent.fadeIn 200, =>
-      randNextTime = Math.random() * 700 + 500;
-      setTimeout @showNextEvent, randNextTime
+      setTimeout @showNextEvent, nextDelay
 
   eventComponent: (event, index) ->
     includeActions = (index == 0)

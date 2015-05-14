@@ -35,7 +35,7 @@ class PlayerCreator
 
   def set_default_location
     @location = Location.where(slug: configatron.location).first
-    LocationProcessor.new(@player, @location).enter
+    LocationProcessor.new(@player, @location).initial_location
   end
 
   def initial_quest_items

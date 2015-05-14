@@ -6,14 +6,21 @@
   "adventuring_level": 10.0,
   "story": [
     "The road east through the barren expanse that separates the civilized world and World's End has been rough and unforgiving.",
-    "After three weeks travel, your destination is in site. The dim lights of a tavern are barely visible in the distance."
+    "After three weeks travel, your destination is in site. The dim lights of a tavern are barely visible in the distance.",
+    "Legend has it that the Whispering Foothills are named after the whispers of all the dead slave miners.",
+    "Others say it's from the quiet roar of the Argent Falls many miles away at World's End.",
+    "You don't hear anything but the rustle of the of the tall, golden grass in the gentle breeze and the occasional wolf pack howling.",
+    "Regardless, you are weary from weeks of hard solitary travel east.",
+    "You have sensed a danger about this place - increasing as you've travelled east.",
+    "You loosen your short sword at your side...",
+    "The job you picked up in Brist said to find World's End Tavern at the foot of the Whispering Foothills."
   ],
   "entrance_details": [
-    "The rolling slopes of the Whispering Foothills begin just a few spans away: the gateway to World's End."
+    "You "
   ],
   "observe_details": [
-    "Legend has it that the Whispering Foothills are named after the whispers of all the dead slave miners.",
-    "Others say it's from the quiet roar of the Argent Falls at World's End."
+    "Rolling plains transition to gentle slopes of the Whispering Foothills.",
+    "You see a dim light off in the distance."
   ],
   "mobs": [
     {

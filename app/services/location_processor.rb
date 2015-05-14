@@ -9,11 +9,19 @@ class LocationProcessor
     @location = _location
   end
 
+  def initial_location
+    set_location
+    ensure_player_location
+    auto_discover_landmarks
+    @player.save
+  end
+
   def enter
     raise "Cannot travel - you're in battle!" if @player.in_battle?
     raise "Already at location" if already_at_location?
     set_location
-    create_location_entrance_event
+    # create_location_entrance_event
+    create_story_events
     ensure_player_location
     auto_discover_landmarks
     @player.save
@@ -31,6 +39,12 @@ class LocationProcessor
     @player.add_event(
       detail: @location.entrance_detail
     )
+  end
+
+  def create_story_events
+    @location.story.each do |detail|
+      @player.add_event(detail: detail)
+    end
   end
 
   def ensure_player_location

@@ -11,6 +11,9 @@
     PubSub.subscribe Events.NAV_SELECTED, @navSelected
     PubSub.subscribe Events.SHOW_STORY, @showStoryAndUpdate
 
+    if @state.events.length < 1
+      @requestUpdate()
+
   navSelected: (key) ->
     if key == "events"
       @showStoryAndUpdate()
@@ -35,7 +38,11 @@
     @requestUpdate()
 
   requestUpdate: ->
-    endpoint = Routes.api_v1_story_index_path({mark_id: @lastEvent().id})
+    if @lastEvent()?
+      endpoint = Routes.api_v1_story_index_path({mark_id: @lastEvent().id})
+    else
+      endpoint = Routes.api_v1_story_index_path()
+
     Api.get(endpoint, @updateGameState)
 
   updateGameState: (json) ->

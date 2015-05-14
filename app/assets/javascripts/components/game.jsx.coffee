@@ -62,8 +62,8 @@
 
   localActionEvent: (action) ->
     event = {
-      "id": Math.random
-      "format": "detail",
+      "id": Math.random()
+      "format": "detail"
       "detail": action.feedback
     }
 

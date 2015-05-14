@@ -32,18 +32,18 @@ class BattleProcessor
 
   def initiative_actions_for player
     actions = []
-    actions << Action.new(label: "Attack", key: :attack)
+    actions << Action.new(label: "Attack", key: :attack, feedback: "You continue battle...")
     actions << Action.new(label: "Skill", key: :special)
     # actions << Action.new(label: "Observe", key: :battle_observe)
-    actions << Action.new(label: "Flee", key: :flee)
+    actions << Action.new(label: "Flee", key: :flee, feedback: "You attempt to flee from battle...")
     actions
   end
 
   def approach_actions_for player
     actions = []
-    actions << Action.new(label: "Attack", key: :attack)
-    actions << Action.new(label: "Avoid", key: :avoid)
-    actions << Action.new(label: "Observe", key: :battle_observe)
+    actions << Action.new(label: "Attack", key: :attack, feedback: "You dive into battle...")
+    actions << Action.new(label: "Avoid", key: :avoid, feedback: "You attempt to avoid a confrontation...")
+    actions << Action.new(label: "Observe", key: :battle_observe, feedback: "You take stock of the situation...")
     actions
   end
 
@@ -160,7 +160,6 @@ class BattleProcessor
   end
 
   def avoid player
-    player.add_event(detail: "You attempt to avoid #{npcs_as_sentence}")
     if evasion_resolver.attempt_evade(player)
       player.add_event(
         detail: "You avoid #{npcs_as_sentence}"
@@ -173,7 +172,6 @@ class BattleProcessor
   end
 
   def flee player
-    player.add_event(detail: "You attempt to run from battle...")
     if evasion_resolver.attempt_evade(player)
       player.add_event(
         detail: "You successfully escape!"

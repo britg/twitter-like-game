@@ -127,9 +127,9 @@ class ExplorationProcessor
 
   def available_actions
     actions = []
-    actions << Action.new(label: "Explore", key: :explore, feedback: "Exploring...")
+    actions << Action.new(label: "Explore", key: :explore, feedback: "You venture forth...")
 
-    actions << Action.new(label: "Observe", key: :observe, feedback: "Observing...")
+    actions << Action.new(label: "Observe", key: :observe, feedback: "You look at the area around you...")
 
     # find_action = Action.new(label: "Find", key: :find)
     # find_action.child_actions.build(label: "Reagents", key: "find->reagents")

@@ -1,37 +1,23 @@
 @Story = React.createClass
 
-  fadeInTime: 200
-  delayPerWord: 0.2 * 1000
+  getInitialState: ->
+    displayer: new EventDisplayer
 
   componentDidMount: ->
     $('.event.new:hidden').addClass('initial-load')
 
   componentDidUpdate: ->
-    @showNextEvent()
-
-  showNextEvent: ->
-    $nextEvent = $('.event.new:hidden:last')
-    return unless $nextEvent.length > 0
-    nextDelay = @delayForEvent($nextEvent)
-
-    $nextEvent.fadeIn @fadeInTime, =>
-      @applyPlayer($nextEvent)
-      setTimeout @showNextEvent, nextDelay
-
-  delayForEvent: ($event) ->
-    detailCount = $event.find(".detail").html().split(' ').length
-    nextDelay = detailCount * @delayPerWord;
-    nextDelay
-
-  applyPlayer: ($event) ->
-    id = $event.attr("data-reactid").split('$')[1]
-    event = @eventById(id)
-    if event? && event.player_state_during_event?
-      PubSub.publish(Events.APPLY_PLAYER, event.player_state_during_event)
+    @state.displayer.start @publishPlayerState
 
   eventById: (id) ->
     for event in this.props.events
       return event if event.id == id
+
+  publishPlayerState: (event) ->
+    id = $(event).attr("data-reactid").split('$')[1]
+    event = @eventById(id)
+    if event? && event.player_state_during_event?
+      PubSub.publish(Events.APPLY_PLAYER, event.player_state_during_event)
 
   eventComponent: (event, index) ->
     includeActions = (index == 0)

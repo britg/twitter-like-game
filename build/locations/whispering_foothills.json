@@ -5,15 +5,10 @@
   "slug": "whispering_foothills",
   "adventuring_level": 10.0,
   "story": [
-    "The road east through the barren expanse that separates the civilized world and World's End has been rough and unforgiving.",
-    "After three weeks travel, your destination is in site. The dim lights of a tavern are barely visible in the distance.",
-    "Legend has it that the Whispering Foothills are named after the whispers of all the dead slave miners.",
-    "Others say it's from the quiet roar of the Argent Falls many miles away at World's End.",
-    "You don't hear anything but the rustle of the of the tall, golden grass in the gentle breeze and the occasional wolf pack howling.",
-    "Regardless, you are weary from weeks of hard solitary travel east.",
-    "You have sensed a danger about this place - increasing as you've travelled east.",
+    "There's a danger about this place - you sense it - increasing as you have ventured east across the grasslands.",
     "You loosen your short sword at your side...",
-    "The job you picked up in Brist said to find World's End Tavern at the foot of the Whispering Foothills."
+    "The job you picked up in Brist said to find World's End Tavern at the foot of the Whispering Foothills.",
+    "There's a light up ahead..."
   ],
   "entrance_details": [
     "You "

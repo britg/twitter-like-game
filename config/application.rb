@@ -23,7 +23,7 @@ module Tavernlight
     # config.i18n.default_locale = :de
 
     config.autoload_paths += %W(
-      #{config.root}/app/services
+      #{config.root}/app/core
       #{config.root}/app/workers
       #{config.root}/app/calculators
     )

@@ -27,4 +27,4 @@ configatron.initial_consumables = [:minor_health_potion]
 
 # Battle
 
-configatron.battle_initiative_multiplier = 5
+configatron.battle_initiative_multiplier = 2

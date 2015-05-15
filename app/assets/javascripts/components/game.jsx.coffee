@@ -27,6 +27,9 @@
   actionByKey: (key) ->
     for action in @state.actions
       return action if action.key == key
+      for child_action in action.child_actions
+        return child_action if child_action.key == key
+
 
   actionTaken: (key) ->
     @lastActedId = @lastEvent().id

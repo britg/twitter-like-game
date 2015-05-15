@@ -6,7 +6,6 @@ class Location
 
   field :name, type: String
   field :description, type: String
-  field :adventuring_level, type: Float
 
   field :story, type: Array
   field :entrance_details, type: Array

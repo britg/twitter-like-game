@@ -5,7 +5,6 @@ class LocationBuild < ObjectBuild
       name: @hash["name"],
       zone: Zone.slug(@hash["_zone"]),
       slug: @hash["slug"],
-      adventuring_level: @hash["adventuring_level"],
       story: @hash["story"],
       entrance_details: @hash["entrance_details"],
       explore_details: @hash["explore_details"],

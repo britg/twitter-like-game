@@ -122,7 +122,7 @@ class ExplorationProcessor
 
   def create_nothing_found_event
     @player.add_event(
-      detail: "You cover new ground but don't find anything else interesting."
+      detail: "You don't find anything interesting..."
     )
   end
 

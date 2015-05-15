@@ -21,8 +21,8 @@ class LocationProcessor
     raise "Already at location" if already_at_location?
     set_location
     # create_location_entrance_event
-    create_story_events
     ensure_player_location
+    create_story_events if should_get_story?
     auto_discover_landmarks
     @player.save
   end
@@ -39,6 +39,12 @@ class LocationProcessor
     @player.add_event(
       detail: @location.entrance_detail
     )
+  end
+
+  def should_get_story?
+    # Don't show the story if we've already gotten them all
+    i = @player.current_location_state.story_index.to_i
+    i < @location.story.count
   end
 
   def create_story_events

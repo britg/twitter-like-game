@@ -20,9 +20,12 @@ class LocationProcessor
     raise "Cannot travel - you're in battle!" if @player.in_battle?
     raise "Already at location" if already_at_location?
     set_location
-    # create_location_entrance_event
     ensure_player_location
-    create_story_events if should_get_story?
+    if should_get_story?
+      create_story_events
+    else
+      create_location_entrance_event
+    end
     auto_discover_landmarks
     @player.save
   end
@@ -43,7 +46,7 @@ class LocationProcessor
 
   def should_get_story?
     # Don't show the story if we've already gotten them all
-    @player.current_location_state.story_index.present?
+    !@player.current_location_state.story_index.present?
   end
 
   def create_story_events

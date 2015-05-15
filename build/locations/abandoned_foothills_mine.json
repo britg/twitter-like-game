@@ -3,7 +3,7 @@
   "_zone": "loadstone_approach",
   "name": "Abandoned Foothills Mine",
   "slug": "abandoned_foothills_mine",
-  "story": [],
+  "story": ["[Abandoned Foothills Mine Story]"],
   "entrance_details": [
     "This mine hasn't been used in years but remnants of rusty mining equipment lay about. Rail tracks lead down into the darkness."
   ],

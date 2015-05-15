@@ -3,9 +3,9 @@
   "_zone": "loadstone_approach",
   "name": "World's End Tavern",
   "slug": "worlds_end_tavern",
-  "story": [],
+  "story": ["[World's End Tavern story]"],
   "entrance_details": [
-    "It's the World's End Tavern. For how legendary it is, you though it would be more... grand."
+    "You enter World's End Tavern"
   ],
   "observe_details": [
     "The tavern looks like it blew into place during the last storm.",

@@ -140,7 +140,7 @@ class ExplorationProcessor
     if @player.current_landmark_states.any?
       landmarks_action = Action.new(label: "Landmarks", key: :landmark)
       @player.current_landmark_states.each do |landmark_state|
-        landmarks_action.child_actions.build(label: landmark_state.to_s, key: landmark_state.to_action_key, feedback: "Approaching #{landmark_state.to_s}...")
+        landmarks_action.child_actions.build(label: landmark_state.to_s, key: landmark_state.to_action_key, feedback: "You head towards the #{landmark_state.to_s}...")
       end
       actions << landmarks_action
     end

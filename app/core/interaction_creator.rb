@@ -9,12 +9,13 @@ class InteractionCreator
     raise "Landmark state not found" unless @landmark_state.present?
     @landmark = @landmark_state.landmark
 
-    @player.add_event(detail: @landmark.start_interaction_detail)
 
     if @landmark.location?
       # It's a transition to another location
       LocationProcessor.new(@player, @landmark.obj).enter
       return
+    else
+      @player.add_event(detail: @landmark.start_interaction_detail)
     end
 
     @player.update_attributes(landmark_id: @landmark.id)

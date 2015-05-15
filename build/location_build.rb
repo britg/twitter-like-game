@@ -36,10 +36,8 @@ class LocationBuild < ObjectBuild
     npc_blueprint = mob_hash["npc_blueprint"]
     blueprint = build_dependency("NpcBlueprint", npc_blueprint)
     mob = @location.mobs.find_or_create_by(
-      npc_blueprint: blueprint
-    )
-    mob.update_attributes(
-      rarity: Rarity.slug(mob_hash["rarity"])
+      npc_blueprint: blueprint,
+      _rarity: mob_hash["rarity"]
     )
   end
 
@@ -49,17 +47,18 @@ class LocationBuild < ObjectBuild
 
   def embed_landmarks
     @hash["landmarks"].each do |landmark_hash|
+      puts " =>> embedding landmark #{landmark_hash["slug"]} into #{@location.slug}"
       embed_landmark(landmark_hash)
     end
   end
 
   def embed_landmark landmark_hash
     build_dependency(landmark_hash["type"], landmark_hash["slug"])
-    @location.landmarks.create(
+    @location.landmarks.find_or_create_by(
       type: landmark_hash["type"],
       name: landmark_hash["name"],
       slug: landmark_hash["slug"],
-      rarity: Rarity.slug(landmark_hash["rarity"]),
+      _rarity: landmark_hash["rarity"],
       auto_discovered: landmark_hash["auto_discovered"],
       discovery_details: landmark_hash["discovery_details"]
     )

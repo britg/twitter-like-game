@@ -1,5 +1,6 @@
 class Landmark
   include Mongoid::Document
+  include HasRarity
 
   TYPES = ["Location"]
 
@@ -7,7 +8,6 @@ class Landmark
 
   field :name, type: String
   field :slug, type: String
-  belongs_to :rarity
   field :type, type: String
   field :moves, type: Boolean, default: false
   field :auto_discovered, type: Boolean, default: false

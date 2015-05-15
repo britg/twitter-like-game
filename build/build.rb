@@ -53,6 +53,7 @@ class Build
   end
 
   def initialize
+    @cache = {}
     @hashes = {}
   end
 
@@ -94,7 +95,7 @@ class Build
   end
 
   def ensure_existence type, slug
-    existing = type.constantize.where(slug: slug).first
+    existing = type.constantize.slug(slug)
     if existing.present?
       puts "#{type} #{slug} already exists"
       return existing
@@ -113,12 +114,25 @@ class Build
 
   end
 
+  def already_touched_this_build? hash
+    @cache[hash["type"]] ||= []
+    @cache[hash["type"]].include?(hash["slug"])
+  end
+
   def create_or_update hash
     type = hash["type"]
+    slug = hash["slug"]
     raise "No type defined" if type.empty?
+    raise "No slug defined" if slug.empty?
+    if already_touched_this_build?(hash)
+      puts "X already touched this build #{type} #{slug}"
+      return
+    end
     builder = "#{type}Build"
     klass = builder.constantize rescue ObjectBuild
     inst = klass.new(hash, self)
+    @cache[type] ||= []
+    @cache[type] << hash["slug"]
     inst.create_or_update
   end
 

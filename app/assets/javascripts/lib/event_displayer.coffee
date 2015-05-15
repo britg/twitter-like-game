@@ -11,21 +11,28 @@ class window.EventDisplayer
     @callback = callback
     @showNextEvent()
 
+  quickDisplay: ->
+    clearTimeout(@nextEventTimeout)
+    @showNextEvent()
+
+  nextEvent: ->
+    $('.event.new:hidden:last')
+
   showNextEvent: ->
-    $nextEvent = $('.event.new:hidden:last')
-    if $nextEvent.length < 1
+    $_nextEvent = @nextEvent()
+    if $_nextEvent.length < 1
       @currentlyRunning = false
       return
 
-    nextDelay = @delayForEvent($nextEvent)
+    nextDelay = @delayForNextEvent()
 
-    $nextEvent.fadeIn @fadeInTime, =>
-      @callback.apply(null, $nextEvent)
-      setTimeout =>
+    @nextEvent().fadeIn @fadeInTime, =>
+      @callback.apply(null, $_nextEvent)
+      @nextEventTimeout = setTimeout =>
         @showNextEvent()
       , nextDelay
 
-  delayForEvent: ($event) ->
-    detailCount = $event.find(".detail").html().split(' ').length
+  delayForNextEvent: () ->
+    detailCount = @nextEvent().find(".detail").html().split(' ').length
     nextDelay = detailCount * @delayPerWord;
     nextDelay

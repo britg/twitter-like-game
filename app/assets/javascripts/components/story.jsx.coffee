@@ -34,8 +34,11 @@
     else
       <StoryEvent event=event key=event.id actions=[] />
 
+  quickDisplay: ->
+    @state.displayer.quickDisplay()
+
   render: ->
     @status = "new"
-    <div className="story">
+    <div className="story" onClick={this.quickDisplay} >
       {this.eventComponent(event, index) for event, index in this.props.events}
     </div>

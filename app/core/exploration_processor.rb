@@ -78,6 +78,7 @@ class ExplorationProcessor
 
     if @found_landmark.present?
       process_landmark @found_landmark
+      @player.add_event(detail: "You consider your next move...")
     else
       # when nothing is found, we should somehow remind about
       # the map option.
@@ -140,7 +141,7 @@ class ExplorationProcessor
     if @player.current_landmark_states.any?
       landmarks_action = Action.new(label: "Landmarks", key: :landmark)
       @player.current_landmark_states.each do |landmark_state|
-        landmarks_action.child_actions.build(label: landmark_state.to_s, key: landmark_state.to_action_key)
+        landmarks_action.child_actions.build(label: landmark_state.to_s, key: landmark_state.to_action_key, feedback: "Travelling to #{landmark_state.to_s}")
       end
       actions << landmarks_action
     end

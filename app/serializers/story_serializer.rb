@@ -6,10 +6,6 @@ class StorySerializer < ActiveModel::Serializer
   has_many :events
   has_many :actions
 
-  # def player
-  #   PlayerSerializer.new(object, root: false)
-  # end
-
   def events
     player.new_events
   end

@@ -2,10 +2,10 @@
 # with an attached rarity
 class Mob
   include Mongoid::Document
+  include HasRarity
 
   embedded_in :location
   belongs_to :npc_blueprint
-  belongs_to :rarity
 
   def to_s
     npc_blueprint.name

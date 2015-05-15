@@ -43,14 +43,14 @@ class LocationProcessor
 
   def should_get_story?
     # Don't show the story if we've already gotten them all
-    i = @player.current_location_state.story_index.to_i
-    i < @location.story.count
+    @player.current_location_state.story_index.present?
   end
 
   def create_story_events
     @location.story.each do |detail|
       @player.add_event(detail: detail)
     end
+    @player.current_location_state.update_attributes(story_index: 1)
   end
 
   def ensure_player_location

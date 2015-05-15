@@ -56,7 +56,7 @@ class Landmark
   end
 
   def default_start_interaction_detail
-    "You approach #{to_s}..."
+    "..."
   end
 
 end

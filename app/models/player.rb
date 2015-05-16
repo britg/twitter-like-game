@@ -100,7 +100,7 @@ class Player
 
   def mark_event_created_at
     if @start_of_input_mark.present?
-      events.find(@start_of_input_mark).created_at
+      events.find(@start_of_input_mark).created_at rescue 0
     else
       0
     end

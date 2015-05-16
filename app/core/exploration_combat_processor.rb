@@ -11,7 +11,7 @@ class ExplorationCombatProcessor
 
   def combat_percentage
     # TODO @player.adventuring vs. @location.adventuring_level
-    0
+    50
   end
 
   def combat?

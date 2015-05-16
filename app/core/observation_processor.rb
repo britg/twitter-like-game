@@ -57,10 +57,13 @@ class ObservationProcessor
 
   def create_observe_event
     detail = next_observation_detail
-    return unless detail.present?
-    @player.add_event(
-      detail: detail
-    )
+    if detail.present?
+      @player.add_event(
+        detail: detail
+      )
+    else
+      @player.add_event(detail: "[Needs observation details for #{@location.slug}]")
+    end
   end
 
   def create_all_observation_events

@@ -76,6 +76,7 @@ class Agent
 
   def apply_delta agent_delta
     # TODO actually implement
+    reload
     hp.inc(current_offset: agent_delta.amount)
   end
 end

@@ -55,6 +55,10 @@ class ActionProcessor
       return battle_processor.avoid(@player)
     end
 
+    if action_slug.to_sym == :battle_observe
+      return battle_processor.observe(@player)
+    end
+
     if action_slug.to_sym == :observe
       return observation_processor.create_all_observation_events
     end

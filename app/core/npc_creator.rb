@@ -6,6 +6,7 @@ class NpcCreator
 
   def create
     @npc = Npc.create(name: @npc_blueprint.name,
+                      npc_blueprint: @npc_blueprint,
                       combat_profile: @npc_blueprint.combat_profile)
     create_agent
     @npc

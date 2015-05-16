@@ -3,6 +3,9 @@
   "name": "Gray Wolf",
   "slug": "gray_wolf",
   "_combat_profile": "attack",
+  "observation_details": [
+    "You observe a mangy wolf, either starving or unafraid of humans."
+  ],
   "agent_attributes": [
     {
       "type": "Stat",

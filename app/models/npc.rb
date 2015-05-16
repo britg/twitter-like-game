@@ -7,6 +7,7 @@ class Npc
   field :name
   belongs_to :combat_profile
 
+  delegate :observation_details, to: :npc_blueprint
 
   def to_s
     name

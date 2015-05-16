@@ -1,5 +1,7 @@
 @Game = React.createClass
 
+  localEventPrefix: "local-event-"
+
   getInitialState: ->
     player: @props.story.player
     events: @props.story.events
@@ -24,15 +26,20 @@
   lastEvent: ->
     @state.events[0]
 
+  markId: ->
+    id = @lastEvent().id
+    if id.indexOf(@localEventPrefix) > -1
+      return @state.events[1].id
+    else
+      id
+
   actionByKey: (key) ->
     for action in @state.actions
       return action if action.key == key
       for child_action in action.child_actions
         return child_action if child_action.key == key
 
-
   actionTaken: (key) ->
-    @lastActedId = @lastEvent().id
     $game = @
     action = @actionByKey(key)
     @localActionEvent(action)
@@ -40,7 +47,7 @@
     body =
       player_action:
         key: key
-      mark_id: @lastActedId
+      mark_id: @markId()
 
     setTimeout =>
       Api.post(endpoint, @updateGameState, body)
@@ -52,7 +59,7 @@
 
   requestUpdate: ->
     if @lastEvent()?
-      endpoint = Routes.api_v1_story_index_path({mark_id: @lastEvent().id})
+      endpoint = Routes.api_v1_story_index_path({mark_id: @markId()})
     else
       endpoint = Routes.api_v1_story_index_path()
 
@@ -65,7 +72,7 @@
 
   localActionEvent: (action) ->
     event = {
-      "id": Math.random()
+      "id": @localEventPrefix + Math.random()
       "format": "detail"
       "detail": action.feedback
     }

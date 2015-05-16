@@ -159,6 +159,16 @@ class BattleProcessor
     process
   end
 
+  def observe player
+    # TODO get vitals if the player has enough 'Best Lore' skill
+    player.use_skill(:beast_lore)
+    @battle.npcs.each do |npc|
+      player.add_event(
+        detail: npc.observation_details.sample
+      )
+    end
+  end
+
   def avoid player
     if evasion_resolver.attempt_evade(player)
       player.add_event(
@@ -216,8 +226,8 @@ class BattleProcessor
     # an attack
     targets.each do |target|
       agent_delta = AttackDeltaResolver.new(attacker, target.agent).agent_delta
-      create_attack_event(target, attacker, agent_delta)
       target.agent.apply_delta(agent_delta)
+      create_attack_event(target, attacker, agent_delta)
     end
   end
 

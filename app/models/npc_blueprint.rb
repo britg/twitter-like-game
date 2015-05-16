@@ -7,6 +7,8 @@ class NpcBlueprint
   field :name, type: String
   embeds_many :agent_attributes, class_name: "AgentDelta"
 
+  field :observation_details
+
   def to_s
     name
   end

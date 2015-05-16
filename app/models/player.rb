@@ -122,6 +122,7 @@ class Player
   end
 
   def state_serialized
+    reload
     serializer = PlayerSerializer.new(self)
     ActiveModel::Serializer.adapter.new(serializer).as_json
   end

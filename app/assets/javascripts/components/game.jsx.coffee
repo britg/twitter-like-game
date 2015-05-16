@@ -85,8 +85,9 @@
       when "map" then <Map />
       when "equipment" then <Equipment />
       when "inventory" then <Inventory />
-      when "quests" then <Quests />
       when "stats" then <Stats />
+      when "quests" then <Quests />
+      when "bestiary" then <Bestiary />
       when "chat" then <Chat />
       when "account" then <Account />
 

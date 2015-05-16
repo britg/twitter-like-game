@@ -108,6 +108,7 @@ class BattleProcessor
   def do_victory
     notify_victory
     assign_loot
+    assign_experience
     cleanup_battle
   end
 
@@ -121,6 +122,13 @@ class BattleProcessor
     # TODO
     @battle.players.each do |player|
       player.add_event(detail: "You get some loot...")
+    end
+  end
+
+  def assign_experience
+    @battle.players.each do |player|
+      xp = BattleExperienceProcessor.new(player, @battle).amount
+      player.gain_experience(xp)
     end
   end
 

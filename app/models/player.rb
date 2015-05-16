@@ -62,6 +62,39 @@ class Player
     Story.new(player: self)
   end
 
+  def gain_experience amount
+    inc(experience: amount)
+    add_event(detail: "+#{amount}XP (#{next_lvl_percent}% to level #{level+1})")
+    if experience > next_lvl_xp
+      inc(level: 1)
+      add_event(detail: "Level up: #{level}")
+    end
+  end
+
+  def current_lvl
+    Level.slug(level)
+  end
+
+  def next_lvl
+    Level.slug(level + 1)
+  end
+
+  def next_lvl_xp
+    next_lvl.try(:xp) || Float::INFINITY
+  end
+
+  def next_lvl_progress
+    experience - current_lvl.xp
+  end
+
+  def next_lvl_experience_amount
+    next_lvl_xp - current_lvl.xp
+  end
+
+  def next_lvl_percent
+    ((next_lvl_progress.to_f/next_lvl_experience_amount.to_f)*100.0).round
+  end
+
   ##
   # Possible States
   ##

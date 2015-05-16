@@ -2,6 +2,7 @@
   "type": "NpcBlueprint",
   "name": "Gray Wolf",
   "slug": "gray_wolf",
+  "level": 1,
   "_combat_profile": "attack",
   "observation_details": [
     "You observe a mangy wolf, either starving or unafraid of humans."

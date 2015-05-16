@@ -10,6 +10,7 @@ class Build
     "Skill",
     "Stat",
     "Slot",
+    "Level",
     "Resource",
     "EquipmentBlueprint",
     "ConsumableBlueprint",
@@ -24,6 +25,7 @@ class Build
   ]
 
   def self.whipe!
+    Level.collection.drop
     Rarity.collection.drop
     Player.collection.drop
     LocationState.collection.drop
@@ -49,6 +51,7 @@ class Build
     Quest.collection.drop
     QuestItemBlueprint.collection.drop
     QuestItem.collection.drop
+    BestiaryState.collection.drop
     ::Mongoid::Tasks::Database.create_indexes
   end
 

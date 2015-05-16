@@ -5,6 +5,7 @@ class NpcBlueprint
   belongs_to :combat_profile
 
   field :name, type: String
+  field :level, type: Integer, default: 1
   embeds_many :agent_attributes, class_name: "AgentDelta"
 
   field :observation_details

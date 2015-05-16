@@ -1,5 +1,8 @@
 class window.Api
 
+  @token: ->
+    $('meta[name=csrf-token]').attr("content")
+
   @get: (endpoint, callback) ->
     @req(endpoint, callback, "GET")
 
@@ -16,7 +19,7 @@ class window.Api
       headers:
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'X-CSRF-Token': $('meta[name=csrf-token]').attr("content")
+        'X-CSRF-Token': @token()
 
     if body
       params["body"] = JSON.stringify(body)

@@ -81,6 +81,7 @@
       when "quests" then <Quests />
       when "stats" then <Stats />
       when "chat" then <Chat />
+      when "account" then <Account />
 
   render: ->
     <div id="game">

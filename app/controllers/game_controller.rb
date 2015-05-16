@@ -6,16 +6,17 @@ class GameController < ApplicationController
     @player_json = PlayerSerializer.new(current_player)
   end
 
-  def inventory
-
+  def reset
+    Player.delete_all
+    redirect_to root_path
   end
 
-  def landmarks
-
-  end
-
-  def stats
-
+  def rebuild
+    require "#{Rails.root}/build/build"
+    Build.whipe!
+    b = Build.new
+    b.update_all
+    redirect_to root_path
   end
 
   protected

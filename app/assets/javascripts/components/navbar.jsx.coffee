@@ -11,6 +11,7 @@
       when "quests" then questsClass = "selected"
       when "stats" then statsClass = "selected"
       when "chat" then chatClass = "selected"
+      when "account" then accountClass = "selected"
 
     <div id="navbar">
       <a className=eventsClass onClick={this.navOptionSelected.bind(this, 'events')} dangerouslySetInnerHTML={{__html: icon_story}}></a>
@@ -31,5 +32,8 @@
       </a>
       <a className=chatClass onClick={this.navOptionSelected.bind(this, 'chat')}>
         <i className="pe-7s-chat"></i>
+      </a>
+      <a className=accountClass onClick={this.navOptionSelected.bind(this, 'account')}>
+        <i className="pe-7s-settings"></i>
       </a>
     </div>

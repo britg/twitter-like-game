@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :players, only: :create
   get "/game", to: "game#index", as: :game
 
+  # Dev - delete when launching
+  post "/game/reset", to: "game#reset", as: :reset
+  post "/game/rebuild", to: "game#rebuild", as: :rebuild
+
   namespace :api do
     namespace :v1 do
       resources :players, only: :show

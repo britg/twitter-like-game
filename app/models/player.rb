@@ -25,6 +25,7 @@ class Player
 
   has_many :events
   has_many :location_states
+  has_many :bestiary_states
 
   field :name, type: String
   field :experience, type: Integer

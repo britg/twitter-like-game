@@ -160,12 +160,8 @@ class BattleProcessor
   end
 
   def observe player
-    # TODO get vitals if the player has enough 'Best Lore' skill
-    player.use_skill(:beast_lore)
     @battle.npcs.each do |npc|
-      player.add_event(
-        detail: npc.observation_details.sample
-      )
+      BestiaryProcessor.new(player, npc).observe
     end
   end
 

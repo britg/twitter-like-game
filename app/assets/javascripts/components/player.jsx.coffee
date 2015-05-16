@@ -13,11 +13,13 @@
     <div id="player-bar" className="player-status">
       <span className="name">{this.state.player.name}</span>
       <div className="stats">
+        <span className="stat">lvl</span>
+        <span className="value">{this.state.player.level}</span>
         <span className="stat">hp</span>
         <span className="value">{this.state.player.hp}</span>
-        <span className="stat">ap</span>
-        <span className="value">{this.state.player.ap}</span>
         <span className="stat">mana</span>
         <span className="value">{this.state.player.mana}</span>
+        <span className="stat">g:</span>
+        <span className="value">{this.state.player.gold}</span>
       </div>
     </div>

@@ -29,7 +29,7 @@ class Player
 
   field :name, type: String
   field :experience, type: Integer
-  field :level, type: Integer
+  field :level, type: Integer, default: 1
   field :gold, type: Integer, default: configatron.player_gold
 
   has_many :equipment

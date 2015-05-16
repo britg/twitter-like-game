@@ -3,9 +3,10 @@ class PlayerSerializer < ActiveModel::Serializer
   attributes :id,
              :name,
              :status_line,
+             :level,
              :hp,
-             :ap,
-             :mana
+             :mana,
+             :gold
 
   has_one :user
 

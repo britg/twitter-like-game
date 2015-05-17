@@ -11,7 +11,7 @@ class ExplorationCombatProcessor
 
   def combat_percentage
     # TODO @player.adventuring vs. @location.adventuring_level
-    50
+    100
   end
 
   def combat?
@@ -48,6 +48,7 @@ class ExplorationCombatProcessor
 
   def create_battle npc
     @battle = BattleCreator.new([@player], [npc]).create
+    @player.current_location_state.inc(battle_count: 1)
     BattleProcessor.new(@battle).prompt_approach
   end
 

@@ -35,7 +35,7 @@ class LocationProcessor
   end
 
   def set_location
-    @player.location = @location
+    @player.update_attributes(location: @location)
   end
 
   def create_location_entrance_event

@@ -3,6 +3,7 @@
   "_zone": "loadstone_approach",
   "name": "Whispering Foothills",
   "slug": "whispering_foothills",
+
   "story": [
     "There's a danger about this place.",
     "You've sensed it increasing as you have ventured east across the grasslands.",
@@ -10,22 +11,27 @@
     "The job you picked up in Brist said to find Otto at World's End Tavern.",
     "There's a distant light towards the east..."
   ],
+
   "entrance_details": [
     "You look out over the Whispering Foothills and consider your next move..."
   ],
+
   "observe_details": [
     "Rolling plains gradually grow to gentle slopes signifying the start of the Whispering Foothills ahead.",
     "The massive peaks of the two mountain ranges guarding World's End stand silhouetted in the clear night sky.",
     "A howl pierces the night. Wolves. And you've found signs of other unknown denizens.",
     "You see a dim light off in the distance."
   ],
+
   "mobs": [
     {
       "npc_blueprint": "gray_wolf",
       "rarity": "common"
     }
   ],
+
   "resource_nodes": [],
+
   "landmarks": [
     {
       "type": "Location",
@@ -39,6 +45,7 @@
         "You step inside World's End Tavern."
       ]
     },
+
     {
       "type": "Location",
       "name": "Abandoned Mine",

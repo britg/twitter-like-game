@@ -12,6 +12,8 @@ class LocationState
   field :story_index, type: Integer
   field :observed_details, type: Array, default: []
 
+  field :battle_count, type: Integer
+
   def self.slug(slug)
     l = Location.slug(slug)
     where(location_id: l.id).first

@@ -4,6 +4,7 @@
   "slug": "short_sword",
   "_rarity": "common",
   "_slot": "main_hand",
+  "_skill": "swords",
   "level_requirement": 0,
   "durability_range": [90, 100],
   "agent_deltas": [

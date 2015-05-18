@@ -3,6 +3,7 @@ class NpcBlueprint
   include HasSlug
 
   belongs_to :combat_profile
+  belongs_to :loot_profile
 
   field :name, type: String
   field :level, type: Integer, default: 1

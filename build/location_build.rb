@@ -21,6 +21,7 @@ class LocationBuild < ObjectBuild
     @location ||= existing
     @location.update_attributes(props)
     embed_mobs
+    embed_resource_nodes
     embed_landmarks
     @location
   end
@@ -40,8 +41,22 @@ class LocationBuild < ObjectBuild
     )
   end
 
-  def associate_resource_nodes
+  def embed_resource_nodes
+    @hash["resource_nodes"].try :each do |resource_node_hash|
+      embed_resource_node resource_node_hash
+    end
+  end
 
+  def embed_resource_node resource_node_hash
+    node = @location.resource_nodes.find_or_create_by(
+      name: resource_node_hash["name"]
+    )
+
+    loot_profile_slug = resource_node_hash["loot_profile"] || :basic
+    node.update_attributes(
+      discovery_details: resource_node_hash["discovery_details"],
+      loot_profile: LootProfile.slug(loot_profile_slug)
+    )
   end
 
   def embed_landmarks

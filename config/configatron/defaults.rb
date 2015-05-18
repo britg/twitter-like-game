@@ -28,3 +28,7 @@ configatron.initial_consumables = [:minor_health_potion]
 # Battle
 
 configatron.battle_initiative_multiplier = 2
+
+# Loot
+
+configatron.default_loot_profile = :basic

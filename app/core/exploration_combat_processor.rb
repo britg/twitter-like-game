@@ -9,13 +9,14 @@ class ExplorationCombatProcessor
     @location = _location
   end
 
-  def combat_percentage
-    # TODO @player.adventuring vs. @location.adventuring_level
-    100
+  def combat?
+    return true
+    @location.mobs? && Rarity.below?(combat_percentage)
   end
 
-  def combat?
-    @location.mobs? && Rarity.below(combat_percentage)
+  def combat_percentage
+    # TODO @player.adventuring vs. @location.adventuring_level
+    20
   end
 
   def start_battle

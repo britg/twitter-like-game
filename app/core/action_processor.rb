@@ -87,6 +87,15 @@ class ActionProcessor
       interaction_processor.leave
     end
 
+    # Interacting with a resource node
+    if action_slug.to_sym == :resource_node_investigate
+      ResourceNodeProcessor.new(@player).investigate
+    end
+
+    if action_slug.to_sym == :resource_node_ignore
+      ResourceNodeProcessor.new(@player).ignore
+    end
+
   end
 
   def available_actions

@@ -20,6 +20,7 @@ class Player
   belongs_to :location
   delegate :zone, to: :location
   field :landmark_id
+  field :resource_node_id
 
   belongs_to :inventory
 
@@ -161,6 +162,10 @@ class Player
     ActiveModel::Serializer.adapter.new(serializer).as_json
   end
 
+  def consider!
+    add_event("You consider your next move...")
+  end
+
   ##
   # / End Event Convenience Methods
   ##
@@ -192,6 +197,10 @@ class Player
   # The currently interacting landmark
   def landmark
     location.landmarks.find(landmark_id)
+  end
+
+  def current_resource_node
+    location.resource_nodes.find(resource_node_id)
   end
 
   ##
@@ -248,6 +257,13 @@ class Player
 
   def use_skill slug, metadata = {}
     SkillProcessor.new(self, slug, metadata).process
+  end
+
+  def use_main_hand_skill
+    # TODO refactor to use the actual skill associated with the
+    # weapon in your main hand
+    sk = main_hand.equipment.skill
+    use_skill(sk.slug)
   end
 
   def reset! scene_anchor = nil

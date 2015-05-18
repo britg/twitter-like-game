@@ -79,4 +79,15 @@ class Agent
     reload
     hp.inc(current_offset: agent_delta.amount)
   end
+
+  def equip equipment
+    slot_slug = equipment.slot.slug
+    agent_slot = slot(slot_slug)
+    agent_slot.update_attributes(equipment: equipment)
+  end
+
+  def main_hand_skill
+    main_hand.equipment.skill
+  end
+
 end

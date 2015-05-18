@@ -12,6 +12,7 @@ class Build
     "Slot",
     "Level",
     "Resource",
+    "LootProfile",
     "EquipmentBlueprint",
     "ConsumableBlueprint",
     "VendorItemBlueprint",
@@ -52,6 +53,7 @@ class Build
     QuestItemBlueprint.collection.drop
     QuestItem.collection.drop
     BestiaryState.collection.drop
+    LootProfile.collection.drop
     ::Mongoid::Tasks::Database.create_indexes
   end
 

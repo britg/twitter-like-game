@@ -78,7 +78,7 @@ class ExplorationProcessor
 
     if @found_landmark.present?
       process_landmark @found_landmark
-      @player.add_event(detail: "You consider your next move...")
+      @player.consider!
     else
       # when nothing is found, we should somehow remind about
       # the map option.
@@ -126,6 +126,14 @@ class ExplorationProcessor
   end
 
   def available_actions
+    if @player.resource_node_id.present?
+      return resource_node_actions
+    else
+      return explore_actions
+    end
+  end
+
+  def explore_actions
     actions = []
     actions << Action.new(label: "Explore", key: :explore, feedback: "You venture forth...")
 
@@ -146,5 +154,21 @@ class ExplorationProcessor
     end
     # actions << Action.new(label: "Craft", key: :craft)
     actions
+
+  end
+
+  def resource_node_actions
+    actions = []
+    node = @player.current_resource_node
+    actions << Action.new(
+      label: node.approach_label,
+      key: :resource_node_investigate,
+      feedback: "Approaching #{node.name}..."
+    )
+    actions << Action.new(
+      label: "Ignore",
+      key: :resource_node_ignore,
+      feedback: "Ignoring #{node.name}..."
+    )
   end
 end

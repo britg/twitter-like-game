@@ -4,6 +4,7 @@ class Equipment
 
   belongs_to :slot
   belongs_to :player, index: true
+  belongs_to :skill
 
   embeds_many :agent_deltas
   embeds_many :agent_requirements

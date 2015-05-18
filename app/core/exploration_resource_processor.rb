@@ -5,16 +5,25 @@ class ExplorationResourceProcessor
     @location = _location
   end
 
+  def resource_percentage
+    # TODO some kind of calculation here
+    20
+  end
+
   def resource?
-    # TODO player skills vs available resources
-    false
+    @location.resource_nodes? && Rarity.below?(resource_percentage)
   end
 
   def start_interaction
-    resource_node = choose_resource_node
+    node = choose_resource_node
+    @player.update_attributes(resource_node_id: node.id)
+    @player.add_event(
+      detail: node.discovery_details.sample
+    )
   end
 
   def choose_resource_node
+    # TODO player skills vs available resources
     @location.resource_nodes.sample
   end
 

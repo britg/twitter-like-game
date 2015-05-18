@@ -12,7 +12,8 @@ class EquipmentCreator
       rarity: @blueprint.rarity,
       level_requirement: @blueprint.level_requirement,
       player: @player,
-      max_durability: @blueprint.durability
+      max_durability: @blueprint.durability,
+      skill: @blueprint.skill
     )
 
     @blueprint.agent_deltas.each do |agent_delta|
@@ -25,8 +26,10 @@ class EquipmentCreator
     end
 
     @equipment.agent_requirements = @blueprint.agent_requirements
+    @equipment.save
 
-    @equipment.save and @equipment
+    @player.equip(@equipment)
+    @equipment
   end
 
   def generate_name

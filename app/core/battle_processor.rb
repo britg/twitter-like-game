@@ -119,9 +119,10 @@ class BattleProcessor
   end
 
   def assign_loot
-    # TODO
     @battle.players.each do |player|
-      player.add_event(detail: "You get some loot...")
+      @battle.npcs.each do |npc|
+        LootProcessor.new(player, npc.loot_profile).assign_loot
+      end
     end
   end
 
@@ -228,6 +229,8 @@ class BattleProcessor
   def perform_attack attacker, targets
     # TODO Refactor to produce more than one agent delta for
     # an attack
+    attacker.use_main_hand_skill if attacker.player?
+
     targets.each do |target|
       agent_delta = AttackDeltaResolver.new(attacker, target.agent).agent_delta
       target.agent.apply_delta(agent_delta)

@@ -9,7 +9,7 @@ class Rarity
     Random.rand * 100
   end
 
-  def self.below percentage
+  def self.below? percentage
     roll < percentage
   end
 

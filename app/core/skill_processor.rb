@@ -18,7 +18,11 @@ class SkillProcessor
     # how difficult the use was
 
     # TEMP
-    increase_by 0.1
+    if Rarity.below(50)
+      increase_by 0.1
+    else
+      nil
+    end
   end
 
   def increase_by amount = 0.1

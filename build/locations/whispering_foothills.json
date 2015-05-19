@@ -34,6 +34,10 @@
     {
       "name": "Discarded travel bag",
       "discovery_details": ["A discarded travel bag lies near the road."]
+    },
+    {
+      "name": "[Random thing]",
+      "discovery_details": ["You find a random thing"]
     }
   ],
 

@@ -1,13 +1,13 @@
 @Story = React.createClass
 
   getInitialState: ->
-    displayer: new EventDisplayer
+    presenter: new EventPresenter
 
   componentDidMount: ->
     $('.event.new:hidden').addClass('initial-load')
 
   componentDidUpdate: ->
-    @state.displayer.start @publishPlayerState
+    @state.presenter.start @publishPlayerState
 
   eventById: (id) ->
     for event in this.props.events
@@ -35,7 +35,7 @@
       <StoryEvent event=event key=event.id actions=[] />
 
   quickDisplay: ->
-    @state.displayer.quickDisplay()
+    @state.presenter.quickDisplay()
 
   render: ->
     @status = "new"

@@ -65,7 +65,7 @@ class ExplorationProcessor
     location.landmarks.lte(
       required_battle_count: current_battle_count,
       required_resource_node_count: current_resource_node_count
-    )
+    ).where("_id": undiscovered_landmark_ids)
   end
 
   def landmark_proc(landmark)

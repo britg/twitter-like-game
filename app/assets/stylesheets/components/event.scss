@@ -69,6 +69,18 @@
     }
   }
 
+  &.entrance {
+    .detail {
+      display: none;
+    }
+  }
+
+  &.resource {
+    .detail {
+      display: none;
+    }
+  }
+
 }
 
 .sub-actions {

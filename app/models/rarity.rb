@@ -22,6 +22,17 @@ class Rarity
     end
   end
 
+  # Set has to have rarity
+  def self.sample arr
+    chosen_rarity = rarity
+    matching = arr.select{ |item| item.rarity == chosen_rarity }
+    if matching.count < 1
+      arr.sample
+    else
+      matching.sample
+    end
+  end
+
   def self.ranges
     @ranges = {}
     base = 0

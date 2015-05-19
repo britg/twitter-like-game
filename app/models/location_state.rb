@@ -9,10 +9,11 @@ class LocationState
   delegate :name, to: :location
   delegate :zone, to: :location
 
-  field :story_index, type: Integer
+  field :seen_story, type: Boolean, default: false
   field :observed_details, type: Array, default: []
 
-  field :battle_count, type: Integer
+  field :battle_count, type: Integer, default: 0
+  field :resource_node_count, type: Integer, default: 0
 
   def self.slug(slug)
     l = Location.slug(slug)

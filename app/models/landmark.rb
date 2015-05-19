@@ -13,7 +13,10 @@ class Landmark
   field :auto_discovered, type: Boolean, default: false
 
   field :discovery_details, type: Array
-  field :start_interaction_details, type: Array
+
+  # Pacing
+  field :required_battle_count, type: Integer, default: 1
+  field :required_resource_node_count, type: Integer, default: 1
 
   validates_inclusion_of :type, in: TYPES
 
@@ -48,15 +51,6 @@ class Landmark
 
   def default_discovery_detail
     "You discover #{to_s}"
-  end
-
-  def start_interaction_detail
-    return default_start_interaction_detail unless start_interaction_details.present?
-    start_interaction_details.sample
-  end
-
-  def default_start_interaction_detail
-    "..."
   end
 
 end

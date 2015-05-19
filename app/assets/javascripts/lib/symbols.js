@@ -6,3 +6,4 @@ ent_ankh = "☥";
 ent_wheel = "☸";
 ent_aggro = "!!";
 icon_story = "<i class='pe-7s-share'></i>";
+icon_resource = "<i class='pe-7s-diamond'></i>";

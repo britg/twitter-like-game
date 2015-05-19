@@ -10,7 +10,6 @@ class ExplorationCombatProcessor
   end
 
   def combat?
-    return true
     @location.mobs? && Rarity.below?(combat_percentage)
   end
 

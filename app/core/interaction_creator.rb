@@ -15,7 +15,7 @@ class InteractionCreator
       LocationProcessor.new(@player, @landmark.obj).enter
       return
     else
-      @player.add_event(detail: @landmark.start_interaction_detail)
+      # TODO do something here for non-location landmarks? Or delegate to whatever is handling the interaction.
     end
 
     @player.update_attributes(landmark_id: @landmark.id)

@@ -53,6 +53,21 @@ class ExplorationProcessor
     nil
   end
 
+  def current_battle_count
+    @player.current_location_state.battle_count
+  end
+
+  def current_resource_node_count
+    @player.current_location_state.resource_node_count
+  end
+
+  def discoverable_landmarks
+    location.landmarks.lte(
+      required_battle_count: current_battle_count,
+      required_resource_node_count: current_resource_node_count
+    )
+  end
+
   def landmark_proc(landmark)
     LandmarkProcessor.new(@player, landmark)
   end
@@ -66,10 +81,18 @@ class ExplorationProcessor
   end
 
   def process
-    # create_explore_event
-    # create_observe_event
-    return combat_proc.start_battle if combat_proc.combat?
-    return resource_proc.start_interaction if resource_proc.resource?
+
+    # 1) Can we find any landmarks?
+    if discoverable_landmarks.count < 1
+      # if no: either mob or resource
+      if Rarity.below?(50)
+        return combat_proc.start_battle
+      else
+        return resource_proc.start_interaction
+      end
+      # return combat_proc.start_battle if combat_proc.combat?
+      # return resource_proc.start_interaction if resource_proc.resource?
+    end
 
     # skill check against unfound landmarks at a location
     # If you pass against one, create event for it.
@@ -90,7 +113,9 @@ class ExplorationProcessor
     # TEMP - we probably want more logic here
     # e.g. revisiting old landmarks
     # hinting at landmarks
-    first_undiscovered_landmark
+    # first_undiscovered_landmark
+    # roll for qualifying landmarks
+    Rarity.sample(discoverable_landmarks.to_a)
   end
 
   def create_observe_event

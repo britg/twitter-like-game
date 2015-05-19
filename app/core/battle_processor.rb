@@ -136,7 +136,7 @@ class BattleProcessor
   def cleanup_battle
     @battle.players.each do |player|
       player.update_attributes(battle: nil)
-      player.add_event("You gather yourself after battle.")
+      player.consider!
     end
   end
 
@@ -229,13 +229,13 @@ class BattleProcessor
   def perform_attack attacker, targets
     # TODO Refactor to produce more than one agent delta for
     # an attack
-    attacker.use_main_hand_skill if attacker.player?
-
     targets.each do |target|
       agent_delta = AttackDeltaResolver.new(attacker, target.agent).agent_delta
       target.agent.apply_delta(agent_delta)
       create_attack_event(target, attacker, agent_delta)
     end
+
+    attacker.use_main_hand_skill if attacker.player?
   end
 
   def create_attack_event target, perp, agent_delta

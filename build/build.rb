@@ -52,6 +52,7 @@ class Build
     Quest.collection.drop
     QuestItemBlueprint.collection.drop
     QuestItem.collection.drop
+    QuestState.collection.drop
     BestiaryState.collection.drop
     LootProfile.collection.drop
     ::Mongoid::Tasks::Database.create_indexes

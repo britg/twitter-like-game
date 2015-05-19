@@ -8,6 +8,8 @@ class EventSerializer < ActiveModel::Serializer
              :attacker, :attacker_id,
              :target, :target_id,
              :delta,
+             :resource_name,
+             :location_name,
              :landmark_name, :landmark_slug,
              :player_id,
              :player_state_during_event

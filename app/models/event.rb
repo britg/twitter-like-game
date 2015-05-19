@@ -8,6 +8,8 @@ class Event
   MOB_APPROACH = "mob_approach"
   AGGRO = "aggro"
   NPC_DEATH = "npc_death"
+  ENTRANCE = "entrance"
+  RESOURCE = "resource"
 
   class InvalidAction < Exception; end
 
@@ -22,6 +24,12 @@ class Event
   field :detail, type: String
   field :dialogue, type: String
   field :chosen_action_key, type: String
+
+  # Resource Event
+  field :resource_name, type: String
+
+  # Entrance Event
+  field :location_name, type: String
 
   # Discovery Event
   field :landmark_name, type: String

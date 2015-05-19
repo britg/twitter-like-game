@@ -44,6 +44,21 @@
       <Actions actions=this.props.actions />
     </div>
 
+  entranceEvent: ->
+    <div className={this.eventClasses(this.props.event)}>
+      <p>{ent_rightArrow} {this.props.event.location_name}</p>
+      <p className="detail">{this.props.event.detail}</p>
+      <Actions actions=this.props.actions />
+    </div>
+
+  resourceEvent: ->
+    <div className={this.eventClasses(this.props.event)}>
+      <p><span dangerouslySetInnerHTML={{__html: icon_resource}} /> [{this.props.event.resource_name}]</p>
+      <p className="detail">{this.props.event.detail}</p>
+      <Actions actions=this.props.actions />
+    </div>
+
+
   render: ->
 
     switch @props.event.format
@@ -53,6 +68,8 @@
       when "aggro" then return @aggroEvent()
       when "npc_death" then return @npcDeathEvent()
       when "mob_approach" then return @mobApproachEvent()
+      when "entrance" then return @entranceEvent()
+      when "resource" then return @resourceEvent()
       else
         <div>
           <p>Event type #{@props.event.format} is not defined</p>

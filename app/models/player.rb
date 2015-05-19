@@ -26,6 +26,7 @@ class Player
 
   has_many :events
   has_many :location_states
+  has_many :quest_states
   has_many :bestiary_states
 
   field :name, type: String
@@ -163,7 +164,7 @@ class Player
   end
 
   def consider!
-    add_event("You consider your next move...")
+    add_event("You consider your next course of action...")
   end
 
   ##

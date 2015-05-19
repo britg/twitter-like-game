@@ -6,14 +6,10 @@
 
   "story": [
     "There's a danger about this place.",
-    "The feeling has intensified as you have ventured east across the grasslands.",
-    "You loosen the short-sword at your side...",
-    "The job you picked up in Brist said to find Otto at World's End Tavern.",
-    "There's a distant light up ahead..."
-  ],
-
-  "entrance_details": [
-    "You look out over the Whispering Foothills and consider your next move..."
+    "The feeling has intensified venturing east across the grasslands.",
+    "You loosen the short-sword at your side.",
+    "The job in Brist said to find Otto at World's End Tavern. Gold, and plenty of it, promised.",
+    "A red-orange light flickers in the distance."
   ],
 
   "observe_details": [
@@ -42,29 +38,28 @@
   ],
 
   "landmarks": [
-    {
-      "type": "Location",
-      "name": "World's End Tavern",
-      "slug": "worlds_end_tavern",
-      "rarity": "common",
-      "discovery_details": [
-        "A haphazardly constructed tavern sits along the road just inside the first foothills."
-      ],
-      "start_interaction_details": [
-        "You step inside World's End Tavern."
-      ]
-    },
 
     {
       "type": "Location",
       "name": "Abandoned Mine",
       "slug": "abandoned_foothills_mine",
-      "rarity": "common",
+      "_rarity": "common",
+      "required_battle_count": 2,
+      "required_resource_node_count": 3,
       "discovery_details": [
         "The black maw of an large abandoned mine is visible over the crest of a small cliff face."
-      ],
-      "start_interaction_details": [
-        "You stand at the entrance to the mine."
+      ]
+    },
+
+    {
+      "type": "Location",
+      "name": "World's End Tavern",
+      "slug": "worlds_end_tavern",
+      "_rarity": "common",
+      "required_battle_count": 3,
+      "required_resource_node_count": 5,
+      "discovery_details": [
+        "A haphazardly constructed tavern sits along the road just inside the first foothills. The tattered sign reads 'W R DS  ND T VERN'."
       ]
     }
   ]

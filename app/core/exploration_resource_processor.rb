@@ -11,13 +11,17 @@ class ExplorationResourceProcessor
   end
 
   def resource?
+    return true
     @location.resource_nodes? && Rarity.below?(resource_percentage)
   end
 
   def start_interaction
     node = choose_resource_node
     @player.update_attributes(resource_node_id: node.id)
+    @player.current_location_state.inc(resource_node_count: 1)
     @player.add_event(
+      format: Event::RESOURCE,
+      resource_name: node.name,
       detail: node.discovery_details.sample
     )
   end

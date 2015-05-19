@@ -21,12 +21,10 @@ class LocationProcessor
     raise "Already at location" if already_at_location?
     set_location
     ensure_player_location
-    if should_get_story?
-      create_story_events
-    else
-      create_location_entrance_event
-    end
+    create_location_entrance_event
+    create_story_events if should_get_story?
     auto_discover_landmarks
+    @player.consider!
     @player.save
   end
 
@@ -40,20 +38,22 @@ class LocationProcessor
 
   def create_location_entrance_event
     @player.add_event(
-      detail: @location.entrance_detail
+      format: Event::ENTRANCE,
+      location_name: @location.name,
+      detail: "You enter #{@location.name}"
     )
   end
 
   def should_get_story?
     # Don't show the story if we've already gotten them all
-    !@player.current_location_state.story_index.present?
+    !@player.current_location_state.seen_story?
   end
 
   def create_story_events
     @location.story.each do |detail|
       @player.add_event(detail: detail)
     end
-    @player.current_location_state.update_attributes(story_index: 1)
+    @player.current_location_state.update_attributes(seen_story: true)
   end
 
   def ensure_player_location

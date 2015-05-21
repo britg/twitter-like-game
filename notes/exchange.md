@@ -17,6 +17,25 @@ A loot economy MMO
 - Go to the exchange to get potions, equipment, etc.
 - Also go to the exchange for necessary "quest" items - keys, etc. that are being sold by other players
 
+### Types of items
+- Equipment
+- Quest Items
+- Consumables
+  - Health Potions
+  - Mana Potions
+  - Resurrect Scrolls
+
+### Classes
+  - Warrior
+  - Thief
+  - Mage
+  - Shaman
+  - Paladin
+  - Mage
+  - Priest
+  - Monk
+  - Necromancer
+  - Amazon
 
 ### Screens
 - Feed
@@ -24,6 +43,7 @@ A loot economy MMO
 - Inventory
 - Market
 - Map
+- Quests
 - Account/Settings
 
 

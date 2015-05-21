@@ -13,7 +13,6 @@
     PubSub.subscribe Events.NAV_SELECTED, @navSelected
     PubSub.subscribe Events.SHOW_STORY, @showStoryAndUpdate
 
-
     if @state.events.length < 1
       @requestUpdate()
 

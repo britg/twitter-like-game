@@ -67,8 +67,14 @@ class ObservationProcessor
   end
 
   def create_all_observation_events
-    location.observe_details.each do |observe_detail|
-      @player.add_event(detail: observe_detail)
+    if @player.current_location_state.observed?
+      @player.add_event(detail: "Current Location: #{location.name}")
+      @player.current_location_state.update_attributes(observed: false)
+    else
+      location.observe_details.each do |observe_detail|
+        @player.add_event(detail: observe_detail)
+      end
+      @player.current_location_state.update_attributes(observed: true)
     end
   end
 

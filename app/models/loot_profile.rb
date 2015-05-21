@@ -4,6 +4,4 @@ class LootProfile
 
   field :name, type: String
 
-
-
 end

@@ -1,6 +1,6 @@
 class VendorItemCreator
 
-  def initialize blueprint, player
+  def initialize player, blueprint
     @blueprint = blueprint
     @player = player
   end

@@ -10,6 +10,7 @@ class LocationState
   delegate :zone, to: :location
 
   field :seen_story, type: Boolean, default: false
+  field :observed, type: Boolean, default: false
   field :observed_details, type: Array, default: []
 
   field :battle_count, type: Integer, default: 0

@@ -11,6 +11,8 @@ class EventSerializer < ActiveModel::Serializer
              :resource_name,
              :location_name,
              :landmark_name, :landmark_slug,
+             :gold,
+             :equipment_name, :equipment_id,
              :player_id,
              :player_state_during_event
 

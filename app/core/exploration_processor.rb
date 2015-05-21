@@ -162,7 +162,13 @@ class ExplorationProcessor
     actions = []
     actions << Action.new(label: "Explore", key: :explore, feedback: "You venture forth...")
 
-    actions << Action.new(label: "Observe", key: :observe, feedback: "You look at the area around you...")
+    # actions << Action.new(label: "Auto-Explore", key: :auto_explore, feedback: "You venture forth...")
+
+    actions << Action.new(label: "Observe", key: :observe, feedback: "You observe the area around you...")
+
+    item_action = Action.new(label: "Item", key: :item)
+    item_action.child_actions.build(label: "Health potion", key: "item->health_potion", feedback: "You grab a health potion from your pack...")
+    actions << item_action
 
     # find_action = Action.new(label: "Find", key: :find)
     # find_action.child_actions.build(label: "Reagents", key: "find->reagents")

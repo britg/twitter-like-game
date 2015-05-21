@@ -18,7 +18,7 @@ class SkillProcessor
     # how difficult the use was
 
     # TEMP
-    if Rarity.below(50)
+    if Rarity.below?(50)
       increase_by 0.1
     else
       nil

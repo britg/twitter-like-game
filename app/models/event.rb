@@ -10,6 +10,8 @@ class Event
   NPC_DEATH = "npc_death"
   ENTRANCE = "entrance"
   RESOURCE = "resource"
+  GOLD = "gold"
+  ITEM = "item"
 
   class InvalidAction < Exception; end
 
@@ -41,6 +43,11 @@ class Event
   field :target, type: String
   field :target_id, type: String
   field :delta, type: String
+
+  # Loot
+  field :gold, type: Integer
+  field :equipment_name, type: String
+  field :equipment_id, type: String
 
   field :created_at, type: Time
 

@@ -3,6 +3,9 @@ class EquipmentBlueprint
   include HasSlug
   include HasRarity
   include BelongsToSlot
+  include HasRandomFinder
+
+  index({rarity_id: 1, random: 1})
 
   field :base_name, type: String
   validates_presence_of :base_name

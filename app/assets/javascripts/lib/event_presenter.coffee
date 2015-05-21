@@ -40,6 +40,11 @@ class window.EventPresenter
     for speedUpClass in @speedUpClasses
       return @speedUpTime if $_nextEvent.hasClass(speedUpClass)
 
-    detailCount = $_nextEvent.find(".detail").html().split(' ').length
-    nextDelay = detailCount * @delayPerWord;
+    text = $_nextEvent.find(".detail").html()
+    if text?
+      detailCount = text.split(' ').length
+      nextDelay = detailCount * @delayPerWord;
+    else
+      nextDelay = @speedUpTime
+
     nextDelay

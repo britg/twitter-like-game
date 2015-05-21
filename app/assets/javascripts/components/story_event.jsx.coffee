@@ -58,6 +58,18 @@
       <Actions actions=this.props.actions />
     </div>
 
+  itemEvent: ->
+    <div className={this.eventClasses(this.props.event)}>
+      <p>[{this.props.event.equipment_name}]</p>
+      <Actions actions=this.props.actions />
+    </div>
+
+  goldEvent: ->
+    <div className={this.eventClasses(this.props.event)}>
+      <p>+ {this.props.event.gold}g</p>
+      <Actions actions=this.props.actions />
+    </div>
+
 
   render: ->
 
@@ -70,6 +82,8 @@
       when "mob_approach" then return @mobApproachEvent()
       when "entrance" then return @entranceEvent()
       when "resource" then return @resourceEvent()
+      when "item" then return @itemEvent()
+      when "gold" then return @goldEvent()
       else
         <div>
           <p>Event type #{@props.event.format} is not defined</p>

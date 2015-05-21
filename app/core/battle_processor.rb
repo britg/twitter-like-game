@@ -180,6 +180,7 @@ class BattleProcessor
         detail: "You avoid #{npcs_as_sentence}"
       )
       player.update_attributes(battle_id: nil)
+      player.consider!
     else
       player.add_event(detail: "You're unable to avoid #{npcs_as_sentence} and they attack")
       process

@@ -1,6 +1,6 @@
 class EquipmentCreator
 
-  def initialize blueprint, player
+  def initialize player, blueprint
     @blueprint = blueprint
     @player = player
   end
@@ -28,7 +28,6 @@ class EquipmentCreator
     @equipment.agent_requirements = @blueprint.agent_requirements
     @equipment.save
 
-    @player.equip(@equipment)
     @equipment
   end
 

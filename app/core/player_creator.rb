@@ -51,7 +51,8 @@ class PlayerCreator
 
   def initial_equipment
     configatron.initial_equipment.each do |slug|
-      EquipmentCreator.new(EquipmentBlueprint.slug(slug), @player).create
+      equipment = EquipmentCreator.new(@player, EquipmentBlueprint.slug(slug)).create
+      @player.equip(equipment)
     end
   end
 
